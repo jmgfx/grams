@@ -1,3 +1,4 @@
 settings.py
 litegrams
 __pycache__
+*.pyc

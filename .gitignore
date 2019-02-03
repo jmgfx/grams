@@ -4,3 +4,4 @@ __pycache__
 *.pyc
 migrations/__pycache__
 migrations/*.pyc
+.vscode

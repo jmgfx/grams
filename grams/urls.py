@@ -22,6 +22,10 @@ urlpatterns = [
     path('assets/', include('assets.urls')),
     path('transactions/', include('transactions.urls')),
     path('branch/', include('branch.urls')),
+<<<<<<< HEAD
     path('company/', include('company.urls')),
 
+=======
+    path('vendors/', include('vendors.urls')),
+>>>>>>> 56c4362cdb458e8fa0ff21a66fe3800330c7a103
 ]

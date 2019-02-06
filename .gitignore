@@ -1,7 +1,9 @@
 settings.py
 litegrams
+testgrams
 __pycache__
 *.pyc
 migrations/__pycache__
 migrations/*.pyc
 .vscode
+staticfiles

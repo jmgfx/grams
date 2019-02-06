@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'grams/dashboard.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+    <section id="main" class="content">
+        <div class="titlepage">
+            <h1>Dashboard, dummy info</h1>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-sm reportbox neutral">
+                    <a href="assettable.html"><i class="fas fa-info-circle boxcon"></i></a>
+                    <h2>???</h2>
+                    <span class="reportbox-caption">total recorded assets.</span>
+                </div>
+
+                <div class="col-sm reportbox low">
+                    <a href="queue.html"><i class="fas fa-info-circle boxcon"></i></a>
+                    <h2>???</h2>
+                    <span class="reportbox-caption">queued transactions.</span>
+                </div>
+
+                <div class="col-sm reportbox critical">
+                    <a href="queue.html"><i class="fas fa-info-circle boxcon"></i></a>
+                    <h2>???</h2>
+                    <span class="reportbox-caption">transactions past due.</span>
+                </div>
+
+                <div class="col-sm reportbox misc">
+                    <a href="history.html"><i class="fas fa-info-circle boxcon"></i></a>
+                    <h2>???</h2>
+                    <span class="reportbox-caption">recently added assets.</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- QUEUED TRANSACTIONS -->
+                <div class="col-sm tablebox-container">
+                    <h2>
+                        <i class="far fa-clock"></i>&nbsp; Queued Transactions
+                    </h2>
+
+                    <!-- qt 1 -->
+                    <div class="tablebox">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-1-sm">
+                                    <!-- icon --><i class="far fa-clock"></i>
+                                </div>
+                                <div class="col">
+                                    Asset <b>transactions.asset_id</b> is schedule for maintenance on <b>transactions.date_due</b>.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <ul>
+                                    <li class="date">
+                                        transaction.datetime
+                                    </li>
+                                    <li class="critical">
+                                        transaction.status
+                                    </li>
+                                    <li class="neutral">
+                                        asset.id
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- show all -->
+                    <div class="tablebox showall">
+                        <a href="queue.html">Show All <i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+                
+
+                <!-- RECENT ACTIONS -->
+                <div class="col-sm tablebox-container">
+                    <h2>
+                        <i class="far fa-clock"></i>&nbsp; Recent Actions
+                    </h2>
+                    <!-- filler text -->
+                
+                    <!-- ra 1 -->
+                    <div class="tablebox">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-1-sm">
+                                    <!-- icon --><i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div class="col">
+                                    Asset <b>transactions.asset_id</b> was transfered from Branch <b>transactions.branch_origin</b> to Branch <b>transactions.branch_dest</b>
+                                    by user <b>transactions.user_id</b>.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <ul>
+                                    <li class="date">
+                                        <a href="pertransaction.html">transaction.datetime</a>
+                                    </li>
+                                    <li class="neutral">
+                                        transaction.type
+                                    </li>
+                                    <li class="neutral">
+                                        <a href="perasset.html">asset.id</a>
+                                    </li>
+                                    <li class="neutral">
+                                        <a href="perbranch.html">branch_origin</a>
+                                    </li>
+                                    <li class="neutral">
+                                        <a href="perbranch.html">branch_dest</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- show all -->
+                    <div class="tablebox showall">
+                        <a href="history.html">Show All <i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+        </div>
+        </div>
+
+    </section>
+{% endblock content %}

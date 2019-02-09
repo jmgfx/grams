@@ -23,4 +23,5 @@ urlpatterns = [
     path('transactions/', include('transactions.urls')),
     path('branch/', include('branch.urls')),
     path('vendors/', include('vendors.urls')),
-]
+    path('assetcategories/', include('assetcategories.urls')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tables.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+<section id="main" class="content">
+        
+    <div class="titlepage">
+        <form class="form-inline">
+            <h1>Vendors</h1> 
+            <button type="button" class="btn" onclick="window.location.href='addvendor.html'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
+        </form>
+    </div>
+
+    <form class="form-inline" style="margin-bottom: 15px">
+        <div class="form-group">
+            <button type="button" class="btn" style="background:  #2E7D32; color: white;"><i class="fas fa-file-pdf"></i>EXPORT PDF</button>
+        </div>
+
+        <div class="form-group">
+            <button type="button" class="btn" style="background:  #2E7D32; color: white "><i class="fas fa-file-csv"></i> EXPORT CSV</button>
+        </div>
+    </form>
+
+    <div style="overflow-x:auto;"> 
+        <table class="table table-striped" id="myTable"> 
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>ADRRESS</th>
+                    <th>CONTACT NUMBER</th>
+                    <th>CONTACT EMAIL</th>
+                </tr>
+            </thead>
+            
+            <tbody style="overflow-y:auto;">
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+               
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+        </table>
+      </div>
+</section>
+
+{% endblock content %}

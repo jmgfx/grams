@@ -1,0 +1,110 @@
+.titlepage .btn {
+    height: 35px;
+    background:rgb(44, 40, 40);
+}
+
+.titlepage .form-inline {
+    margin-top: 1px;
+}
+
+.form-inline {
+    margin-top: 40px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-top: 30px;
+}
+
+td {
+    text-align: center;
+    padding: 8px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+    thead {
+    background-color: #A5D6A7;
+    text-align: center;
+}
+
+/*td {
+    height: 50px;
+}*/
+
+td input[type="checkbox"], th input[type="checkbox"] {
+    float: left;
+    margin: 0 auto;
+    width: 100%;
+}
+
+input[type="date"] {
+    width: 180px;
+    height: 35px;
+    padding: 5px;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+    background: #E8F5E9
+}
+
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+    background: #C8E6C9;
+}
+
+/*.btn {
+    background: white;
+    height: auto;
+    width: auto;
+    color: black;
+    margin-right: 15px;
+    margin-left: 3px;
+    margin-top: 3px;
+}*/
+
+button.btn {
+    margin: 0;
+    margin-right: 15px;
+    margin-left: 5px;
+    padding: 3px;
+}
+
+    button.btn[data-toggle="dropdown"] {
+        background-color: transparent;
+    }
+
+.dropdown-menu a {
+    color: black;
+}
+
+label {
+    font-size: 1em;
+    /*padding: 10px;*/
+}
+
+.form-inline .form-group {
+    margin-bottom: 10px;
+}
+
+
+.fa-file-pdf {
+    padding-right: 4px;
+}
+
+.fa-file-csv {
+    padding-right: 1px;
+}
+
+input[type=checkbox] {
+    transform: scale(1.5);
+}
+
+h5 {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}

@@ -8,3 +8,7 @@ def TransactionsView(render):
 
 def TransactionsTable(render):
     return HttpResponse('Transactions table goes here.')
+
+
+def TransactionsHistory(render):
+    return HttpResponse('History of transactions goes here.')

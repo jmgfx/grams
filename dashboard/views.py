@@ -4,5 +4,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-def Dashboard(render):
-    return HttpResponse('Dashboard')
+def Dashboard(request):
+    return render(request, 'dashboard.html', {'title': 'Dashboard'})

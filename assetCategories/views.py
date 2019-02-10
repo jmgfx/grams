@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
+def AssetCategoriesTable(request):
+    return render(request, 'assetcategory.html', {'title': 'Asset Categories'})
+
 def AssetCategoriesView(request):
     return render(request, '', {'title': 'View Asset Categories'})
 

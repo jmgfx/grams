@@ -1,0 +1,202 @@
+
+<html>
+    <head>
+        <!-- TITLE --->
+        {% if title %}
+            <title>GRAMS: {{ title }}</title>
+        {% else %}
+            <title>GRAMS</title>
+        {% endif %}
+    
+        <!-- BOOTSTRAP --->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+    
+        <!-- FONT AWESOME --->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" 
+            integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" 
+            crossorigin="anonymous">
+    
+        <!-- Base CSS --->
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+        {% block page_css %}{% endblock page_css %}
+    
+    </head>
+    
+    <body>
+    <!---------------------------------------------------
+        START COPY
+    ----------------------------------------------------->
+    
+        <!-- START TOP BAR -->
+        <div class="topbar">
+            <!-- sidebar toggle -->
+            <div class="topbar-content">
+                <a href="#" id="opentogglebtn" onclick="toggleSideBar()">
+                    <span class="togglebtn">
+                        <i class="fas fa-bars"></i>
+                    </span>
+                </a>
+                <span class="topbar-title">
+                    <a href="/home/">
+                        GRAMS
+                    </a>
+    
+                    <!-- USER PANEL -->
+                    <div class="userpanel">
+                        <!-- start notifs -->
+                        <div class="dropdown">
+                            <a class="userbtn" id="dLabel" role="button" data-toggle="dropdown"
+                                data-target="#" href="/home/">
+                                <i class="fas fa-bell"></i>
+                            </a>
+                            <div class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                                <!-- start notif panel header -->
+                                <div class="notification-heading">
+                                    <span class="menu-title">Notifications</span>
+                                </div>
+                                <!-- end notif panel header -->
+                                
+                                <div class="notifications-wrapper">
+                                    <a class="notification-content" href="#">
+                                        <div class="notification-item">
+                                            <span class="item-title">Alert Title</span>
+                                            <div class="item-info">Alert information, etc.Alert Info</div>
+                                        </div>
+                                    </a>
+                                    
+                                </div>
+                                
+                                <!-- start notif panel footer -->
+                                <div class="notification-footer">
+                                    <span class="menu-title">
+                                        <a href="/home/">View all</a>
+                                    </span>
+                                </div>
+                                <!-- end notif panel footer -->
+                            </div>
+                        </div>
+                        <!-- end notifs -->
+    
+                        <!-- start user -->
+                        <div class="dropdown">
+                            <a class="userbtn" id="dLabel" role="button" data-toggle="dropdown"
+                                data-target="#" href="/page.html">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                                <div class="notifications-wrapper">
+                                    <!-- settings -->
+                                    <a class="notification-content" href="#">
+                                        <div class="notification-item">
+                                            <span class="item-title">Settings</span>
+                                        </div>
+                                    </a>
+                                    
+                                    <!-- something -->
+                                    <a class="notification-content" href="index.html">
+                                        <div class="notification-item">
+                                            <span class="item-title">Log Out</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end user -->
+    
+    
+                        <!-- start log out -->
+                        <a class="userbtn" href="index.html">
+                            <i class="fas fa-power-off"></i>
+                        </a>
+                        <!-- end log out -->
+                    </div>
+                </span>
+            </div>
+        </div>
+        <!-- END TOP BAR -->
+        
+        <!-- START SIDE NAV -->
+            <div id="side-menu" class="side-nav">
+                <!-- start asset menu -->
+                <a href="#asset" class="dropdown-btn"><i class="fas fa-cubes sidecon"></i> Asset <i class="fas fa-angle-down"></i></a>
+                <div class="dropdown-container">
+                    <a href="/assets/"><i class="fas fa-table incon"></i> Display All</a>
+                    <a href="/assets/add/"><i class="fas fa-plus incon"></i> Add</a>
+                    <a href="#" class="dropdown-btn"><i class="fas fa-th-large incon"></i> Categories <i class="fas fa-angle-down"></i></a>
+                    <div class="dropdown-container">
+                        <a href="/assetcategories/" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
+                        <a href="/assetcategories/add/" style="margin-left: 20px;"><i class="fas fa-plus incon"></i> Add</a>
+                    </div>
+                    <a href="#" class="dropdown-btn"><i class="fas fa-tags incon"></i> Brands <i class="fas fa-angle-down"></i></a>
+                    <div class="dropdown-container">
+                        <a href="/assetbrands/" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
+                        <a href="/assetbrands/add/" style="margin-left: 20px;"><i class="fas fa-plus incon"></i> Add</a>
+                    </div>
+                </div>
+                <!-- end asset menu -->
+    
+                <!-- start transactions menu -->
+                <a href="#transactions" class="dropdown-btn"><i class="fas fa-random sidecon"></i> Transactions <i class="fas fa-angle-down"></i></a>
+                <div class="dropdown-container">
+                    <a href="transfer.html"><i class="fas fa-people-carry incon"></i> Transfer</a>
+                    <a href="dispose.html"><i class="far fa-trash-alt incon"></i> Dispose/Archive</a>
+                    <a href="recover.html"><i class="fas fa-redo-alt incon"></i> Recover</a>
+                    <a href="/transactions/"><i class="far fa-calendar-alt incon"></i> Queue</a>
+                    <a href="/transactions/history/"><i class="fas fa-history incon"></i> History</a>
+                </div>
+                <!-- end transactions menu -->
+    
+                <!-- start manage menu -->
+                <a href="#manage" class="dropdown-btn"><i class="fas fa-cogs sidecon"></i> Manage <i class="fas fa-angle-down"></i></a>
+                    <div class="dropdown-container">
+                        <a href="#"  class="dropdown-btn"><i class="fas fa-utensils incon"></i> Branches <i class="fas fa-angle-down"></i></a>
+                        <div class="dropdown-container">
+                            <a href="/branch/" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
+                            <a href="/branch/add/" style="margin-left: 20px;"><i class="fas fa-plus incon"></i> Add</a>
+                        </div>
+                        <a href="#"  class="dropdown-btn"><i class="fas fa-users incon"></i> Users <i class="fas fa-angle-down"></i></a>
+                        <div class="dropdown-container">
+                            <a href="users.html" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
+                            <a href="adduser.html" style="margin-left: 20px;"><i class="fas fa-plus incon"></i> Add</a>
+                        </div>
+                        <a href="#"  class="dropdown-btn"><i class="fas fa-wrench incon"></i> Vendors <i class="fas fa-angle-down"></i></a>
+                        <div class="dropdown-container">
+                            <a href="/vendors/" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
+                            <a href="/vendors/add/" style="margin-left: 20px;"><i class="fas fa-plus incon"></i> Add</a>
+                        </div>
+                        <a href="generate.html"><i class="far fa-hdd incon"></i> Generate Backup</a>
+                    </div>
+                <!-- end manage menu -->
+            </div>
+            <!-- END SIDE NAV -->
+    
+    <!---------------------------------------------------
+        END COPY
+    ----------------------------------------------------->
+
+        {% block content %}{% endblock content %}
+    
+        <!-- local js -->
+        {% load static %}
+        <script src="{% static 'dropdown.js' %}"></script>
+        <!--<script src="../js/charts.js"></script>-->
+    
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+            crossorigin="anonymous"></script>
+    
+    </body>
+    
+    </html>

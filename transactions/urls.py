@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path('', views.TransactionsTable, name='transactions-table'),
     path('view/', views.TransactionsView, name='transactions-view'),
+    path('history/', views.TransactionsHistory, name='transactions-history'),
 ]

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'editpage.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+<section id="main" class="content">
+    <div class="titlepage">
+        <h2>Per Asset Vendor</h2>
+    </div>
+
+    
+        <div class="row">
+              <div class="col">
+                    <h5>Name: </h5>
+                    <h5>Address: </h5>
+                    <h5>Contact Number: </h5>
+                    <h5>Contact Email: </h5>
+              </div>
+        </div>
+
+</section>
+{% endblock content %}

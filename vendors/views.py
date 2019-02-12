@@ -5,16 +5,16 @@ def VendorsTable(request):
     return render(request, 'vendors.html', {'title': 'Vendors'})
 
 def VendorsView(request):
-    return render(request, '', {'title': 'View Vendors'})
+    return render(request, 'vendorview.html', {'title': 'View Vendors'})
 
 
 def VendorsAdd(request):
-    return render(request, '', {'title': 'Add a Vendor'})
+    return render(request, 'addvendor.html', {'title': 'Add a Vendor'})
 
 
 def VendorsEdit(request):
-    return render(request, '', {'title': 'Edit a Vendor'})
+    return render(request, 'editvendor.html', {'title': 'Edit a Vendor'})
 
 
 def VendorsArchive(request):
-    return render(request, '', {'title': 'Archived Vendors'})
+    return render(request, 'archive.html', {'title': 'Archived Vendors'})

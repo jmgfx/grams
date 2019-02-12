@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'forms.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+<section id="main" class="content">
+    <div class="titlepage">
+        <h2>Per Asset</h2>
+    </div>
+
+    
+        <div class="row">
+              <div class="col">
+                    <h5>ID: </h5>
+
+                    <form class="form-inline">
+                            <h5>Category: </h5>
+                            <input type="category" class="form-control" required>
+                    </form>
+                    <form class="form-inline">
+                            <h5> Brand: </h5>
+                            <input type="brand" class="form-control" required>
+                    </form>
+                    <form class="form-inline">
+                            <h5>Description: </h5>
+                            <textarea required></textarea>
+                    </form>
+              </div>
+
+              <div class="col">
+                    <h5>Status: </h5>
+                    <form class="form-inline">
+                        <h5>Site: </h5>
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" ></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Link 1</a>
+                            <a class="dropdown-item" href="#">Link 2</a>
+                            <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                    </form>
+
+
+                    <h5>Model Number:</h5>
+                    <h5>Serial Number: </h5>
+              </div>
+        </div>
+
+</section>
+{% endblock content %}

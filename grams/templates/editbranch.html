@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'editpage.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+<section id="main" class="content">
+    <div class="titlepage">
+        <h2>Edit Per Branch</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+
+            <h5>ID: </h5>   
+
+            <form class="form-inline">
+                <h5>Name: </h5>
+                <input type="category" class="form-control" required>
+            </form>
+             
+            <form class="form-inline">
+                <h5>Location: </h5>
+                <input type="category" class="form-control" required>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}

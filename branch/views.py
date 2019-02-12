@@ -5,16 +5,16 @@ def BranchTable(request):
     return render(request, 'branches.html', {'title': 'Branches'})
 
 def BranchView(request):
-    return render(request, '', {'title': 'View Branch'})
+    return render(request, 'branchview.html', {'title': 'View Branch'})
 
 
 def BranchAdd(request):
-    return render(request, '', {'title': 'Add a Branch'})
+    return render(request, 'addbranch.html', {'title': 'Add a Branch'})
 
 
 def BranchEdit(request):
-    return render(request, '', {'title': 'Edit a Branch'})
+    return render(request, 'editbranch.html', {'title': 'Edit a Branch'})
 
 
 def BranchArchive(request):
-    return render(request, '', {'title': 'Archived Branches'})
+    return render(request, 'archive.html', {'title': 'Archived Branches'})

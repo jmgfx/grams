@@ -7,16 +7,16 @@ def AssetBrandsTable(request):
 
 
 def AssetBrandsView(request):
-    return render(request, '', {'title': 'View Asset Brand'})
+    return render(request, 'assetbrandview.html', {'title': 'View Asset Brand'})
 
 
 def AssetBrandsAdd(request):
-    return render(request, '', {'title': 'Add an Asset Brand'})
+    return render(request, 'addassetbrand.html', {'title': 'Add an Asset Brand'})
 
 
 def AssetBrandsEdit(request):
-    return render(request, '', {'title': 'Edit an Asset Brand'})
+    return render(request, 'editassetbrand.html', {'title': 'Edit an Asset Brand'})
 
 
 def AssetBrandsArchive(request):
-    return render(request, '', {'title': 'Archived Asset Brands'})
+    return render(request, 'archive.html', {'title': 'Archived Asset Brands'})

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'forms.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+<section id="main" class="content add-form">
+    <div class="titlepage">
+        <h1>Add Asset</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm tablebox-container">
+            <label for="name">Name: </label>
+            <input type="text" class="form-control" required>
+
+            <label for="category" style="margin-right: 28px">Category: </label>
+                <select  class="form-control">
+                    <option value="link1">Link 1</option>
+                    <option value="link2">Link 2</option>
+                    <option value="link3">Link 3</option>
+                    <option value="link4">Link 4</option>
+                </select>
+
+            <label for="name" style="margin-right: 28px"> Brand: </label>
+                <select  class="form-control">
+                    <option value="link1">Link 1</option>
+                    <option value="link2">Link 2</option>
+                    <option value="link3">Link 3</option>
+                    <option value="link4">Link 4</option>
+                </select>
+        </div>
+
+        <div class="col-sm tablebox-container">
+            <label for="acost">Acquisition cost: </label>
+            <input type="text" class="form-control" required>
+
+            <label for="plife">Projected Life: </label>
+            <input type="text" class="form-control" required>
+
+            <label for="svalue">Salvage Value: </label>
+            <input type="text" class="form-control" required>
+        </div>
+
+        <div class="col-sm tablebox-container">
+            <label for="snumber">Serial Number: </label>
+            <input type="text" class="form-control" required>
+
+            <label for="mnumber">Model Number: </label>
+            <input type="text" class="form-control" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm tablebox-container">
+            <label for="location" style="margin-right: 28px">Location: </label>
+            <select>
+                <option value="link1">Link 1</option>
+                <option value="link2">Link 2</option>
+                <option value="link3">Link 3</option>
+                <option value="link4">Link 4</option>
+            </select>
+        </div>  
+
+        <div class="col-sm tablebox-container">
+            <label for="status" style="margin-right: 28px">Status: </label>
+            <select>
+                <option value="link1">Link 1</option>
+                <option value="link2">Link 2</option>
+                <option value="link3">Link 3</option>
+                <option value="link4">Link 4</option>
+            </select>
+        </div>    
+        
+        <!--
+        <div class="col-sm"></div>
+        -->
+    </div>  
+
+    <div class="description">
+        <label for="description" style="margin-right: 10px">Description: </label><br>
+        <textarea required></textarea>
+    </div>
+</section>
+{% endblock content %}

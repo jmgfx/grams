@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'forms.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+<section id="main" class="content add-form">
+    <div class="titlepage">
+        <h1>Add Branch</h1>
+    </div>
+
+    <div class="row">
+            <div class="col tablebox-container">
+                    <label for="name">Name: </label>
+                    <input type="text" class="form-control" required>
+
+                    <label for="location">Location: </label>
+                    <input type="text" class="form-control" required>
+            </div>
+
+            <div class="col tablebox-container">
+                  <label for="code">Code: </label>
+                  <input type="text" class="form-control" required>
+            </div>
+      </div>
+
+</section>
+{% endblock content %}

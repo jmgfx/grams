@@ -6,16 +6,16 @@ def AssetTable(request):
     return render(request, 'assettable.html', {'title': 'Assets'})
 
 def AssetView(request):
-    return render(request, '', {'title': 'View Asset'})
+    return render(request, 'assetview.html', {'title': 'View Asset'})
 
 
 def AssetAdd(request):
-    return render(request, '', {'title': 'Add an Asset'})
+    return render(request, 'addasset.html', {'title': 'Add an Asset'})
 
 
 def AssetEdit(request):
-    return render(request, '', {'title': 'Edit an Asset'})
+    return render(request, 'editasset.html', {'title': 'Edit an Asset'})
 
 
 def AssetArchive(request):
-    return render(request, '', {'title': 'Archived Assets'})
+    return render(request, 'archive.html', {'title': 'Archived Assets'})

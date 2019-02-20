@@ -35,40 +35,14 @@
             </thead>
             
             <tbody>
-                <tr>
-                    <td>0001</td>
-                    <td>Lenovo</td>
-                </tr>
 
-                <tr>
-                    <td>0002</td>
-                    <td>Dell</td>
-                </tr>
+                {% for brand in brands %}
+                    <tr>
+                        <td>{{ brand.id }}</td>
+                        <td>{{ brand.name }}</td>
+                    </tr>
+                {% endfor %}
 
-                <tr>
-                    <td>0003</td>
-                    <td>Ikea</td>
-                </tr>
-
-                <tr>
-                    <td>0004</td>
-                    <td>Kolin</td>
-                </tr>
-
-                <tr>
-                    <td>0005</td>
-                    <td>Condura</td>
-                </tr>
-
-                <tr>
-                    <td>0006</td>
-                    <td>Samsung</td>
-                </tr>
-
-                <tr>
-                    <td>0007</td>
-                    <td>Trend</td>
-                </tr>
             </tbody>
         </table>
       </div>

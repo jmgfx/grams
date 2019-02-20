@@ -6,16 +6,20 @@
 {% endblock page_css %}
 
 {% block content %}
-<section id="main" class="content add-form">
+<section id="main" class="content">
     <div class="titlepage">
         <h1>Add Category</h1>
     </div>
 
-    <div class="row">
-            <div class="col-sm tablebox-container">
-                    <label for="name">Name: </label>
-                    <input type="text" class="form-control" required>
-            </div>
-    </div>
+    <form method="POST" action="">
+        <div class="col-sm tablebox-container">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </form>
+    
 </section>
 {% endblock content %}

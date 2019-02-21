@@ -35,40 +35,14 @@
             </thead>
             
             <tbody>
-            <tr>
-                <td>0001</td>
-                <td>Chairs</td>
-            </tr>
 
-            <tr>
-                <td>0002</td>
-                <td>Laptops</td>
-            </tr>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                </tr>
+            {% endfor %}
 
-            <tr>
-                <td>0003</td>
-                <td>Kitchen Equipment</td>
-            </tr>
-
-            <tr>
-                <td>0004</td>
-                <td>Office Equipment</td>
-            </tr>
-
-            <tr>
-                <td>0005</td>
-                <td>Computers</td>
-            </tr>
-
-            <tr>
-                <td>0006</td>
-                <td>Decoration</td>
-            </tr>
-
-            <tr>
-                <td>0007</td>
-                <td>Table</td>
-            </tr>
             </tbody>
         </table>
       </div>

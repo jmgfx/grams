@@ -5,5 +5,7 @@ __pycache__
 *.pyc
 migrations/__pycache__
 migrations/*.pyc
+0*.py
 .vscode
 staticfiles
+admin.txt

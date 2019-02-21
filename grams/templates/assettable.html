@@ -4,26 +4,39 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'tables.css' %}">
-    
+    <link rel="stylesheet" type="text/css" 
+        href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 {% endblock page_css %}
 
 {% block content %}
-<section id="main" class="content">
-    <div class="description">
-            <div class="titlepage">
-                    <form class="form-inline">
-                        <h1>Assets</h1> 
-                        <button type="button" class="btn" onclick="window.location.href='addasset.html'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
-                    </form>
-                </div>
-                
-                <form class="form-inline" style="margin-bottom: 15px">
-                    <label for="dropdowns" class="mr-sm-2">Filter by: &nbsp;</label>
-    
-                    <div class="form-group">
+    <section id="main" class="content">
+        <div class="description">
+                <div class="titlepage">
+                        <form class="form-inline">
+                            <h1>Assets</h1> 
+                            <button type="button" class="btn" onclick="window.location.href='addasset.html'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
+                        </form>
+                    </div>
+                    
+                    <form class="form-inline" style="margin-bottom: 15px">
+                        <label for="dropdowns" class="mr-sm-2">Filter by: &nbsp;</label>
+        
+                        <div class="form-group">
+                            <input class="form-check" type="checkbox">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                BRANCH
+                            </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Link 1</a>
+                                    <a class="dropdown-item" href="#">Link 2</a>
+                                    <a class="dropdown-item" href="#">Link 3</a>
+                                </div>
+                            </div>
+                        
+                        <div class="form-group">
                         <input class="form-check" type="checkbox">
                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                            BRANCH
+                            CATEGORY
                         </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Link 1</a>
@@ -31,167 +44,72 @@
                                 <a class="dropdown-item" href="#">Link 3</a>
                             </div>
                         </div>
-                    
-                    <div class="form-group">
-                    <input class="form-check" type="checkbox">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                        CATEGORY
-                    </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Link 1</a>
-                            <a class="dropdown-item" href="#">Link 2</a>
-                            <a class="dropdown-item" href="#">Link 3</a>
+        
+                        <div class="form-group">
+                        <input class="form-check" type="checkbox">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                            BRAND
+                        </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Link 1</a>
+                                <a class="dropdown-item" href="#">Link 2</a>
+                                <a class="dropdown-item" href="#">Link 3</a>
+                            </div>
                         </div>
-                    </div>
-    
-                    <div class="form-group">
-                    <input class="form-check" type="checkbox">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                        BRAND
-                    </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Link 1</a>
-                            <a class="dropdown-item" href="#">Link 2</a>
-                            <a class="dropdown-item" href="#">Link 3</a>
+        
+                        <div class="form-group">
+                        <input class="form-check" type="checkbox">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                            STATUS
+                        </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Link 1</a>
+                                <a class="dropdown-item" href="#">Link 2</a>
+                                <a class="dropdown-item" href="#">Link 3</a>
+                            </div>
                         </div>
-                    </div>
-    
-                    <div class="form-group">
-                    <input class="form-check" type="checkbox">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                        STATUS
-                    </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Link 1</a>
-                            <a class="dropdown-item" href="#">Link 2</a>
-                            <a class="dropdown-item" href="#">Link 3</a>
+        
+                        <div class="form-group">
+                            <button type="button" class="btn" style="background:  #2E7D32; color: white;"><i class="fas fa-file-pdf"></i>EXPORT PDF</button>
                         </div>
-                    </div>
-    
-                    <div class="form-group">
-                        <button type="button" class="btn" style="background:  #2E7D32; color: white;"><i class="fas fa-file-pdf"></i>EXPORT PDF</button>
-                    </div>
-    
-                    <div class="form-group">
-                        <button type="button" class="btn" style="background:  #2E7D32; color: white "><i class="fas fa-file-csv"></i> EXPORT CSV</button>
-                    </div>
-    
-                </form>
-    
-    <div style="overflow-x:auto;"> 
-            <table class="table table-striped" id="myTable"> 
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>STATUS</th>
-                        <th>CATEGORY</th>
-                        <th>BRAND</th>
-                        <th>BRANCH</th>
-                    </tr>
-                </thead>
-                
-                <tbody style="overflow-y:auto;">
-                    <tr>
-                        <td>987654321</td>
-                        <td>Mahogany Chair</td>
-                        <td>In Use</td>
-                        <td>Chair</td>
-                        <td>Mahogany</td>
-                        <td>XYZ</td>
-                    </tr>
-
-                    <tr>
-                        <td>123456789</td>
-                        <td>Cashier Laptop</td>
-                        <td>Defective</td>
-                        <td>Laptop</td>
-                        <td>Dell</td>
-                        <td>MOA</td>
-                    </tr>
-
-                    <tr>
-                        <td>112233445</td>
-                        <td>Spool of rope</td>
-                        <td>Storage</td>
-                        <td>Decoration</td>
-                        <td>Kolin</td>
-                        <td>GER</td>
-                    </tr>
-
-                    <tr>
-                        <td>43215678</td>
-                        <td>Freezer</td>
-                        <td>For Maintenance</td>
-                        <td>Kitchen Equipment</td>
-                        <td>Condura</td>
-                        <td>TYM</td>
-                    </tr>
-
-                    <tr>
-                        <td>43215679</td>
-                        <td>CPU</td>
-                        <td>For Maintenance</td>
-                        <td>Computer</td>
-                        <td>Samsung</td>
-                        <td>GGG</td>
-                    </tr>
-
-                    <tr>
-                        <td>43215698</td>
-                        <td>Office Chair</td>
-                        <td>For Maintenance</td>
-                        <td>Office Equipment</td>
-                        <td>Ikea</td>
-                        <td>GGG</td>
-                    </tr>
-
-                    <tr>
-                        <td>43215778</td>
-                        <td>Stainless Countertop</td>
-                        <td>For Maintenance</td>
-                        <td>Kitchen Equipment</td>
-                        <td>Ikea</td>
-                        <td>YXS</td>
-                    </tr>
+        
+                        <div class="form-group">
+                            <button type="button" class="btn" style="background:  #2E7D32; color: white "><i class="fas fa-file-csv"></i> EXPORT CSV</button>
+                        </div>
+        
+                    </form>
+        
+        <div style="overflow-x:auto;"> 
+                <table class="table table-striped" id="myTable"> 
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>STATUS</th>
+                            <th>CATEGORY</th>
+                            <th>BRAND</th>
+                            <th>BRANCH</th>
+                        </tr>
+                    </thead>
                     
-                    <tr>
-                        <td>43215779</td>
-                        <td>Stove</td>
-                        <td>For Maintenance</td>
-                        <td>Kitchen Equipment</td>
-                        <td>Kolin</td>
-                        <td>UUU</td>
-                    </tr>
+                    <tbody style="overflow-y:auto;">
+
+                    {% for asset in assets %}
+                        <tr>
+                            <td>{{ asset.id }}</td>
+                            <td>{{ asset.name }}</td>
+                            <td>{{ asset.status }}</td>
+                            <td>{{ asset.category }}</td>
+                            <td>{{ asset.brand }}</td>
+                            <td>{{ asset.branch }}</td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+    </section>
                     
-                    <tr>
-                        <td>12345779</td>
-                        <td>Anchor</td>
-                        <td>Storage</td>
-                        <td>Decoration</td>
-                        <td>Vintage</td>
-                        <td>JIN</td>
-                    </tr>
-
-                    <tr>
-                        <td>12543767</td>
-                        <td>Small Ship</td>
-                        <td>In Use</td>
-                        <td>Decoration</td>
-                        <td>Vintage</td>
-                        <td>JIN</td>
-                    </tr>
-
-                    <tr>
-                        <td>32588867</td>
-                        <td>Nets</td>
-                        <td>In Use</td>
-                        <td>Decoration</td>
-                        <td>Vintage</td>
-                        <td>DFG</td>
-                    </tr>
-                </tbody>
-            </table>
         {% block js %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
              <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.css"/>

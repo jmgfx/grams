@@ -1,0 +1,118 @@
+.content .col-sm {
+    height: auto;
+}
+        
+        .description {
+            height: 140px;
+            margin-top: 10px;
+        }
+
+label {
+    margin-top: 10px;
+    margin-bottom: 1px;
+}
+
+.btn {
+    width: 140px;
+}
+
+        .btn[data-toggle=dropdown] {
+            width: auto;
+            height: auto;
+        }
+        
+        select {
+            width: 150px;
+            height: 35px;
+            border-radius: 5px 5px 5px 5px; 
+        }
+
+
+    .btn:hover {
+        background-color: #555;
+        color: black;
+        border: 1px solid gray;
+    }
+    
+
+textarea {
+    width: calc(100% - 45px);
+    height: calc(100% - 45px);
+    background: white;
+    color: black;
+    padding: 5px;
+}
+
+
+.add-form .row {
+    grid-column-gap: 2px;
+}
+
+.add-form .row > div {
+    background-color: white;
+    margin: 10px; padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #E0E0E0;
+}
+
+.add-form, .edit-form input, textarea, select {
+    font-size: 1em !important;
+    font-weight: 400;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+    .add-form, .edit-form input[type=text], input[type=password] {
+        border-radius: 0px;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        border-bottom: 3px solid #E0E0E0;
+    }
+
+        .add-form, .edit-form input[type=text]:focus, input[type=password]:focus {
+            border-bottom: 3px solid #1B5E20;
+            background-color: transparent;
+            outline-style: none;
+            box-shadow: none;
+        }
+
+    .add-form:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .add-form textarea {
+        border: 0; outline: 0;
+        background-color: transparent;
+        border-bottom: 3px solid #E0E0E0;
+        transition: 0.3s;
+    }
+
+        .add-form textarea:focus {
+            border-bottom: 3px solid #1B5E20;
+            background-color: white;
+            outline-style: none;
+            box-shadow: none;
+        }
+
+    .add-form select {
+        border: 0; padding: 5px;
+        border-radius: 0;
+        background-color: transparent;
+        border-bottom: 3px solid #E0E0E0;
+        transition: 0.3s;
+    }
+
+        /*
+        .add-form select:focus {
+            border-bottom: 3px solid #1B5E20;
+        }*/
+
+.tablebox-container h3 {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #BDBDBD;
+    padding-bottom: 8px;
+}

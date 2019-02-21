@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def VendorsTable(request):
-    return render(request, 'vendors.html', {'title': 'Vendors'})
+    return render(request, 'vendors.html', {'title': 'Vendors')
 
 def VendorsView(request):
     return render(request, 'vendorview.html', {'title': 'View Vendors'})

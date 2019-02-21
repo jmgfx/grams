@@ -6,9 +6,9 @@
 {% endblock page_css %}
 
 {% block content %}
-<section id="main" class="content">
+<section id="main" class="content add-form">
     <div class="titlepage">
-        <h1>Add Branch</h1>
+        <h1>Add Company</h1>
     </div>
 
     <!--
@@ -27,15 +27,12 @@
         </div>
     </div>
     -->
-    <div class="row">
-        <div class="col-sm tablebox-container">
-            <form method="POST" action="">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Save">
-            </form>
-        </div>
-    </div>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
 
 </section>
 {% endblock content %}

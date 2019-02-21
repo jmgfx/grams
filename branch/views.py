@@ -1,15 +1,28 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Branch
+from .forms import AddBranchForm
+
 
 def BranchTable(request):
-    return render(request, 'branches.html', {'title': 'Branches'})
+    context = {
+        'branches': Branch.objects.all()
+    }
+    return render(request, 'branches.html', context, {'title': 'Branches'})
 
 def BranchView(request):
     return render(request, 'branchview.html', {'title': 'View Branch'})
 
 
 def BranchAdd(request):
-    return render(request, 'addbranch.html', {'title': 'Add a Branch'})
+    if request.method == 'POST':
+        form = AddBranchForm(request.POST)
+        if form.is_valid():
+            new_branch = form.save(commit=False)
+            new_branch.save()
+    else:
+        form = AddBranchForm()
+    return render(request, 'addbranch.html', {'form': form}, {'title': 'Add a Branch'})
 
 
 def BranchEdit(request):

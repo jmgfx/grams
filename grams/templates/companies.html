@@ -10,7 +10,7 @@
         
     <div class="titlepage">
         <form class="form-inline">
-            <h1>Branches</h1> 
+            <h1>Companies</h1> 
             <button type="button" class="btn" onclick="window.location.href='addbranch.html'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
         </form>
     </div>
@@ -30,20 +30,16 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>CODE</th>
                     <th>NAME</th>
-                    <th>LOCATION</th>
                 </tr>
             </thead>
             
             <tbody style="overflow-y:auto;">
 
-                {% for branch in branches %}
+                {% for company in companies %}
                     <tr>
-                        <td>{{ branch.id }}</td>
-                        <td>{{ branch.code }}</td>
-                        <td>{{ branch.name }}</td>
-                        <td>{{ branch.location }}</td>
+                        <td>{{ company.id }}</td>
+                        <td>{{ company.name }}</td>
                     </tr>
                 {% endfor %}
 

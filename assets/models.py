@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from assetBrands.models import assetBrand
 from assetCategories.models import assetCategory
-"""from branch.models import Branch"""
+from branch.models import Branch
 
 
 class Assets(models.Model):
@@ -38,15 +38,15 @@ class Assets(models.Model):
         assetCategory, 
         blank=True, null=True, on_delete=models.SET_NULL
     )
+    branch = models.ForeignKey(
+        Branch, 
+        blank=True, null=True, on_delete=models.SET_NULL
+    )
 
     """author = models.ForeignKey(
         User, on_delete=SET('[Deleted User]')
     )
-    
-    branch = models.ForeignKey(
-        Branch, 
-        blank=True, null=True, on_delete=SET_NULL
-    )"""
+    """
 
     def __str__(self):
         return self.name

@@ -20,14 +20,16 @@
     </div>
     -->
 
-    <form method="POST" action="">
+    <div class="row">
         <div class="col-sm tablebox-container">
             <form method="POST" action="">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Save">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Save">
+                    </form>
             </form>
         </div>
-    </form>
+    </div>
 </section>
 {% endblock content %}

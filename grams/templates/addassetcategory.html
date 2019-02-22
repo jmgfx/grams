@@ -11,15 +11,17 @@
         <h1>Add Category</h1>
     </div>
 
-    <form method="POST" action="">
-        <div class="col-sm tablebox-container">
+    <div class="row">
+        <div class="form-control tablebox-container">
             <form method="POST" action="">
+
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Save">
+                <input type="reset" value="Reset">
             </form>
         </div>
-    </form>
+    </div>
     
 </section>
 {% endblock content %}

@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from .models import Assets
 from .forms import AddAssetForm
 
-
 def AssetTable(request):
     context = {
         'assets': Assets.objects.all()

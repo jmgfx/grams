@@ -21,12 +21,13 @@
     -->
 
     <div class="row">
-        <div class="col-sm tablebox-container">
+        <div class="form-control tablebox-container">
             <form method="POST" action="">
                     <form method="POST" action="">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <input type="submit" value="Save">
+                        <input type="reset" value="Reset">
                     </form>
             </form>
         </div>

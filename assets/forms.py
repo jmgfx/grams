@@ -11,3 +11,4 @@ class AddAssetForm(ModelForm):
             'model_no', 'serial_no',
             'acquisition_cost', 'projected_life', 'salvage_value',
             'description']
+       

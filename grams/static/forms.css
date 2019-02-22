@@ -1,3 +1,4 @@
+/*
 .content .col-sm {
     height: auto;
 }
@@ -104,11 +105,10 @@ textarea {
         transition: 0.3s;
     }
 
-        /*
+        
         .add-form select:focus {
             border-bottom: 3px solid #1B5E20;
-        }*/
-
+        
 .tablebox-container h3 {
     font-size: 1.3em;
     font-weight: bold;
@@ -116,3 +116,62 @@ textarea {
     border-bottom: 1px solid #BDBDBD;
     padding-bottom: 8px;
 }
+*/
+
+.row p input, select {
+    border: none;
+    border-bottom: 3px solid #1B5E20;
+    background-color: transparent;
+    outline-style: none;
+    box-shadow: none;
+    width: 20%;
+    outline: 0;
+    transition: .3s;
+}
+
+    .row p label {
+        width: 10%;
+    }
+
+    .row p input:focus, select:focus {
+        border-bottom: 3px solid #E0E0E0;
+    }
+
+    .row p textarea {
+        width: 50%;
+        height: 30%;
+        display: block;
+    }
+
+    input[type=submit]{
+        width: 140px;
+        height: 35px;
+        background-color: #2E7D32;
+        border: none;
+        color: white;
+        border-radius: 3px;
+        float: left;
+        margin-right: 5px;
+        transition: .3s;
+    }
+
+    input[type=reset] {
+        width: 140px;
+        height: 35px;
+        background-color: #b00020;
+        border: none;
+        color: white;
+        border-radius: 3px;
+        float: left;
+        transition: .3s;
+    }
+
+    input[type=submit]:hover, input[type=reset]:hover {
+        background-color: #E0E0E0;
+        border: #E0E0E0;
+    }
+
+    .form-control {
+        padding: 15px;
+    }
+    

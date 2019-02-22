@@ -10,8 +10,11 @@ def BranchTable(request):
     }
     return render(request, 'branches.html', context, {'title': 'Branches'})
 
-def BranchView(request):
-    return render(request, 'branchview.html', {'title': 'View Branch'})
+def BranchView(request, branch_id):
+    context_view = {
+        'branch_view': Branch.objects.get(id=branch_id)
+    }
+    return render(request, 'branchview.html', context_view, {'title': 'View Branch'})
 
 
 def BranchAdd(request):

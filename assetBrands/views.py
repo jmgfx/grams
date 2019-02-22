@@ -11,8 +11,11 @@ def AssetBrandsTable(request):
     return render(request, 'assetbrand.html', context, {'title': 'Asset Brands'})
 
 
-def AssetBrandsView(request):
-    return render(request, 'assetbrandview.html', {'title': 'View Asset Brand'})
+def AssetBrandsView(request, brand_id):
+    context_view = {
+        'brands_view': assetBrand.objects.get(id=brand_id)
+    }
+    return render(request, 'assetbrandview.html', context_view, {'title': 'View Asset Brand'})
 
 
 def AssetBrandsAdd(request):

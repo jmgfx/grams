@@ -10,8 +10,11 @@ def CompanyTable(request):
     }
     return render(request, 'companies.html', context, {'title': 'Companies'})
 
-def CompanyView(request):
-    return render(request, 'companyview.html', {'title': 'View Company'})
+def CompanyView(request, company_id):
+    context_view = {
+        'company_view': Company.objects.get(id=company_id)
+    }
+    return render(request, 'companyview.html', context_view, {'title': 'View Company'})
 
 
 def CompanyAdd(request):

@@ -7,16 +7,16 @@ from branch.models import Branch
 
 class Assets(models.Model):
     ASSET_STATUS = (
-        ('1', 'In Use'),
-        ('2', 'In Storage'),
-        ('3', 'In Maintenance'),
-        ('4', 'Defective'),
+        ('In Use', 'In Use'),
+        ('In Storage', 'In Storage'),
+        ('In Maintenance', 'In Maintenance'),
+        ('Defective', 'Defective'),
     )
 
     name = models.CharField(max_length=100)
     quantity = models.IntegerField(default='1')
     description = models.TextField(max_length=300)
-    status = models.CharField(max_length=1, choices=ASSET_STATUS, blank=False)
+    status = models.CharField(max_length=100, choices=ASSET_STATUS, blank=False)
     date_added = models.DateTimeField(auto_now_add=True)
     date_acquired = models.DateTimeField(default=timezone.now)
     end_of_warranty = models.DateTimeField(default=timezone.now)

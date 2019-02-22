@@ -39,7 +39,7 @@
                 {% for company in companies %}
                     <tr>
                         <td>{{ company.id }}</td>
-                        <td>{{ company.name }}</td>
+                        <td><a href="view/{{ company.id }}">{{ company.name }}</a></td>
                     </tr>
                 {% endfor %}
 

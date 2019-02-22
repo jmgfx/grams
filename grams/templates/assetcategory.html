@@ -39,7 +39,7 @@
             {% for category in categories %}
                 <tr>
                     <td>{{ category.id }}</td>
-                    <td>{{ category.name }}</td>
+                    <td><a href="view/{{ category.id }}">{{ category.name }}</a></td>
                 </tr>
             {% endfor %}
 

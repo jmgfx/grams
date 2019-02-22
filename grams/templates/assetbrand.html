@@ -39,7 +39,7 @@
                 {% for brand in brands %}
                     <tr>
                         <td>{{ brand.id }}</td>
-                        <td>{{ brand.name }}</td>
+                        <td><a href="view/{{brand.id}}">{{ brand.name }}</a></td>
                     </tr>
                 {% endfor %}
 

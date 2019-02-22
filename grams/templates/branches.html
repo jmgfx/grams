@@ -42,7 +42,7 @@
                     <tr>
                         <td>{{ branch.id }}</td>
                         <td>{{ branch.code }}</td>
-                        <td>{{ branch.name }}</td>
+                        <td><a href="view/{{ branch.id }}/">{{ branch.name }}</a></td>
                         <td>{{ branch.location }}</td>
                     </tr>
                 {% endfor %}

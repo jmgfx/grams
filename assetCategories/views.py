@@ -10,8 +10,11 @@ def AssetCategoriesTable(request):
     }
     return render(request, 'assetcategory.html', context, {'title': 'Asset Categories'})
 
-def AssetCategoriesView(request):
-    return render(request, 'assetcategoryview.html', {'title': 'View Asset Categories'})
+def AssetCategoriesView(request, category_id):
+    context_view = {
+        'categories_view': assetCategory.objects.get(id=category_id)
+    }
+    return render(request, 'assetcategoryview.html', context_view, {'title': 'View Asset Categories'})
 
 
 def AssetCategoriesAdd(request):

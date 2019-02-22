@@ -8,23 +8,23 @@
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h1>Mahogany Chair</h1>
+        <h1>{{ asset_view.name }}</h1>
     </div>
 
         <div class="row container-fluid">
             <div class="col-sm">
-                <b>ID: </b>987654321<br/>
-                <b>Category: </b>Chair<br/>
-                <b>Brand: </b>Mahogany<br/>
-                <b>Description: </b>Really big, wooden chair
+                <b>ID: </b>{{ asset_view.id }}<br/>
+                <b>Category: </b>{{ asset_view.category }}<br/>
+                <b>Brand: </b>{{ asset_view.brand }}<br/>
+                <b>Description: </b>{{ asset_view.description }}
             </div>
 
             <div class="col-sm">
-                <b>Date Added: </b> 2018/11/16<br/>
-                <b>Status: </b> In Use<br/>
-                <b>Site: </b> XYZ<br/>
-                <b>Model Number: </b>890-8932-812-1312<br/>
-                <b>Serial Number: </b>6798-8932-8901<br/>
+                <b>Date Added: </b> {{ asset_view.date_added }}<br/>
+                <b>Status: </b> {{ asset_view.status }}<br/>
+                <b>Branch: </b> {{ asset_view.branch }}<br/>
+                <b>Model Number: </b>{{ asset_view.model_no }}<br/>
+                <b>Serial Number: </b>{{ asset_view.serial_no }}<br/>
             </div>
         </div>
 

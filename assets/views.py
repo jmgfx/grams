@@ -10,8 +10,11 @@ def AssetTable(request):
     return render(request, 'assettable.html', context, {'title': 'Assets'})
 
 
-def AssetView(request):
-    return render(request, 'assetview.html', {'title': 'View Asset'})
+def AssetView(request, asset_id):
+    context_view = {
+        'asset_view': Assets.objects.get(id=asset_id)
+    }
+    return render(request, 'assetview.html', context_view, {'title': 'View Asset'})
 
 
 def AssetAdd(request):

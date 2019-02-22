@@ -335,6 +335,10 @@ h2 {
         }
 
 
+table {
+    font-size: 1em;
+}
+
 /* Background Color Codes */
 
 .neutral {background-color: #2E7D32 !important;}

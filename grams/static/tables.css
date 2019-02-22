@@ -26,7 +26,11 @@ td {
     vertical-align: middle;
 }
 
-    thead {
+tr {
+    font-size: 1em;
+}
+
+thead {
     background-color: #A5D6A7;
     text-align: center;
 }

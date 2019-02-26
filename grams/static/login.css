@@ -1,0 +1,109 @@
+.topspace {
+    margin-top: 10px;
+}
+
+.box {
+    margin: 10% auto;
+    width: 400px;
+    background-color: white;
+}
+
+
+/* Form */
+
+.login {
+    padding: 20px;
+    font-size: 16px;
+    width: 300px;
+    margin: auto;
+    overflow: hidden;
+}
+
+    .login h1 {
+        text-align: center;
+        font-size: 3em;
+        font-weight: 900;
+        letter-spacing: 2px;
+        color: #1B5E20;
+    }
+
+    .login a {
+        color: #2E7D32;
+    }
+
+        .login a:hover {
+            color: #1B5E20;
+            text-decoration: none;
+        }
+
+    .login input {
+        font-size: 1em !important;
+        font-weight: 400;
+        padding: 3px;
+        margin-bottom: 10px;
+    }
+
+        .login input[type=text], input[type=password] {
+            border-radius: 0px;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            border-bottom: 3px solid #E0E0E0;
+        }
+
+            .login input[type=text]:focus, input[type=password]:focus {
+                border-bottom: 3px solid #1B5E20;
+                background-color: transparent;
+                outline-style: none;
+                box-shadow: none;
+            }
+
+            .form-control:focus {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .login input[type=submit] {
+            float: left;
+            max-width: 80px;
+            /*margin-top: 15px;*/
+            background-color: #43A047;
+            color: #ffffff;
+            border: none;
+            box-shadow: 0px 1px 3px -2px #616161;
+        }
+
+            .login input[type=submit]:hover {
+                background-color: #2E7D32;
+            }
+
+            .login input[type=submit]:focus {
+                background-color: #388E3C;
+                box-shadow: none;
+            }
+
+
+/* Might be deleted */
+
+.addLink {
+    margin-top: 7px;
+    float: right;
+    font-size: 0.9em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+/* For responsiveness */
+
+@media screen and (max-width: 1024px) {
+    /* Not sure sa max-width na 1024px */
+    .box {
+        width: 100%;
+    }
+
+    .login {
+        /*margin: 20% auto;*/
+        width: 100%;
+    }
+}

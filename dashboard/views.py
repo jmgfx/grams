@@ -6,6 +6,10 @@ from django.utils import timezone
 from assets.models import Assets
 
 
+def LogIn(request):
+    return render(request, 'login.html', {'title': 'Portal'})
+
+
 def Dashboard(request):
     time_limit = timezone.now().date() - timedelta(days=30)
     context = {

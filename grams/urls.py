@@ -16,7 +16,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('home/', include('dashboard.urls')),
+    path('', include('dashboard.urls')),
     path('admin/', admin.site.urls),
     path('assets/', include('assets.urls')),
     path('transactions/', include('transactions.urls')),

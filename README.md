@@ -22,13 +22,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 ```
 'DIRS': [(os.path.join(BASE_DIR, 'grams/templates/')),],
 ```
-4. Run the following commands
+4. Install required Python packages:
+```
+pip install -r requirements.txt
+```
+5. Run the following commands
 ```
 python manage.py collectstatic
 python manage.py makemigrations
 python manage.py migrate
 ```
-5. Run the server
+6. Run the server
 
 ## Reminders
 * Run the collectstatic command whenever you add, modify, or delete a static file.

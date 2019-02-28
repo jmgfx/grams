@@ -1,4 +1,4 @@
-"""from django.db import models
+from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from assets.models import Assets
@@ -25,7 +25,6 @@ class Transactions(models.Model):
     description = models.TextField(max_length=300)
     assets_transact = models.ManyToManyField(
         Assets,
-        on_delete=models.CASCADE
     )
     
     # Type 1, Maintenance
@@ -51,4 +50,3 @@ class Transactions(models.Model):
     def __str__(self):
         return self.id
     
-"""

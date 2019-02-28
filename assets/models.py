@@ -6,11 +6,19 @@ from assetCategories.models import assetCategory
 from branch.models import Branch
 
 class Assets(models.Model):
+
+    IU = 'In Use'
+    IS = 'In Storage'
+    IM = 'In Maintenance'
+    DF = 'Defective'
+    AR = 'Archived'
+
     ASSET_STATUS = (
         ('In Use', 'In Use'),
         ('In Storage', 'In Storage'),
         ('In Maintenance', 'In Maintenance'),
         ('Defective', 'Defective'),
+        ('Archived', 'Archived'),
     )
 
     name = models.CharField(max_length=100)
@@ -41,11 +49,7 @@ class Assets(models.Model):
         Branch, 
         blank=True, null=True, on_delete=models.SET_NULL
     )
-
-    """author = models.ForeignKey(
-        User, on_delete=SET('[Deleted User]')
-    )
-    """
+    
 
     def __str__(self):
         return self.name

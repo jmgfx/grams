@@ -13,10 +13,18 @@
 
     
         <div class="row">
-              <div class="col">
-                    <h5>ID: {{ company_view.id }}</h5>
-                    <h5>Name: {{ company_view.name }}</h5>
-              </div>
+            <div class="col">
+                <h5>ID: {{ company_view.id }}</h5>
+                <h5>Name: {{ company_view.name }}</h5>
+            </div>
+            <div class="col">
+                <h5>Branches:</h5>
+                <ul>
+                    {% for branch in branches %}
+                        <li> {{ branch.name }} </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
 </section>
 {% endblock content %}

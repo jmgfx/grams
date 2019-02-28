@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Company
 from .forms import AddCompanyForm
+from branch.models import Branch
 
 
 def CompanyTable(request):
@@ -12,7 +13,8 @@ def CompanyTable(request):
 
 def CompanyView(request, company_id):
     context_view = {
-        'company_view': Company.objects.get(id=company_id)
+        'company_view': Company.objects.get(id=company_id),
+        'branches': Branch.objects.filter(company=company_id),
     }
     return render(request, 'companyview.html', context_view, {'title': 'View Company'})
 

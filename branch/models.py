@@ -11,9 +11,6 @@ class Branch(models.Model):
         Company, null=False, default='None',
         on_delete=models.CASCADE
     )
-    """owners = models.ForeignKey(
-        User, null=True, on_delete=SET_NULL
-    )"""
 
 
     def __str__(self):

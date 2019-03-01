@@ -6,27 +6,20 @@
 {% endblock page_css %}
 
 {% block content %}
-<section id="main" class="content add-form">
+<section id="main" class="content">
     <div class="titlepage">
         <h1>Add Vendor</h1>
     </div>
 
     <div class="row">
-        <div class="col tablebox-container">
-                <label for="name">Name: </label>
-                <input type="text" class="form-control" required>
-
-                <label for="address">Address: </label>
-                <input type="text" class="form-control" required>
+        <div class="form-control tablebox-container">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save">
+                <input type="reset" value="Reset">
+            </form>
         </div>
-
-        <div class="col tablebox-container">
-              <label for="cnumber">Contact Number: </label>
-              <input type="text" class="form-control" required>
-
-              <label for="cemail">Contact Email: </label>
-                <input type="text" class="form-control" required>
-        </div>
-  </div>
+    </div>
 </section>
 {% endblock content %}

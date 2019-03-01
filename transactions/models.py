@@ -37,12 +37,12 @@ class Transactions(models.Model):
     # Type 2, Transfer
     branch_origin = models.ForeignKey(
         Branch,
-        related_name='origin',
+        related_name='origin', null=True,
         on_delete=models.CASCADE
     )
     branch_destination = models.ForeignKey(
         Branch,
-        related_name='destination',
+        related_name='destination', null=True,
         on_delete=models.CASCADE
     )
 

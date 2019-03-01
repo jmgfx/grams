@@ -13,7 +13,7 @@ class Company(models.Model):
     branches = models.ForeignKey(
         'branch.Branch',
         related_name='children',
-        null=True, on_delete=models.SET_NULL
+        blank=True, null=True, on_delete=models.SET_NULL
     )
 
 

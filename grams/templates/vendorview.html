@@ -8,17 +8,18 @@
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h2>Per Asset Vendor</h2>
+        <h2>{{ vendor_view.name }}</h2>
     </div>
 
     
         <div class="row">
-              <div class="col">
-                    <h5>Name: </h5>
-                    <h5>Address: </h5>
-                    <h5>Contact Number: </h5>
-                    <h5>Contact Email: </h5>
-              </div>
+                <div class="col">
+                    <h5>ID: {{ vendor_view.id }}</h5>
+                    <h5>Name: {{ vendor_view.name }}</h5>
+                    <h5>Address: {{ vendor_view.address }}</h5>
+                    <h5>Contact Number: {{ vendor_view.contact_number }}</h5>
+                    <h5>Contact Email: {{ vendor_view.contact_email }}</h5>
+                </div>
         </div>
 
 </section>

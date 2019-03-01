@@ -91,6 +91,10 @@
     overflow: scroll;
 }
 
+.row {
+    overflow: scroll;
+}
+
 a.btn-revalue {
     color: white;
     padding: 5px; margin-top: 10px;

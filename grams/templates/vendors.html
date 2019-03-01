@@ -38,45 +38,15 @@
             </thead>
             
             <tbody style="overflow-y:auto;">
+            {% for vendor in vendors %}
                 <tr>
-                    <td>1</td>
-                    <td>FixIt!</td>
-                    <td>Manila City</td>
-                    <td>0987 642 7731</td>
-                    <td>contact@fixit.com</td>
+                    <td>{{ vendor.id }}</td>
+                    <td><a href="view/{{ vendor.id }}">{{ vendor.name }}</a></td>
+                    <td>{{ vendor.address }}</td>
+                    <td>{{ vendor.contact_number }}</td>
+                    <td>{{ vendor.contact_email }}</td>
                 </tr>
-
-                <tr>
-                    <td>2</td>
-                    <td>Ooo</td>
-                    <td>Land of Ooo</td>
-                    <td>0999 000 0000</td>
-                    <td>ooo@ooo.ooo</td>
-                </tr>
-               
-                <tr>
-                    <td>3</td>
-                    <td>Something</td>
-                    <td>Somewhere</td>
-                    <td>0000 111 2222</td>
-                    <td>contactus@email.com</td>
-                </tr>
-
-                <tr>
-                    <td>4</td>
-                    <td>VendorName</td>
-                    <td>Vendor Address</td>
-                    <td>0912 098 6789</td>
-                    <td>vendor@contact.com</td>
-                </tr>
-                
-                <tr>
-                    <td>5</td>
-                    <td>Jeanne</td>
-                    <td>San Juan City</td>
-                    <td>0918 607 0024</td>
-                    <td>jeanne.ong.garcia@gmail.com</td>
-                </tr>
+            {% endfor %}
 
             </tbody>
         </table>

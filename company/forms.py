@@ -5,4 +5,4 @@ from .models import Company
 class AddCompanyForm(ModelForm):
     class Meta:
         model = Company
-        fields = ['name', 'owners']
+        fields = ['name', 'owners', 'branches']

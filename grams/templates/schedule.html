@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    <link rel="stylesheet" href="tables.css">
+{% endblock page_css %}
+
+{% block content %}
+
+    <section id="main" class="content">
+        <div class="titlepage">
+            <h1>Schedule Maintenance</h1>
+        </div>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save">
+            <input type="reset" value="Reset">
+        </form>
+    </section>
+
+
+{% endblock content %}

@@ -91,16 +91,25 @@
     overflow: scroll;
 }
 
-.row {
-    overflow: scroll;
-}
-
 a.btn-revalue {
     color: white;
     padding: 5px; margin-top: 10px;
     width: auto;
     text-decoration: none;
     border-radius: 3px;
+}
+
+.info-table table {
+    border: 1px solid #ddd;
+}
+
+.info-table tr {
+    height: 15px;
+    padding: 3px;
+}
+
+.info-table td {
+    padding: 3px;
 }
 
 /* Show All Link */

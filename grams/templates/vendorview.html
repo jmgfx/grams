@@ -2,25 +2,55 @@
 
 {% block page_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'editpage.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
 {% endblock page_css %}
 
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h2>{{ vendor_view.name }}</h2>
+        <h1>{{ vendor_view.name }}</h1>
     </div>
 
-    
-        <div class="row">
-                <div class="col">
-                    <h5>ID: {{ vendor_view.id }}</h5>
-                    <h5>Name: {{ vendor_view.name }}</h5>
-                    <h5>Address: {{ vendor_view.address }}</h5>
-                    <h5>Contact Number: {{ vendor_view.contact_number }}</h5>
-                    <h5>Contact Email: {{ vendor_view.contact_email }}</h5>
-                </div>
+        <div class="row container-fluid">
+            <div class="col-sm">
+                <h2>
+                    <i class="fas fa-info-circle"></i>&nbsp; Information
+                </h2>
+                <table class="info-table">
+                    <tr>
+                        <td><b>ID</b></td>
+                        <td>{{ vendor_view.id }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Name</b></td>
+                        <td>{{ vendor_view.name }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Date Added</b></td>
+                        <td>{{ vendor_view.date_added }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Address</b></td>
+                        <td>{{ vendor_view.address }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Contact Number</b></td>
+                        <td>{{ vendor_view.contact_number }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Contact Email</b></td>
+                        <td>{{ vendor_view.contact_email }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
 </section>
+
+<div class="footer">
+    <a href="{% url 'vendors-edit' vendor_view.id %}" class="btn float-right neutral">Edit</a>
+    <a href="#" class="btn float-right critical">Archive</a>
+</div>
+
+
 {% endblock content %}

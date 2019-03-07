@@ -1,15 +1,3 @@
-"""
-
-    To Do - dev:
-    1. Add all app configs to settings.py in INSTALLED_APPS
-
-    To Do - before deployment:
-    1. Remove all comments
-    2. Minify CSS & JS files
-
-"""
-
-
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings

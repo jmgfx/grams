@@ -5,4 +5,10 @@ from .models import assetCategory
 class AddAssetCategory(ModelForm):
     class Meta:
         model = assetCategory
-        fields = ['name']
+        fields = ['name', 'description']
+
+
+class EditAssetCategory(ModelForm):
+    class Meta:
+        model = assetCategory
+        fields = ['name', 'description']

@@ -97,7 +97,7 @@
                     {% for asset in assets %}
                         <tr>
                             <td>{{ asset.id }}</td>
-                            <td><a href="view/{{ asset.id }}">{{ asset.name }}</a></td>
+                            <td><a href="{% url 'asset-view' asset.id %}">{{ asset.name }}</a></td>
                             <td>{{ asset.status }}</td>
                             <td>{{ asset.category }}</td>
                             <td>{{ asset.brand }}</td>

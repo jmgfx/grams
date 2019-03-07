@@ -2,29 +2,69 @@
 
 {% block page_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'editpage.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
 {% endblock page_css %}
 
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h2>{{ company_view.name }}</h2>
+        <h1>{{ company_view.name }}</h1>
     </div>
 
-    
-        <div class="row">
-            <div class="col">
-                <h5>ID: {{ company_view.id }}</h5>
-                <h5>Name: {{ company_view.name }}</h5>
+        <div class="row container-fluid">
+            <div class="col-sm">
+                <h2>
+                    <i class="fas fa-info-circle"></i>&nbsp; Information
+                </h2>
+                <table class="info-table">
+                    <tr>
+                        <td><b>ID</b></td>
+                        <td>{{ company_view.id }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Name</b></td>
+                        <td>{{ company_view.name }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Date Added</b></td>
+                        <td>{{ company_view.date_added }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Owners</b></td>
+                        <td>{{ company_view.owners }}</td>
+                    </tr>
+                </table>
             </div>
-            <div class="col">
-                <h5>Branches:</h5>
-                <ul>
+
+            <div class="col-sm">
+                <h2>
+                    <i class="fas fa-chart-line"></i>&nbsp; Branches
+                </h2>
+
+                <table class="table table-striped">
+                    <thead>
+                        <td>Code</td>
+                        <td>Name</td>
+                        <td>Location</td>
+                    </thead>
                     {% for branch in branches %}
-                        <li> {{ branch.name }} </li>
+                        <tr>
+                            <td>{{ branch.code }}</td>
+                            <td>{{ branch.name }}</td>
+                            <td>{{ branch.location }}</td>
+                        </tr>
                     {% endfor %}
-                </ul>
+                </table>
+                
             </div>
         </div>
+
 </section>
+
+<div class="footer">
+    <a href="{% url 'company-edit' company_view.id %}" class="btn float-right neutral">Edit</a>
+    <a href="#" class="btn float-right critical">Archive</a>
+</div>
+
+
 {% endblock content %}

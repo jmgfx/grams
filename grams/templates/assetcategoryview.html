@@ -8,15 +8,59 @@
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h2>{{ categories_view.name }}</h2>
+        <h1>{{ categories_view.name }}</h1>
     </div>
 
-    
-        <div class="row">
-              <div class="col">
-                    <h5>ID: {{ categories_view.id }}</h5>
-                    <h5>Name: {{ categories_view.name }}</h5>
-              </div>
+        <div class="row container-fluid">
+            <div class="col-sm">
+                <h2>
+                    <i class="fas fa-info-circle"></i>&nbsp; Information
+                </h2>
+                <table class="info-table">
+                    <tr>
+                        <td><b>Name</b></td>
+                        <td>{{ categories_view.name }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Date Added</b></td>
+                        <td>{{ categories_view.date_added }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Description</b></td>
+                        <td>{{ categories_view.description }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-sm">
+                <h2>
+                    <i class="fas fa-chart-line"></i>&nbsp; Assets
+                </h2>
+
+                <table class="table table-striped">
+                    <thead>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Category</td>
+                        <td>Brand</td>
+                    </thead>
+                    {% for asset in assets %}
+                        <tr>
+                            <td>{{ asset.id }}</td>
+                            <td>{{ asset.name }}</td>
+                            <td>{{ asset.category }}</td>
+                            <td>{{ asset.brand }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                
+            </div>
         </div>
+
 </section>
+
+<div class="footer">
+    <a href="{% url 'asset-categories-edit' categories_view.id %}" class="btn float-right neutral">Edit</a>
+    <a href="#" class="btn float-right critical">Archive</a>
+</div>
 {% endblock content %}

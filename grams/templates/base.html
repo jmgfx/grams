@@ -137,8 +137,8 @@
                 <!-- start transactions menu -->
                 <a href="#transactions" class="dropdown-btn"><i class="fas fa-random sidecon"></i> Transactions <i class="fas fa-angle-down"></i></a>
                 <div class="dropdown-container">
-                    <a href="{% url 'schedule-maintenance' %}"><i class="fas fa-people-carry incon"></i> Maintenance</a>
-                    <a href="transfer.html"><i class="fas fa-people-carry incon"></i> Transfer</a>
+                    <a href="{% url 'schedule-maintenance' %}"><i class="far fa-clock incon"></i></i> Maintenance</a>
+                    <a href="{% url 'transfer-asset' %}"><i class="fas fa-people-carry incon"></i> Transfer</a>
                     <a href="dispose.html"><i class="far fa-trash-alt incon"></i> Dispose/Archive</a>
                     <a href="recover.html"><i class="fas fa-redo-alt incon"></i> Recover</a>
                     <a href="{% url 'transactions-table' %}"><i class="far fa-calendar-alt incon"></i> Queue</a>
@@ -159,19 +159,25 @@
                             <a href="{% url 'company-table' %}" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
                             <a href="{% url 'company-add' %}" style="margin-left: 20px;"><i class="fas fa-plus incon"></i> Add</a>
                         </div>
-                        <a href="#"  class="dropdown-btn"><i class="fas fa-users incon"></i> Users <i class="fas fa-angle-down"></i></a>
-                        <div class="dropdown-container">
-                            <a href="users.html" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
-                            <a href="adduser.html" style="margin-left: 20px;"><i class="fas fa-plus incon"></i> Add</a>
-                        </div>
                         <a href="#"  class="dropdown-btn"><i class="fas fa-wrench incon"></i> Vendors <i class="fas fa-angle-down"></i></a>
                         <div class="dropdown-container">
                             <a href="{% url 'vendors-table'%}" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
                             <a href="{% url 'vendors-add'%}" style="margin-left: 20px;"><i class="fas fa-plus incon"></i> Add</a>
                         </div>
-                        <a href="generate.html"><i class="far fa-hdd incon"></i> Generate Backup</a>
                     </div>
                 <!-- end manage menu -->
+
+                <!-- admin -->
+                <a href="#admin" class="dropdown-btn"><i class="fas fa-unlock-alt sidecon"></i> Administrator <i class="fas fa-angle-down"></i></a>
+                <div class="dropdown-container">
+                    <a href="#"  class="dropdown-btn"><i class="fas fa-users incon"></i> Users <i class="fas fa-angle-down"></i></a>
+                        <div class="dropdown-container">
+                            <a href="users.html" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
+                            <a href="adduser.html" style="margin-left: 20px;"><i class="fas fa-plus incon"></i> Add</a>
+                        </div>
+                    <a href="#"><i class="fas fa-solar-panel incon"></i> Panel</a>
+                    <a href="generate.html"><i class="far fa-hdd incon"></i> Generate Backup</a>
+                </div>
             </div>
 
         {% block content %}{% endblock content %}

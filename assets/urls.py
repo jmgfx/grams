@@ -7,5 +7,7 @@ urlpatterns = [
     path('view/<int:asset_id>/edit/', views.AssetEdit, name='asset-edit'),
     path('view/<int:asset_id>/revalue/', views.Revalue, name='asset-revalue'),
     path('add/', views.AssetAdd, name='asset-add'),
-    path('archive/', views.AssetArchive, name='asset-archive'),
+    path('archive/', views.ArchivedAssetsTable, name='archived-assets-table'),
+    path('archive/<int:asset_id>/', views.AssetArchive, name='asset-archive'),
+    path('recover/<int:asset_id>/', views.AssetRecover, name='asset-recover'),
 ]

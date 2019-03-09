@@ -26,7 +26,6 @@ def Maintenance(request):
         if form.is_valid():
             new_transaction = form.save(commit=False)
             new_transaction.ttype = 1
-            new_transaction.description = DefaultDescription(new_transaction)
             new_transaction.save()
     else:
         form = MaintenanceForm()
@@ -39,7 +38,6 @@ def Transfer(request):
         if form.is_valid():
             new_transaction = form.save(commit=False)
             new_transaction.ttype = 2
-            new_transaction.description = DefaultDescription(new_transaction)
             new_transaction.save()
     else:
         form = TransferForm()

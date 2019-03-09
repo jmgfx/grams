@@ -121,6 +121,7 @@
                 <div class="dropdown-container">
                     <a href="{% url 'asset-table' %}"><i class="fas fa-table incon"></i> Display All</a>
                     <a href="{% url 'asset-add' %}"><i class="fas fa-plus incon"></i> Add</a>
+                    <a href="{% url 'archived-assets-table' %}"><i class="far fa-trash-alt incon"></i></i> Archive</a>
                     <a href="#" class="dropdown-btn"><i class="fas fa-th-large incon"></i> Categories <i class="fas fa-angle-down"></i></a>
                     <div class="dropdown-container">
                         <a href="{% url 'asset-categories-table' %}" style="margin-left: 20px;"><i class="fas fa-table incon"></i> Display All</a>
@@ -184,6 +185,7 @@
     
         {% load static %}
         <script src="{% static 'dropdown.js' %}"></script>
+        <script src="{% static 'custom.js' %}"></script>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 

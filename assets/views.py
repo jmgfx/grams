@@ -1,17 +1,19 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse, reverse_lazy
 from datetime import timedelta
 from django.http import HttpResponse
 from .models import Assets
 from .forms import AddAssetForm, EditAssetForm, RevalueForm
 from transactions.models import Transactions
 from .services import GetDepreciation
+from . import urls
 
 import datetime
 
 
 def AssetTable(request):
     context = {
-        'assets': Assets.objects.all()
+        'assets': Assets.objects.filter(display=1)
     }
     return render(request, 'assettable.html', context, {'title': 'Assets'})
 
@@ -109,5 +111,24 @@ def Revalue(request, asset_id):
     return render(request, 'revalue.html', {'form': form}, {'title': 'Revalue Asset'})
 
 
-def AssetArchive(request):
-    return render(request, 'archive.html', {'title': 'Archived Assets'})
+def AssetArchive(request, asset_id):
+    asset_to_archive = Assets.objects.get(id=asset_id)
+    asset_to_archive.status = 'Archived'
+    asset_to_archive.display = 0
+    asset_to_archive.save()
+    return redirect('/assets/view/' + str(asset_id))
+
+
+def AssetRecover(request, asset_id):
+    asset_to_recover = Assets.objects.get(id=asset_id)
+    asset_to_recover.status = 'In Storage'
+    asset_to_recover.display = 1
+    asset_to_recover.save()
+    return redirect('/assets/view/' + str(asset_id))
+
+
+def ArchivedAssetsTable(request):
+    context = {
+        'assets': Assets.objects.filter(display=0)
+    }
+    return render(request, 'assettablearchive.html', context, {'title': 'Archived Assets'})

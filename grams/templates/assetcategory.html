@@ -3,6 +3,7 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'tables.css' %}">
+  
 {% endblock page_css %}
 
 {% block content %}
@@ -55,6 +56,16 @@
                 $(document).ready( function () {
                     $('#myTable').DataTable();
                 } );
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#myTable tr').click(function() {
+                    var href = $(this).find("a").attr("href");
+                       if(href) {
+                            window.location = href;
+                           }
+                     });
+                });  
             </script>
         {% endblock js %}
       </div>

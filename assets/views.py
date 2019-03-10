@@ -81,34 +81,36 @@ def Revalue(request, asset_id):
     if request.method == 'POST':
         form = RevalueForm(request.POST, instance=Assets.objects.all().get(id=asset_id))
         if form.is_valid():
-            revalued_asset = form.save(commit=False)
+            form.save()
 
-            revalued_asset.balance = revalued_asset.acquisition_cost
-            revalued_asset.counter = revalued_asset.project_life
-            revalued_asset.dep_value = (revalued_asset.acquisition_cost - revalued_asset.salvage_value) / revalued_asset.project_life
-
-            revalued_asset.it_dep_date.clear()
-            revalued_asset.it_accrued.clear()
-            revalued_asset.it_balance.clear()
-
-            revalued_asset.it_dep_date = [revalued_asset.date_acquired] * revalued_asset.counter
-            revalued_asset.it_accrued = [0] * revalued_asset.counter
-            revalued_asset.it_balance = [0] * revalued_asset.counter
-
-            revalued_asset.it_dep_date[0] = revalued_asset.date_acquired
-            revalued_asset.it_accrued[0] = revalued_asset.dep_value
-            revalued_asset.it_balance[0] = revalued_asset.acquisition_cost
-
-            month = 1
-            for month in range(revalued_asset.counter):
-                revalued_asset.it_dep_date[month] = revalued_asset.it_dep_date[month-1] + datetime.timedelta(30)
-                revalued_asset.it_accrued[month] = revalued_asset.it_accrued[month-1] + revalued_asset.dep_value
-                revalued_asset.it_balance[month] = revalued_asset.acquisition_cost - revalued_asset.it_accrued[month]
-
-            return redirect('/assets/view/' + str(asset_id))
+            return redirect('/assets/view/' + str(asset_id) + '/revalue/true/')
     else:
         form = RevalueForm(instance=Assets.objects.all().get(id=asset_id))
     return render(request, 'revalue.html', {'form': form}, {'title': 'Revalue Asset'})
+
+
+def RevalueAlgo(request, asset_id):
+    asset_to_revalue = Assets.objects.get(id=asset_id)
+    asset_to_revalue.balance = asset_to_revalue.acquisition_cost
+    asset_to_revalue.counter = asset_to_revalue.project_life
+    asset_to_revalue.dep_value = (asset_to_revalue.acquisition_cost - asset_to_revalue.salvage_value) / asset_to_revalue.project_life
+
+    asset_to_revalue.it_dep_date = [asset_to_revalue.date_acquired] * asset_to_revalue.counter
+    asset_to_revalue.it_accrued = [0] * asset_to_revalue.counter
+    asset_to_revalue.it_balance = [0] * asset_to_revalue.counter
+
+    asset_to_revalue.it_dep_date[0] = asset_to_revalue.date_acquired
+    asset_to_revalue.it_accrued[0] = asset_to_revalue.dep_value
+    asset_to_revalue.it_balance[0] = asset_to_revalue.acquisition_cost
+
+    month = 1
+    for month in range(asset_to_revalue.counter):
+        asset_to_revalue.it_dep_date[month] = asset_to_revalue.it_dep_date[month-1] + datetime.timedelta(30)
+        asset_to_revalue.it_accrued[month] = asset_to_revalue.it_accrued[month-1] + asset_to_revalue.dep_value
+        asset_to_revalue.it_balance[month] = asset_to_revalue.acquisition_cost - asset_to_revalue.it_accrued[month]
+
+    asset_to_revalue.save()
+    return redirect('/assets/view/' + str(asset_id))
 
 
 def AssetArchive(request, asset_id):

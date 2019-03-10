@@ -14,7 +14,12 @@ Giligan's Restaurant Asset Management System
 pip install -r requirements.txt
 ```
 2. Create a database using PostgreSQL.
-3. Acquire the template for `settings.py`.
+3. Acquire & modify the template for `settings.py` as per the configurations below.
+4. Run the commands:
+```
+python manage.py makemigrations
+python manage.py migrate
+```
 
 ### Settings.py Configurations
 1. Include all apps in the `INSTALLED_APPS`.

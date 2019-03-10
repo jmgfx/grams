@@ -9,32 +9,30 @@
 <section id="main" class="content">
         
     <div class="titlepage">
-        <h1>Vendors</h1> 
+        <h1>Archived Branches</h1> 
     </div>
-    <a href="{% url 'vendors-add' %}" class="btn neutral">Add</a> <a href="{% url 'archive-vendors-table' %}" class="btn critical">Display Archive</a>
 
     <div style="overflow-x:auto;"> 
         <table class="table table-striped" id="myTable"> 
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>CODE</th>
                     <th>NAME</th>
-                    <th>ADRRESS</th>
-                    <th>CONTACT NUMBER</th>
-                    <th>CONTACT EMAIL</th>
+                    <th>LOCATION</th>
                 </tr>
             </thead>
             
             <tbody style="overflow-y:auto;">
-            {% for vendor in vendors %}
-                <tr>
-                    <td>{{ vendor.id }}</td>
-                    <td><a href="{% url 'vendors-view' vendor.id %}">{{ vendor.name }}</a></td>
-                    <td>{{ vendor.address }}</td>
-                    <td>{{ vendor.contact_number }}</td>
-                    <td>{{ vendor.contact_email }}</td>
-                </tr>
-            {% endfor %}
+
+                {% for branch in branches %}
+                    <tr>
+                        <td>{{ branch.id }}</td>
+                        <td>{{ branch.code }}</td>
+                        <td><a href="{% url 'branch-view' branch.id %}">{{ branch.name }}</a></td>
+                        <td>{{ branch.location }}</td>
+                    </tr>
+                {% endfor %}
 
             </tbody>
         </table>
@@ -52,12 +50,12 @@
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#myTable tr').click(function() {
-                        var href = $(this).find("a").attr("href");
-                            if(href) {
-                                window.location = href;
-                            }
-                        });
-                    });  
+                    var href = $(this).find("a").attr("href");
+                       if(href) {
+                            window.location = href;
+                           }
+                     });
+                 });  
             </script>
         {% endblock js %}
       </div>

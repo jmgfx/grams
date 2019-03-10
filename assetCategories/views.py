@@ -43,5 +43,7 @@ def AssetCategoriesEdit(request, category_id):
     return render(request, 'editassetcategory.html', {'form': form}, {'title': 'Edit an Asset Categories'})
 
 
-def AssetCategoriesArchive(request):
-    return render(request, 'archive.html', {'title': 'Archived Asset Categories'})
+def AssetCategoriesDelete(request, category_id):
+    category_to_delete = assetCategory.objects.get(id=category_id)
+    category_to_delete.delete()
+    return redirect('/assetcategories/')

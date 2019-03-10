@@ -17,6 +17,8 @@ class Company(models.Model):
         blank=True, null=True, on_delete=models.SET_NULL
     )
 
+    display = models.CharField(max_length=1, default=1)
+
 
     def __str__(self):
         return self.name

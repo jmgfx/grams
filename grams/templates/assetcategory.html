@@ -11,10 +11,10 @@
     <div class="titlepage">
         <form class="form-inline">
             <h1>Categories</h1> 
-            <button type="button" class="btn" onclick="window.location.href='addassetcategory.html'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
+            <button type="button" class="btn" onclick="window.location.href='{% url 'asset-categories-add' %}'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
         </form>
     </div>
-
+    
     <form class="form-inline" style="margin-bottom: 15px">
         <div class="form-group">
             <button type="button" class="btn" style="background:  #2E7D32; color: white;"><i class="fas fa-file-pdf"></i>EXPORT PDF</button>

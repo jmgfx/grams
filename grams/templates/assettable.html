@@ -14,7 +14,7 @@
                 <div class="titlepage">
                         <form class="form-inline">
                             <h1>Assets</h1> 
-                            <button type="button" class="btn" onclick="window.location.href='addasset.html'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
+                            <button type="button" class="btn" onclick="window.location.href='{% url 'asset-add' %}'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
                         </form>
                     </div>
                     
@@ -80,7 +80,7 @@
                     </form>
         
         <div style="overflow-x:auto;"> 
-                <table class="table table-striped" id="myTable"> 
+                <table class="table table-striped" id="myTable" style="font-size: 0.8em"> 
                     <thead>
                         <tr>
                             <th>ID</th>

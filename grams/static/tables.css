@@ -1,3 +1,4 @@
+
 .titlepage .btn {
     height: 35px;
     background:rgb(44, 40, 40);
@@ -112,3 +113,11 @@ h5 {
     padding-top: 40px;
     padding-bottom: 20px;
 }
+
+a {
+    color: #1B5E20;
+}
+a:hover {
+    color: black;
+  }
+

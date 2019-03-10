@@ -4,8 +4,7 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'tables.css' %}">
-    <link rel="stylesheet" type="text/css" 
-        href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+   
 {% endblock page_css %}
 
 {% block content %}
@@ -82,21 +81,20 @@
         <div style="overflow-x:auto;"> 
                 <table class="table table-striped" id="myTable" style="font-size: 1em;"> 
                     <thead>
-                        <tr>
                             <th>ID</th>
                             <th>NAME</th>
                             <th>STATUS</th>
                             <th>CATEGORY</th>
                             <th>BRAND</th>
                             <th>BRANCH</th>
-                        </tr>
                     </thead>
                     
                     <tbody style="overflow-y:auto;">
 
                     {% for asset in assets %}
+                          
                         <tr>
-                            <td>{{ asset.id }}</td>
+                            <td>{{ asset.id }}</a></td>
                             <td><a href="{% url 'asset-view' asset.id %}">{{ asset.name }}</a></td>
                             <td>{{ asset.status }}</td>
                             <td>{{ asset.category }}</td>
@@ -117,6 +115,17 @@
                 $(document).ready( function () {
                     $('#myTable').DataTable();
                 } );
+            </script>
+            
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#myTable tr').click(function() {
+                    var href = $(this).find("a").attr("href");
+                       if(href) {
+                            window.location = href;
+                           }
+                     });
+                });  
             </script>
         {% endblock js %}
           </div>  

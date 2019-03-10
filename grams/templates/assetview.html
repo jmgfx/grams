@@ -60,9 +60,11 @@
                             <td><b>Serial Number</b></td>
                             <td>{{ asset_view.serial_no }}</td>
                         </tr>
+                        <tr>
+                            <td><b>Description</b></td>
+                            <td>{{ asset_view.description }}</td>
+                        </tr>
                     </table>
-                
-                <b>Description: </b>{{ asset_view.description }}
             </div>
 
             <div class="col-sm">
@@ -91,11 +93,13 @@
                             <th>Book Value</th>
                         </tr>
                     </thead>
-                    <tr>
-                        <td>{{ asset_view.it_dep_date }}</td>
-                        <td>{{ asset_view.it_accrued }}</td>
-                        <td>{{ asset_view.it_balance }}</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>{{ asset_view.it_dep_date }}</td>
+                            <td>{{ asset_view.it_accrued }}</td>
+                            <td>{{ asset_view.it_balance }}</td>
+                        </tr>
+                    </tbody>
                 </table>
 
                 <div class="row">

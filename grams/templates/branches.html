@@ -42,7 +42,7 @@
                     <tr>
                         <td>{{ branch.id }}</td>
                         <td>{{ branch.code }}</td>
-                        <td><a href="view/{{ branch.id }}/">{{ branch.name }}</a></td>
+                        <td><a href="{% url 'branch-view' branch.id %}">{{ branch.name }}</a></td>
                         <td>{{ branch.location }}</td>
                     </tr>
                 {% endfor %}
@@ -59,6 +59,16 @@
                 $(document).ready( function () {
                     $('#myTable').DataTable();
                 } );
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#myTable tr').click(function() {
+                    var href = $(this).find("a").attr("href");
+                       if(href) {
+                            window.location = href;
+                           }
+                     });
+                 });  
             </script>
         {% endblock js %}
       </div>

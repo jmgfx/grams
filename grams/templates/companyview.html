@@ -40,12 +40,12 @@
                 <h2>
                     <i class="fas fa-chart-line"></i>&nbsp; Branches
                 </h2>
-
-                <table class="table table-striped">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search branches..">
+                <table id = "myTable" class="table table-striped">
                     <thead>
-                        <td>Code</td>
-                        <td>Name</td>
-                        <td>Location</td>
+                        <tH>Code</th>
+                        <th>Name</th>
+                        <th>Location</th>
                     </thead>
                     {% for branch in branches %}
                         <tr>
@@ -55,7 +55,40 @@
                         </tr>
                     {% endfor %}
                 </table>
-                
+{% block js %}
+                <script>
+                    function myFunction() {
+                    var input, filter, table, tr, td, i;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            } else {
+                            tr[i].style.display = "none";
+                            }
+                        }       
+                    }
+                    for (i = 1; i < tr.length; i++) {
+                            tr[i].style.display = "none";
+                            td = tr[i].getElementsByTagName("td");
+                    for (var j = 0; j < td.length; j++) {
+                    cell = tr[i].getElementsByTagName("td")[j];
+                        if (cell) {
+                            if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                            } 
+                        }
+                    }
+                }
+                }
+                </script>
+{% endblock js %}    
             </div>
         </div>
 

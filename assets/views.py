@@ -134,3 +134,9 @@ def ArchivedAssetsTable(request):
         'assets': Assets.objects.filter(display=0)
     }
     return render(request, 'assettablearchive.html', context, {'title': 'Archived Assets'})
+
+
+def DeleteAsset(request, asset_id):
+    asset_to_delete = Assets.objects.get(id=asset_id)
+    asset_to_delete.delete()
+    return redirect('/assets/')

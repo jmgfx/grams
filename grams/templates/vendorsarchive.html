@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tables.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+<section id="main" class="content">
+        
+    <div class="titlepage">
+        <h1>Archived Vendors</h1> 
+    </div>
+
+    <div style="overflow-x:auto;"> 
+        <table class="table table-striped" id="myTable"> 
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>ADRRESS</th>
+                    <th>CONTACT NUMBER</th>
+                    <th>CONTACT EMAIL</th>
+                </tr>
+            </thead>
+            
+            <tbody style="overflow-y:auto;">
+            {% for vendor in vendors %}
+                <tr>
+                    <td>{{ vendor.id }}</td>
+                    <td><a href="{% url 'vendors-view' vendor.id %}">{{ vendor.name }}</a></td>
+                    <td>{{ vendor.address }}</td>
+                    <td>{{ vendor.contact_number }}</td>
+                    <td>{{ vendor.contact_email }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        {% block js %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.css"/>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready( function () {
+                    $('#myTable').DataTable();
+                } );
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#myTable tr').click(function() {
+                        var href = $(this).find("a").attr("href");
+                            if(href) {
+                                window.location = href;
+                            }
+                        });
+                    });  
+            </script>
+        {% endblock js %}
+      </div>
+</section>
+{% endblock content %}

@@ -21,16 +21,7 @@
                         <center>This item is archived.</center>
                     </div>
                 {% endif %}
-                    <!--
-                    <b>ID: </b>{{ asset_view.id }}<br/>
-                    <b>Date Added: </b>{{ asset_view.date_added }}<br/>
-                    <b>Category: </b>{{ asset_view.category }}<br/>
-                    <b>Brand: </b>{{ asset_view.brand }}<br/>
-                    <b>Branch: </b>{{ asset_view.branch }}<br/>
-                    <b>Status: </b>{{ asset_view.status }}<br/>
-                    <b>Model Number: </b>{{ asset_view.model_no }}<br/>
-                    <b>Serial Number: </b>{{ asset_view.serial_no }}<br/>
-                    -->
+
                     <table class="info-table">
                         <tr>
                             <td><b>ID</b></td>
@@ -148,28 +139,17 @@
             </div>
         </div>
 
-        <!--
-        <div class="row container-fluid">
-            <div class="col-sm">
-                <h2>
-                    <i class="fas fa-chart-line"></i>&nbsp; Estimated Cost
-                </h2>
-
-                
-            </div>
-        </div>
-        -->
-
 </section>
 
 <div class="footer">
-    <a href="{% url 'asset-edit' asset_view.id %}" class="btn float-right neutral">Edit</a>
-    <a href="{% url 'asset-revalue' asset_view.id %}" class="btn float-right low">Revalue</a>
     {% if asset_view.display == '1' %}
+        <a href="{% url 'asset-edit' asset_view.id %}" class="btn float-right neutral">Edit</a>
+        <a href="{% url 'asset-revalue' asset_view.id %}" class="btn float-right low">Revalue</a>
         <a href="{% url 'asset-archive' asset_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to archive this asset?')">Archive</a>
     {% endif %}
     {% if asset_view.display == '0' %}
         <a href="{% url 'asset-recover' asset_view.id %}" class="btn float-right misc" onclick="return confirm('Are you sure you want to recover this asset?')">Recover</a>
+        <a href="{% url 'delete-asset' asset_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to remove this asset from the database?')">Delete</a>
     {% endif %}
 
 </div>

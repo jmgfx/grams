@@ -44,5 +44,7 @@ def AssetBrandsEdit(request, brand_id):
     return render(request, 'editassetbrand.html', {'form':form}, {'title': 'Edit an Asset Brand'})
 
 
-def AssetBrandsArchive(request):
-    return render(request, 'archive.html', {'title': 'Archived Asset Brands'})
+def AssetBrandsDelete(request, brand_id):
+    brand_to_delete = assetBrand.objects.get(id=brand_id)
+    brand_to_delete.delete()
+    return redirect('/assetbrands/')

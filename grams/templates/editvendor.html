@@ -2,36 +2,22 @@
 
 {% block page_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'editpage.css' %}">
+    <link rel="stylesheet" href="{% static 'forms.css' %}">
 {% endblock page_css %}
 
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h2>Edit Per Vendor</h2>
+        <h1>Edit Vendor</h1>
     </div>
 
     <div class="row">
-        <div class="col">
-
-            <form class="form-inline">
-                <h5>Name: </h5>
-                <input type="category" class="form-control" required>
-            </form>
-
-            <form class="form-inline">
-                <h5>Address: </h5>
-                <input type="category" class="form-control" required>
-            </form>
-             
-            <form class="form-inline">
-                <h5>Contact Number: </h5>
-                <input type="category" class="form-control" required>
-            </form>
-
-            <form class="form-inline">
-                <h5>Contact Email: </h5>
-                <input type="category" class="form-control" required>
+        <div class="form-control tablebox-container">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save">
+                <input type="reset" value="Reset">
             </form>
         </div>
     </div>

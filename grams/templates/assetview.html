@@ -13,31 +13,103 @@
 
         <div class="row container-fluid">
             <div class="col-sm">
-                <b>ID: </b>{{ asset_view.id }}<br/>
-                <b>Category: </b>{{ asset_view.category }}<br/>
-                <b>Brand: </b>{{ asset_view.brand }}<br/>
+                <h2>
+                    <i class="fas fa-info-circle"></i>&nbsp; Information
+                </h2>
+                {% if asset_view.status == 'Archived' %}
+                    <div class="critical" style="color:#fff;padding:8px;margin-bottom:15px;margin-top:15px;border-radius:8px;">
+                        <center>This item is archived.</center>
+                    </div>
+                {% endif %}
+                    <!--
+                    <b>ID: </b>{{ asset_view.id }}<br/>
+                    <b>Date Added: </b>{{ asset_view.date_added }}<br/>
+                    <b>Category: </b>{{ asset_view.category }}<br/>
+                    <b>Brand: </b>{{ asset_view.brand }}<br/>
+                    <b>Branch: </b>{{ asset_view.branch }}<br/>
+                    <b>Status: </b>{{ asset_view.status }}<br/>
+                    <b>Model Number: </b>{{ asset_view.model_no }}<br/>
+                    <b>Serial Number: </b>{{ asset_view.serial_no }}<br/>
+                    -->
+                    <table class="info-table">
+                        <tr>
+                            <td><b>ID</b></td>
+                            <td>{{ asset_view.id }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Date Added</b></td>
+                            <td>{{ asset_view.date_added }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Category</b></td>
+                            <td>{{ asset_view.category }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Brand</b></td>
+                            <td>{{ asset_view.brand }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Status</b></td>
+                            <td>{{ asset_view.status }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Model Number</b></td>
+                            <td>{{ asset_view.model_no }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Serial Number</b></td>
+                            <td>{{ asset_view.serial_no }}</td>
+                        </tr>
+                    </table>
+                
                 <b>Description: </b>{{ asset_view.description }}
             </div>
 
-            <div class="col-sm">
-                <b>Date Added: </b> {{ asset_view.date_added }}<br/>
-                <b>Status: </b> {{ asset_view.status }}<br/>
-                <b>Branch: </b> {{ asset_view.branch }}<br/>
-                <b>Model Number: </b>{{ asset_view.model_no }}<br/>
-                <b>Serial Number: </b>{{ asset_view.serial_no }}<br/>
-            </div>
-        </div>
-
-        <div class="row container-fluid">
             <div class="col-sm">
                 <h2>
                     <i class="fas fa-chart-line"></i>&nbsp; Estimated Cost
                 </h2>
 
-                <iframe width="600" height="371" seamless frameborder="0" scrolling="yes" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSS9cO66N0PV8NQv-z_Gj8-dwferJlI3JjB_cxsIZawwYsXk5EUE--7BxVOD4K3Sy7XbK1UoPkZB7wW/pubchart?oid=1945308334&amp;format=interactive"></iframe>
+                <b>Acquisition Cost: </b>Php {{ asset_view.acquisition_cost }}<br/>
+                <b>Salvage Value: </b>Php {{ asset_view.salvage_value }}<br/>
+                <b>Projected Life: </b>{{ asset_view.project_life }} Months<br/>
+                
+            </div>
+        </div>
+
+        <div class="row container-fluid">
+            <div class="col-sm-7">
+                <h2>
+                    <i class="fas fa-money-bill-wave"></i>&nbsp; Depreciation
+                </h2>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Accumulated Depreciation</th>
+                            <th>Book Value</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>{{ asset_view.it_dep_date }}</td>
+                            <td>{{ asset_view.it_accrued }}</td>
+                            <td>{{ asset_view.it_balance }}</td>
+                        </tr>
+                    </tbody>
+                   
+                </table>
+
+                <div class="row">
+                    <div class="col">
+                        <b>Depreciation Value</b>&nbsp; Php {{ asset_view.dep_value }}
+                    </div>
+                </div>
             </div>
 
-            <div class="col-sm">
+            <div class="col-sm-4">
                 <h2>
                     <i class="far fa-clock"></i>&nbsp; Recent Actions
                 </h2>
@@ -46,13 +118,16 @@
                 <div class="tablebox">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-1-sm">
-                                <!-- icon --><i class="far fa-clock"></i>
-                            </div>
-                            <div class="col">
-                                Asset <b>987654321</b> is schedule for maintenance on <b>2018/11/15</b>.
-                            </div>
+                            {% for trail in audit_trail %}
+                                <div class="col-1-sm">
+                                    <!-- icon --><i class="far fa-clock"></i>
+                                </div>
+                                <div class="col">
+                                    {{ trail.description }}
+                                </div>
+                            {% endfor %}
                         </div>
+                        <!--
                         <div class="row">
                             <ul>
                                 <li class="date">
@@ -66,89 +141,38 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-
-                <div class="tablebox">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-1-sm">
-                                <!-- icon --><i class="far fa-clock"></i>
-                            </div>
-                            <div class="col">
-                                Asset <b>987654321</b> was added on <b>2018/10/15</b>.
-                            </div>
-                        </div>
-                        <div class="row">
-                            <ul>
-                                <li class="date">
-                                    2018/10/15 13:00
-                                </li>
-                            </ul>
-                        </div>
+                        -->
                     </div>
                 </div>
 
             </div>
         </div>
 
+        <!--
         <div class="row container-fluid">
             <div class="col-sm">
                 <h2>
                     <i class="fas fa-chart-line"></i>&nbsp; Estimated Cost
                 </h2>
 
-                <div class="row">
-
-                    <div class="col">
-                        <a class="btn-revalue neutral" href="revalue.html">
-                            Revalue
-                        </a>
-                    </div>
-
-                    <div class="col">
-                        <b>Acquisition Cost</b>&nbsp; Php 10,000.00
-                    </div>
-
-                    <div class="col">
-                        <b>Salvage Value</b>&nbsp; Php 5,000.00
-                    </div>
-
-                    <div class="col">
-                        <b>Projected Life</b>&nbsp; 10 Months
-                    </div>
-                </div>
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Accumulated Depreciation</th>
-                            <th>Book Value</th>
-                        </tr>
-                    </thead>
-
-                    <tr>
-                        <td>September 23, 2018</td>
-                        <td>Php 1,000.00</td>
-                        <td>Php 9,000.00</td>
-                    </tr>
-
-                    <tr>
-                        <td>October 23, 2018</td>
-                        <td>Php 2,000.00</td>
-                        <td>Php 8,000.00</td>
-                    </tr>
-
-                    <tr>
-                        <td>November 23, 2018</td>
-                        <td>Php 3,000.00</td>
-                        <td>Php 7,000.00</td>
-                    </tr>
-                </table>
+                
             </div>
         </div>
+        -->
 
 </section>
+
+<div class="footer">
+    <a href="{% url 'asset-edit' asset_view.id %}" class="btn float-right neutral">Edit</a>
+    <a href="{% url 'asset-revalue' asset_view.id %}" class="btn float-right low">Revalue</a>
+    {% if asset_view.display == '1' %}
+        <a href="{% url 'asset-archive' asset_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to archive this asset?')">Archive</a>
+    {% endif %}
+    {% if asset_view.display == '0' %}
+        <a href="{% url 'asset-recover' asset_view.id %}" class="btn float-right misc" onclick="return confirm('Are you sure you want to recover this asset?')">Recover</a>
+    {% endif %}
+
+</div>
+
 
 {% endblock content %}

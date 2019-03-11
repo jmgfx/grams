@@ -5,4 +5,10 @@ from .models import assetBrand
 class AddAssetBrand(ModelForm):
     class Meta:
         model = assetBrand
-        fields = ['name']
+        fields = ['name', 'description']
+
+
+class EditAssetBrand(ModelForm):
+    class Meta:
+        model = assetBrand
+        fields = ['name', 'description']

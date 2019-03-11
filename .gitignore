@@ -1,6 +1,7 @@
 settings.py
-litegrams
-testgrams
+litegrams*
+testgrams*
+*.sqlite3
 __pycache__
 *.pyc
 migrations/__pycache__

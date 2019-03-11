@@ -6,3 +6,9 @@ class AddCompanyForm(ModelForm):
     class Meta:
         model = Company
         fields = ['name', 'owners']
+
+
+class EditCompanyForm(ModelForm):
+    class Meta:
+        model = Company
+        fields = ['name', 'owners']

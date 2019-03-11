@@ -99,6 +99,19 @@ a.btn-revalue {
     border-radius: 3px;
 }
 
+.info-table table {
+    border: 1px solid #ddd;
+}
+
+.info-table tr {
+    height: 15px;
+    padding: 3px;
+}
+
+.info-table td {
+    padding: 3px;
+}
+
 /* Show All Link */
 
 .showall {margin: 0; padding-top: 15px;}

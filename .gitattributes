@@ -1,0 +1,3 @@
+*.html linguist-language=Python
+grams/static/*.js linguist-vendored
+grams/static/*.css linguist-vendored=false

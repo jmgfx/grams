@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tables.css' %}">
+    <link rel="stylesheet" type="text/css" 
+        href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+{% endblock page_css %}
+{% block content %}
+    <section id="main" class="content">
+        <div class="titlepage" style="margin-bottom: 15px">
+            <h1>Queued Transactions</h1>
+        </div>
+
+        <div style="overflow-x:auto;"> 
+            <table class="table table-striped" id="myTable"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>TYPE</th>
+                        <th>DESCRIPTION</th>
+                    </tr>
+                </thead>
+
+                {% for transaction in transactions %}                
+                    <tr>
+                        <td>{{ transaction.id }}</td>
+                        <td>
+                            {% if transaction.ttype == '1' %}
+                                Maintenance
+                            {% endif %}
+                            {% if transaction.ttype == '2' %}
+                                Transfer
+                            {% endif %}
+                            {% if transaction.ttype == '3' %}
+                                Recover
+                            {% endif %}
+                        </td>
+                        <td>{{ transaction.description }}</td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+    </section>
+
+{% endblock content %}

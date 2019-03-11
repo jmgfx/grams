@@ -2,26 +2,20 @@
 
 {% block page_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'editpage.css' %}">
+    <link rel="stylesheet" href="{% static 'forms.css' %}">
 {% endblock page_css %}
 
 {% block content %}
-<section id="main" class="content">
+<section id="main" class="content add-form">
     <div class="titlepage">
-        <h2>Edit Per Company</h2>
+        <h1>Edit Company</h1>
     </div>
 
-    <div class="row">
-        <div class="col">
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
 
-            <h5>ID: </h5>   
-
-            <form class="form-inline">
-                <h5>Name: </h5>
-                <input type="category" class="form-control" required>
-            </form>
-             
-        </div>
-    </div>
 </section>
 {% endblock content %}

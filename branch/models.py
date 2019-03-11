@@ -9,9 +9,11 @@ class Branch(models.Model):
     date_added = models.DateField(auto_now_add=True)
     location = models.TextField()
     company = models.ForeignKey(
-        Company, null=False, default='None',
+        Company, null=False, default=1,
         on_delete=models.CASCADE
     )
+
+    display = models.CharField(max_length=1, default=1)
 
 
     def __str__(self):

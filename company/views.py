@@ -7,9 +7,16 @@ from branch.models import Branch
 
 def CompanyTable(request):
     context = {
-        'companies': Company.objects.all()
+        'companies': Company.objects.filter(display=1)
     }
     return render(request, 'companies.html', context, {'title': 'Companies'})
+
+
+def ArchivedCompanyTable(request):
+    context = {
+        'companies': Company.objects.filter(display=0)
+    }
+    return render(request, 'companiesarchive.html', context, {'title': 'Archived Companies'})
 
 
 def CompanyView(request, company_id):
@@ -43,5 +50,21 @@ def CompanyEdit(request, company_id):
     return render(request, 'editcompany.html', {'form':form}, {'title': 'Edit a Branch'})
 
 
-def CompanyArchive(request):
-    return render(request, 'archive.html', {'title': 'Archived Branches'})
+def ArchiveCompany(request, company_id):
+    company_to_archive = Company.objects.get(id=company_id)
+    company_to_archive.display = 0
+    company_to_archive.save()
+    return redirect('/company/view/' + str(company_id))
+
+
+def DeleteCompany(request, company_id):
+    company_to_delete = Company.objects.get(id=company_id)
+    company_to_delete.delete()
+    return redirect('/company/')
+
+
+def RecoverCompany(request, company_id):
+    company_to_recover = Company.objects.get(id=company_id)
+    company_to_recover.display = 1
+    company_to_recover.save()
+    return redirect('/company/view/' + str(company_id))

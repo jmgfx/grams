@@ -38,7 +38,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 ## Reminders
-* Run the collectstatic command whenever you add, modify, or delete a static file.
 * Run the makemigrations & migrate commands whenever a change to the database model is made.
 
 

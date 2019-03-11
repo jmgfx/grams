@@ -7,9 +7,17 @@ from assets.models import Assets
 
 def BranchTable(request):
     context = {
-        'branches': Branch.objects.all()
+        'branches': Branch.objects.filter(display=1)
     }
     return render(request, 'branches.html', context, {'title': 'Branches'})
+
+
+def ArchivedBranchTable(request):
+    context = {
+        'branches': Branch.objects.filter(display=0)
+    }
+    return render(request, 'branchesarchive.html', context, {'title': 'Archived Branches'})
+
 
 def BranchView(request, branch_id):
     context_view = {
@@ -42,5 +50,21 @@ def BranchEdit(request, branch_id):
     return render(request, 'editbranch.html', {'form':form}, {'title': 'Edit a Branch'})
 
 
-def BranchArchive(request):
-    return render(request, 'archive.html', {'title': 'Archived Branches'})
+def BranchArchive(request, branch_id):
+    branch_to_archive = Branch.objects.get(id=branch_id)
+    branch_to_archive.display = 0
+    branch_to_archive.save()
+    return redirect('/branch/view/' + str(branch_id))
+
+
+def BranchRecover(request, branch_id):
+    branch_to_recover = Branch.objects.get(id=branch_id)
+    branch_to_recover.display = 1
+    branch_to_recover.save()
+    return redirect('/branch/view/' + str(branch_id))
+
+
+def DeleteBranch(request, branch_id):
+    branch_to_delete = Branch.objects.get(id=branch_id)
+    branch_to_delete.delete()
+    return redirect('/branch/')

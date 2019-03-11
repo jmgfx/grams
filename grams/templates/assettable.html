@@ -6,97 +6,37 @@
     <link rel="stylesheet" href="{% static 'tables.css' %}">
     <link rel="stylesheet" type="text/css" 
         href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" 
+        href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.css"/>
 {% endblock page_css %}
 
 {% block content %}
     <section id="main" class="content">
         <div class="description">
-                <div class="titlepage">
-                        <form class="form-inline">
-                            <h1>Assets</h1> 
-                            <button type="button" class="btn" onclick="window.location.href='{% url 'asset-add' %}'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
-                        </form>
-                    </div>
-                    
-                    <form class="form-inline" style="margin-bottom: 15px">
-                        <label for="dropdowns" class="mr-sm-2">Filter by: &nbsp;</label>
-        
-                        <div class="form-group">
-                            <input class="form-check" type="checkbox">
-                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                BRANCH
-                            </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Link 1</a>
-                                    <a class="dropdown-item" href="#">Link 2</a>
-                                    <a class="dropdown-item" href="#">Link 3</a>
-                                </div>
-                            </div>
-                        
-                        <div class="form-group">
-                        <input class="form-check" type="checkbox">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                            CATEGORY
-                        </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Link 1</a>
-                                <a class="dropdown-item" href="#">Link 2</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
-                            </div>
-                        </div>
-        
-                        <div class="form-group">
-                        <input class="form-check" type="checkbox">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                            BRAND
-                        </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Link 1</a>
-                                <a class="dropdown-item" href="#">Link 2</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
-                            </div>
-                        </div>
-        
-                        <div class="form-group">
-                        <input class="form-check" type="checkbox">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                            STATUS
-                        </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Link 1</a>
-                                <a class="dropdown-item" href="#">Link 2</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
-                            </div>
-                        </div>
-        
-                        <div class="form-group">
-                            <button type="button" class="btn" style="background:  #2E7D32; color: white;"><i class="fas fa-file-pdf"></i>EXPORT PDF</button>
-                        </div>
-        
-                        <div class="form-group">
-                            <button type="button" class="btn" style="background:  #2E7D32; color: white "><i class="fas fa-file-csv"></i> EXPORT CSV</button>
-                        </div>
-        
-                    </form>
-        
+            <div class="titlepage">
+                <h1>Assets</h1> 
+            </div>
+            
+            <a href="{% url 'asset-add' %}" class="btn neutral">Add</a> <a href="{% url 'archived-assets-table' %}" class="btn critical">Display Archive</a>
         <div style="overflow-x:auto;"> 
-                <table class="table table-striped" id="myTable" style="font-size: 1em;"> 
+                <table class="table table-striped display nowrap" id="myTable" style="font-size: 1em;">
                     <thead>
-                        <tr>
                             <th>ID</th>
                             <th>NAME</th>
                             <th>STATUS</th>
                             <th>CATEGORY</th>
                             <th>BRAND</th>
                             <th>BRANCH</th>
-                        </tr>
                     </thead>
                     
                     <tbody style="overflow-y:auto;">
 
                     {% for asset in assets %}
+                          
                         <tr>
-                            <td>{{ asset.id }}</td>
+                            <td>{{ asset.id }}</a></td>
                             <td><a href="{% url 'asset-view' asset.id %}">{{ asset.name }}</a></td>
                             <td>{{ asset.status }}</td>
                             <td>{{ asset.category }}</td>
@@ -108,16 +48,36 @@
                     </tbody>
                 </table>
         {% block js %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.css"/>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.js"></script>
             <script type="text/javascript">
                 $(document).ready( function () {
-                    $('#myTable').DataTable();
+                    $('#myTable').DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ]
+                    });
                 } );
             </script>
+            
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#myTable tr').click(function() {
+                    var href = $(this).find("a").attr("href");
+                       if(href) {
+                            window.location = href;
+                           }
+                     });
+                });  
+            </script>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
         {% endblock js %}
           </div>  
 </section>

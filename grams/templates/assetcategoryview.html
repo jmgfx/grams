@@ -16,6 +16,11 @@
                 <h2>
                     <i class="fas fa-info-circle"></i>&nbsp; Information
                 </h2>
+                {% if categories_view.display == '0' %}
+                    <div class="critical" style="color:#fff;padding:8px;margin-bottom:15px;margin-top:15px;border-radius:8px;">
+                        <center>This asset category is archived.</center>
+                    </div>
+                {% endif %}
                 <table class="info-table">
                     <tr>
                         <td><b>Name</b></td>
@@ -36,13 +41,13 @@
                 <h2>
                     <i class="fas fa-chart-line"></i>&nbsp; Assets
                 </h2>
-
-                <table class="table table-striped">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search assets..">
+                <table id = "myTable" class="table table-striped">
                     <thead>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>Category</td>
-                        <td>Brand</td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Brand</th>
                     </thead>
                     {% for asset in assets %}
                         <tr>
@@ -53,7 +58,40 @@
                         </tr>
                     {% endfor %}
                 </table>
-                
+{% block js %}
+            <script>
+                function myFunction() {
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        } else {
+                        tr[i].style.display = "none";
+                        }
+                    }       
+                }
+                for (i = 1; i < tr.length; i++) {
+                        tr[i].style.display = "none";
+                        td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                cell = tr[i].getElementsByTagName("td")[j];
+                    if (cell) {
+                        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                        } 
+                    }
+                }
+            }
+            }
+            </script>
+{% endblock js %}
             </div>
         </div>
 
@@ -61,6 +99,6 @@
 
 <div class="footer">
     <a href="{% url 'asset-categories-edit' categories_view.id %}" class="btn float-right neutral">Edit</a>
-    <a href="#" class="btn float-right critical">Archive</a>
+    <a href="{% url 'asset-categories-delete' categories_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to remove this asset category from the database?')">Delete</a>
 </div>
 {% endblock content %}

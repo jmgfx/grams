@@ -6,7 +6,7 @@ from .forms import AddVendorForm, EditVendorForm
 
 def VendorsTable(request):
     context = {
-        'vendors': Vendors.objects.all()
+        'vendors': Vendors.objects.filter(display=1)
     }
     return render(request, 'vendors.html', context, {'title': 'Vendors'})
 
@@ -41,5 +41,29 @@ def VendorsEdit(request, vendor_id):
     return render(request, 'editvendor.html', {'form':form}, {'title': 'Edit a Vendor'})
 
 
-def VendorsArchive(request):
-    return render(request, 'archive.html', {'title': 'Archived Vendors'})
+def VendorsArchiveTable(request):
+    context = {
+        'vendors': Vendors.objects.filter(display=0),
+        'title': 'Vendors',
+    }
+    return render(request, 'vendorsarchive.html', context)
+
+
+def VendorsArchive(request, vendor_id):
+    vendor_to_archive = Vendors.objects.get(id=vendor_id)
+    vendor_to_archive.display = 0
+    vendor_to_archive.save()
+    return redirect('/vendors/view/' + str(vendor_id))
+
+
+def VendorsRecover(request, vendor_id):
+    vendor_to_recover = Vendors.objects.get(id=vendor_id)
+    vendor_to_recover.display = 1
+    vendor_to_recover.save()
+    return redirect('/vendors/view/' + str(vendor_id))
+
+
+def VendorsDelete(request, vendor_id):
+    vendor_to_delete = Vendors.objects.get(id=vendor_id)
+    vendor_to_delete.delete()
+    return redirect('/vendors/')

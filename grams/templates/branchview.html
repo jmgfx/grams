@@ -16,6 +16,11 @@
                 <h2>
                     <i class="fas fa-info-circle"></i>&nbsp; Information
                 </h2>
+                {% if branch_view.display == '0' %}
+                    <div class="critical" style="color:#fff;padding:8px;margin-bottom:15px;margin-top:15px;border-radius:8px;">
+                        <center>This branch is archived.</center>
+                    </div>
+                {% endif %}
                 <table class="info-table">
                     <tr>
                         <td><b>Name</b></td>
@@ -40,14 +45,17 @@
                 <h2>
                     <i class="fas fa-chart-line"></i>&nbsp; Assets
                 </h2>
-
-                <table class="table table-striped">
+                
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search assets..">
+                
+                <table class="table table-striped" id= "myTable">
                     <thead>
-                        <td>ID</td>
-                        <td>Name</td>
-                        <td>Category</td>
-                        <td>Brand</td>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Brand</th>
                     </thead>
+                    <tbody>
                     {% for asset in assets %}
                         <tr>
                             <td>{{ asset.id }}</td>
@@ -55,17 +63,57 @@
                             <td>{{ asset.category }}</td>
                             <td>{{ asset.brand }}</td>
                         </tr>
+                    </tbody>
                     {% endfor %}
                 </table>
-                
+{% block js %}
+            <script>
+                function myFunction() {
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        } else {
+                        tr[i].style.display = "none";
+                        }
+                    }       
+                }
+                for (i = 1; i < tr.length; i++) {
+                        tr[i].style.display = "none";
+                        td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                cell = tr[i].getElementsByTagName("td")[j];
+                    if (cell) {
+                        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                        } 
+                    }
+                }
+            }
+            }
+            </script>
+{% endblock js %}
             </div>
         </div>
 
 </section>
 
 <div class="footer">
-    <a href="{% url 'branch-edit' branch_view.id %}" class="btn float-right neutral">Edit</a>
-    <a href="#" class="btn float-right critical">Archive</a>
+    {% if branch_view.display == '1' %}
+        <a href="{% url 'branch-edit' branch_view.id %}" class="btn float-right neutral">Edit</a>
+        <a href="{% url 'branch-archive' branch_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to archive this branch?')">Archive</a>
+    {% endif %}
+    {% if branch_view.display == '0' %}
+        <a href="{% url 'branch-recover' branch_view.id %}" class="btn float-right misc" onclick="return confirm('Are you sure you want to recover this branch?')">Recover</a>
+        <a href="{% url 'delete-branch' branch_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to remove this branch from the database?')">Delete</a>
+    {% endif %}
 </div>
 
 

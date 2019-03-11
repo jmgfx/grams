@@ -32,7 +32,7 @@ tr {
 }
 
 thead {
-    background-color: #A5D6A7;
+    background-color: rgb(90,168,90);
     text-align: center;
 }
 
@@ -54,12 +54,12 @@ input[type="date"] {
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-    background: #E8F5E9
+    background: rgba(215, 236, 215, 0.7)
 }
 
 .table-striped>tbody>tr:nth-child(even)>td,
 .table-striped>tbody>tr:nth-child(even)>th {
-    background: #C8E6C9;
+    background: rgba(90, 168, 90, 0.7)
 }
 
 /*.btn {
@@ -71,6 +71,16 @@ input[type="date"] {
     margin-left: 3px;
     margin-top: 3px;
 }*/
+
+a.btn {
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-left: 9px;
+    font-size: 1em;
+    color: #fff;
+}
 
 button.btn {
     margin: 0;
@@ -121,3 +131,6 @@ a:hover {
     color: black;
   }
 
+#myTable tbody tr:hover { 
+    background: rgb(77, 74, 74) !important;
+    cursor: pointer !important; }

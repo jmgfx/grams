@@ -15,5 +15,6 @@ def Dashboard(request):
     context = {
         'asset_count': Assets.objects.all().count(),
         'recently_added': Assets.objects.filter(date_added__gte=time_limit).count(),
+        'title': 'Dashboard',
     }
-    return render(request, 'dashboard.html', context, {'title': 'Dashboard'})
+    return render(request, 'dashboard.html', context)

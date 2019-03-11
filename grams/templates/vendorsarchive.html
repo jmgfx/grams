@@ -3,28 +3,14 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'tables.css' %}">
-  
 {% endblock page_css %}
 
 {% block content %}
 <section id="main" class="content">
         
     <div class="titlepage">
-        <form class="form-inline">
-            <h1>Categories</h1> 
-            <button type="button" class="btn" onclick="window.location.href='{% url 'asset-categories-add' %}'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
-        </form>
+        <h1>Archived Vendors</h1> 
     </div>
-    
-    <form class="form-inline" style="margin-bottom: 15px">
-        <div class="form-group">
-            <button type="button" class="btn" style="background:  #2E7D32; color: white;"><i class="fas fa-file-pdf"></i>EXPORT PDF</button>
-        </div>
-
-        <div class="form-group">
-            <button type="button" class="btn" style="background:  #2E7D32; color: white "><i class="fas fa-file-csv"></i> EXPORT CSV</button>
-        </div>
-    </form>
 
     <div style="overflow-x:auto;"> 
         <table class="table table-striped" id="myTable"> 
@@ -32,15 +18,20 @@
                 <tr>
                     <th>ID</th>
                     <th>NAME</th>
+                    <th>ADRRESS</th>
+                    <th>CONTACT NUMBER</th>
+                    <th>CONTACT EMAIL</th>
                 </tr>
             </thead>
             
-            <tbody>
-
-            {% for category in categories %}
+            <tbody style="overflow-y:auto;">
+            {% for vendor in vendors %}
                 <tr>
-                    <td>{{ category.id }}</td>
-                    <td><a href="view/{{ category.id }}">{{ category.name }}</a></td>
+                    <td>{{ vendor.id }}</td>
+                    <td><a href="{% url 'vendors-view' vendor.id %}">{{ vendor.name }}</a></td>
+                    <td>{{ vendor.address }}</td>
+                    <td>{{ vendor.contact_number }}</td>
+                    <td>{{ vendor.contact_email }}</td>
                 </tr>
             {% endfor %}
 
@@ -60,12 +51,12 @@
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#myTable tr').click(function() {
-                    var href = $(this).find("a").attr("href");
-                       if(href) {
-                            window.location = href;
-                           }
-                     });
-                });  
+                        var href = $(this).find("a").attr("href");
+                            if(href) {
+                                window.location = href;
+                            }
+                        });
+                    });  
             </script>
         {% endblock js %}
       </div>

@@ -2,7 +2,7 @@
 
 {% block page_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'editpage.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
 {% endblock page_css %}
 
 {% block content %}
@@ -36,12 +36,14 @@
                     </tr>
                 </table>
             </div>
+        </div>
 
+        <div class="row container-fluid">
             <div class="col-sm">
                 <h2>
                     <i class="fas fa-chart-line"></i>&nbsp; Assets
                 </h2>
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search assets..">
+                <input class="searchbar" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search assets..">
                 <table id = "myTable" class="table table-striped">
                     <thead>
                         <th>ID</th>
@@ -94,6 +96,7 @@
 {% endblock js %}
             </div>
         </div>
+    </div>
 
 </section>
 

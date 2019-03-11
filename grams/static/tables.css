@@ -32,7 +32,7 @@ tr {
 }
 
 thead {
-    background-color: rgb(90,168,90);
+    background-color: rgb(198, 201, 198);
     text-align: center;
 }
 
@@ -54,12 +54,12 @@ input[type="date"] {
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-    background: rgba(215, 236, 215, 0.7)
+    background: rgba(226, 231, 226, 0.7)
 }
 
 .table-striped>tbody>tr:nth-child(even)>td,
 .table-striped>tbody>tr:nth-child(even)>th {
-    background: rgba(90, 168, 90, 0.7)
+    background: rgba(217, 219, 217, 0.7)
 }
 
 /*.btn {

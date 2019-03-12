@@ -31,6 +31,10 @@
                             <td class= "right-align">{{ asset_view.date_added }}</td>
                         </tr>
                         <tr>
+                            <td class= "left-align"><b>Date Acquired</b></td>
+                            <td class= "right-align">{{ asset_view.date_acquired }}</td>
+                        </tr>
+                        <tr>
                             <td class= "left-align"><b>Category</b></td>
                             <td class= "right-align">{{ asset_view.category }}</td>
                         </tr>
@@ -123,7 +127,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             {% for trail in audit_trail %}
-                                <div class="col-1-sm">
+                                <div class="col-sm">
                                     <!-- icon --><i class="far fa-clock"></i>
                                 </div>
                                 <div class="col">

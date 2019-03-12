@@ -37,7 +37,7 @@ class Assets(models.Model):
     project_life = models.IntegerField(default=12)
     dep_value = models.FloatField(default=0.00)
     accrued = models.FloatField(null=True)
-    balance = models.FloatField(null=True)
+    balance = models.FloatField(default=0.00)
     salvage_value = models.FloatField(null=True)
     book_value = models.FloatField(null=True)
 

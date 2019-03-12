@@ -75,11 +75,14 @@
                     </thead>
 
                     <tbody>
+                    {% for value in dep_values %}
                         <tr>
-                            <td>{{ asset_view.it_dep_date }}</td>
-                            <td>{{ asset_view.it_accrued }}</td>
-                            <td>{{ asset_view.it_balance }}</td>
+                        
+                            <td>{{ value.0 }}</td>
+                            <td>{{ value.1 }}</td>
+                            <td>{{ value.2 }}</td>
                         </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
 

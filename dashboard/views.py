@@ -13,7 +13,7 @@ def LogIn(request):
 def Dashboard(request):
     time_limit = timezone.now().date() - timedelta(days=30)
     context = {
-        'asset_count': Assets.objects.all().count(),
+        'asset_count': Assets.objects.filter(display=1).count(),
         'recently_added': Assets.objects.filter(date_added__gte=time_limit).count(),
         'title': 'Dashboard',
     }

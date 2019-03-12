@@ -6,6 +6,7 @@ from assetBrands.models import assetBrand
 from assetCategories.models import assetCategory
 from branch.models import Branch
 
+
 class Assets(models.Model):
 
     IU = 'In Use'

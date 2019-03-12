@@ -104,14 +104,24 @@ a.btn-revalue {
 }
 
 .info-table tr {
-    height: 15px;
+    height: 25px;
     padding: 3px;
+    
 }
 
 .info-table td {
-    padding: 3px;
+    padding: 6px;
 }
 
+.left-align {
+    text-align: right;
+    width: 60%;
+}
+
+.right-align {
+    text-align: left;
+    width: 100%
+}
 /* Show All Link */
 
 .showall {margin: 0; padding-top: 15px;}
@@ -126,3 +136,10 @@ a.btn-revalue {
 .tablebox .col-sm{padding:0;margin:0;}
 .tablebox .col-1-sm{padding:0;margin:0;}
 .tablebox .col{padding:0;margin:0;}
+
+
+.searchbar {
+    float: right;
+    margin-bottom: 10px;
+}
+

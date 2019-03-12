@@ -131,6 +131,7 @@ textarea {
 
     .row p label {
         width: 10%;
+        margin-right: 50px;
     }
 
     .row p input:focus, select:focus {

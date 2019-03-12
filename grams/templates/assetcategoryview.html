@@ -2,7 +2,7 @@
 
 {% block page_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'editpage.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
 {% endblock page_css %}
 
 {% block content %}
@@ -23,25 +23,27 @@
                 {% endif %}
                 <table class="info-table">
                     <tr>
-                        <td><b>Name</b></td>
-                        <td>{{ categories_view.name }}</td>
+                        <td class= "left-align"><b>Name</b></td>
+                        <td class= "right-align">{{ categories_view.name }}</td>
                     </tr>
                     <tr>
-                        <td><b>Date Added</b></td>
-                        <td>{{ categories_view.date_added }}</td>
+                        <td class= "left-align"><b>Date Added</b></td>
+                        <td class= "right-align">{{ categories_view.date_added }}</td>
                     </tr>
                     <tr>
-                        <td><b>Description</b></td>
-                        <td>{{ categories_view.description }}</td>
+                        <td class= "left-align"><b>Description</b></td>
+                        <td class= "right-align">{{ categories_view.description }}</td>
                     </tr>
                 </table>
             </div>
+        </div>
 
+        <div class="row container-fluid">
             <div class="col-sm">
                 <h2>
                     <i class="fas fa-chart-line"></i>&nbsp; Assets
                 </h2>
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search assets..">
+                <input class="searchbar" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search assets..">
                 <table id = "myTable" class="table table-striped">
                     <thead>
                         <th>ID</th>
@@ -94,6 +96,7 @@
 {% endblock js %}
             </div>
         </div>
+    </div>
 
 </section>
 

@@ -102,19 +102,26 @@
                     </thead>
 
                     <tbody>
-                    
-                    {% for x in asset_view.it_dep_date %}
+                        
+                        
+                    {% if asset_view.gap > 31 %}   
                         <tr>
+                        {% for x in asset_view.it_dep_date %}
                             <td>{{ x }}</td>
-                    {% endfor %}
+                        {% endfor %}
 
-                    {% for y in asset_view.it_accrued  %}
+                        {% for y in asset_view.it_accrued %}
                             <td>{{ y }}</td>
-                    {% endfor %}
+                        {% endfor %}
 
-                    
-                    
+                        {% for z in asset_view.it_balance %}
+                            <td>{{ z }}</td>
+                        {% endfor %}
                         </tr>
+                    {% endif %}
+                        
+                        
+                        
                     </tbody>
                 </table>
 

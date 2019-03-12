@@ -77,9 +77,9 @@ def AssetView(request, asset_id):
 
     # Depreciation computes everytime the asset is viewed
     while True:
-        if now > (asset.it_dep_date[-1] + limit):
+        if now < (asset.it_dep_date[-1] + limit):
             break
-        elif now < (asset.it_dep_date[-1] + limit):
+        elif now > (asset.it_dep_date[-1] + limit):
             asset.it_dep_date.append(asset.it_dep_date[-1] + limit)
             asset.it_accrued.append(asset.it_accrued[-1] + asset.dep_value)
             asset.it_balance.append(asset.balance - asset.it_accrued[-1])

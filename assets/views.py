@@ -53,11 +53,6 @@ def AssetAdd(request):
 
 
 def AssetView(request, asset_id):
-    context_view = {
-        'asset_view': Assets.objects.get(id=asset_id),
-        'audit_trail': Transactions.objects.filter(assets_transact=asset_id),
-    }
-
     asset = Assets.objects.get(id=asset_id)
     now = datetime.date.today()
     limit = datetime.timedelta(30)
@@ -80,8 +75,15 @@ def AssetView(request, asset_id):
         break
 
     asset.balance == asset.it_balance[-1]
+    dep_values = zip(asset.it_dep_date, asset.it_accrued, asset.it_balance)
     
     asset.save()
+
+    context_view = {
+        'asset_view': Assets.objects.get(id=asset_id),
+        'audit_trail': Transactions.objects.filter(assets_transact=asset_id),
+        'dep_values': dep_values,
+    }
 
     return render(request, 'assetview.html', context_view, {'title': 'View Asset'})
 

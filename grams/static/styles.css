@@ -51,7 +51,7 @@ h2 {
         font-weight: 400;
     }
 
-        .topbar-title a, a:hover, a:focus {
+        .topbar-title a, a:focus {
             color: white;
             text-decoration: none;
         }

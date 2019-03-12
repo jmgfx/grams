@@ -129,6 +129,11 @@ a.btn-revalue {
     text-align: left;
     width: 100%
 }
+
+.dep-table thead, tr {
+    text-align: center;
+}
+
 /* Show All Link */
 
 .showall {margin: 0; padding-top: 15px;}

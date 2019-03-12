@@ -17,7 +17,7 @@ class EditAssetForm(ModelForm):
     class Meta:
         model = Assets
         fields = ['name', 'quantity', 'status',
-            'date_acquired', 'end_of_warranty',
+            'end_of_warranty',
             'brand', 'category', 'branch',
             'description']
 

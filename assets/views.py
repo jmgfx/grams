@@ -34,27 +34,14 @@ def AssetAdd(request):
             # Compute depreciation hahahha sira toh
             new_asset.counter = new_asset.project_life
             new_asset.dep_value = (new_asset.acquisition_cost - new_asset.salvage_value) / new_asset.project_life
-
-            """new_asset.it_dep_date = [new_asset.date_acquired] * new_asset.counter
-            new_asset.it_accrued = [0] * new_asset.counter
-            new_asset.it_balance = [0] * new_asset.counter
-
-            new_asset.it_dep_date[0] = new_asset.date_acquired
-            new_asset.it_accrued[0] = new_asset.dep_value
-            new_asset.it_balance[0] = new_asset.acquisition_cost
-
-            month = 1
-            for month in range(new_asset.counter):
-                new_asset.it_dep_date[month] = new_asset.it_dep_date[month-1] + datetime.timedelta(30)
-                new_asset.it_accrued[month] = new_asset.it_accrued[month-1] + new_asset.dep_value
-                new_asset.it_balance[month] = new_asset.acquisition_cost - new_asset.it_accrued[month]"""
+            new_asset.balance = new_asset.acquisition_cost
 
             new_asset.it_dep_date = []
             new_asset.it_accrued = []
             new_asset.it_balance = []
 
             new_asset.it_dep_date.append(new_asset.date_acquired)
-            new_asset.it_accrued.append(0.00)
+            new_asset.it_accrued.append(float(0.00))
             new_asset.it_balance.append(new_asset.acquisition_cost)
 
             # Save
@@ -80,12 +67,20 @@ def AssetView(request, asset_id):
         if now < (asset.it_dep_date[-1] + limit):
             break
         elif now > (asset.it_dep_date[-1] + limit):
-            asset.it_dep_date.append(asset.it_dep_date[-1] + limit)
-            asset.it_accrued.append(asset.it_accrued[-1] + asset.dep_value)
-            asset.it_balance.append(asset.balance - asset.it_accrued[-1])
+            gap = int((now - asset.it_dep_date[-1]) / limit)
+            for i in range(gap):
+                if asset.it_balance[-1] <= 0:
+                    break
+                else:
+                    asset.it_dep_date.append(asset.it_dep_date[-1] + limit)
+                    asset.it_accrued.append(asset.it_accrued[-1] + asset.dep_value)
+                    asset.it_balance.append(asset.balance - asset.it_accrued[-1])
+                    break
             break
+        break
 
-    asset.balance = asset.it_balance[-1]
+    asset.balance == asset.it_balance[-1]
+    
     asset.save()
 
     return render(request, 'assetview.html', context_view, {'title': 'View Asset'})
@@ -119,20 +114,6 @@ def RevalueAlgo(request, asset_id):
     asset_to_revalue.balance = asset_to_revalue.acquisition_cost
     asset_to_revalue.counter = asset_to_revalue.project_life
     asset_to_revalue.dep_value = (asset_to_revalue.acquisition_cost - asset_to_revalue.salvage_value) / asset_to_revalue.project_life
-
-    """asset_to_revalue.it_dep_date = [asset_to_revalue.date_acquired] * asset_to_revalue.counter
-    asset_to_revalue.it_accrued = [0] * asset_to_revalue.counter
-    asset_to_revalue.it_balance = [0] * asset_to_revalue.counter
-
-    asset_to_revalue.it_dep_date[0] = asset_to_revalue.date_acquired
-    asset_to_revalue.it_accrued[0] = asset_to_revalue.dep_value
-    asset_to_revalue.it_balance[0] = asset_to_revalue.acquisition_cost
-
-    month = 1
-    for month in range(asset_to_revalue.counter):
-        asset_to_revalue.it_dep_date[month] = asset_to_revalue.it_dep_date[month-1] + datetime.timedelta(30)
-        asset_to_revalue.it_accrued[month] = asset_to_revalue.it_accrued[month-1] + asset_to_revalue.dep_value
-        asset_to_revalue.it_balance[month] = asset_to_revalue.acquisition_cost - asset_to_revalue.it_accrued[month]"""
 
     asset_to_revalue.save()
     return redirect('/assets/view/' + str(asset_id))

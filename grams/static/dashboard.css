@@ -55,6 +55,13 @@
         font-weight: bold;
         margin-bottom: 20px;
     }
+    .container-fluid {
+        margin-bottom: 15px;
+    }
+    .assettable {
+        padding-bottom: 15px;
+    }
+
 
 /* Reports */
 
@@ -137,9 +144,4 @@ a.btn-revalue {
 .tablebox .col-1-sm{padding:0;margin:0;}
 .tablebox .col{padding:0;margin:0;}
 
-
-.searchbar {
-    float: right;
-    margin-bottom: 10px;
-}
 

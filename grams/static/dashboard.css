@@ -143,3 +143,8 @@ a.btn-revalue {
     margin-bottom: 10px;
 }
 
+.table thead {
+    background-color: rgb(198, 201, 198);
+    text-align: center;
+}
+

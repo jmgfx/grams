@@ -63,32 +63,6 @@
 
             <div class="col-sm">
                 <h2>
-                    <i class="fas fa-chart-line"></i>&nbsp; Estimated Cost
-                </h2>
-                    <table class="info-table" >
-                        <tr>
-                            <td class= "left-align"><b>Acquisition Cost: </b></td>
-                            <td class= "right-align">Php {{ asset_view.acquisition_cost }}</td>
-                        </tr>
-                        <tr>
-                            <td class= "left-align"><b>Salvage Value: </b></td>
-                            <td class= "right-align">Php {{ asset_view.salvage_value }}</td>
-                        </tr>
-                        <tr>
-                            <td class= "left-align"><b>Projected Life: </b></td>
-                            <td class= "right-align">{{ asset_view.project_life }} Months<br/></td>
-                        </tr>
-                        <tr>
-                            <td class= "left-align"><b>Book Value: </b></td>
-                            <td class= "right-align">{{ asset_view.balance }} Months<br/></td>
-                        </tr>
-                    </table>
-            </div>
-        </div>
-
-        <div class="row container-fluid">
-            <div class="col-sm">
-                <h2>
                     <i class="fas fa-money-bill-wave"></i>&nbsp; Depreciation
                 </h2>
 
@@ -120,7 +94,36 @@
                 </div>
             </div>
 
-            <div class="col-sm-4">
+            
+        </div>
+
+        <div class="row container-fluid">
+           
+            <div class="col-sm">
+                <h2>
+                    <i class="fas fa-chart-line"></i>&nbsp; Estimated Cost
+                </h2>
+                    <table class="info-table" >
+                        <tr>
+                            <td class= "left-align"><b>Acquisition Cost: </b></td>
+                            <td class= "right-align">Php {{ asset_view.acquisition_cost }}</td>
+                        </tr>
+                        <tr>
+                            <td class= "left-align"><b>Salvage Value: </b></td>
+                            <td class= "right-align">Php {{ asset_view.salvage_value }}</td>
+                        </tr>
+                        <tr>
+                            <td class= "left-align"><b>Projected Life: </b></td>
+                            <td class= "right-align">{{ asset_view.project_life }} Months<br/></td>
+                        </tr>
+                        <tr>
+                            <td class= "left-align"><b>Book Value: </b></td>
+                            <td class= "right-align">{{ asset_view.balance }} Months<br/></td>
+                        </tr>
+                    </table>
+            </div>
+
+            <div class="col-sm">
                 <h2>
                     <i class="far fa-clock"></i>&nbsp; Recent Actions
                 </h2>

@@ -1,6 +1,6 @@
 /* Google Fonts */
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');
 
 
 *:focus {
@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     background-color: #EEEEEE;
     font-size: 14px;
@@ -51,7 +51,7 @@ h2 {
         font-weight: 400;
     }
 
-        .topbar-title a, a:hover, a:focus {
+        .topbar-title a, a:focus {
             color: white;
             text-decoration: none;
         }

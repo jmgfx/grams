@@ -1,6 +1,6 @@
 /* Boxes & Containers */
 
-.tablebox-container h2 {
+.row h2 {
     margin-bottom: 20px;
 }
 
@@ -128,6 +128,11 @@ a.btn-revalue {
     text-align: left;
     width: 100%
 }
+
+.dep-table thead, tr {
+    text-align: center;
+}
+
 /* Show All Link */
 
 .showall {margin: 0; padding-top: 15px;}

@@ -8,7 +8,7 @@ class AddAssetForm(ModelForm):
         fields = ['name', 'quantity', 'status', 
             'date_acquired', 'end_of_warranty', 
             'brand', 'category', 'branch',
-            'model_no', 'serial_no',
+            'model_no', 'serial_no', 'specifications',
             'acquisition_cost', 'project_life', 'salvage_value',
             'description']
 
@@ -17,7 +17,7 @@ class EditAssetForm(ModelForm):
     class Meta:
         model = Assets
         fields = ['name', 'quantity', 'status',
-            'end_of_warranty',
+            'end_of_warranty', 'specifications',
             'brand', 'category', 'branch',
             'description']
 

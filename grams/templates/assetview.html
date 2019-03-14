@@ -53,12 +53,20 @@
                             <td class= "right-align">{{ asset_view.status }}</td>
                         </tr>
                         <tr>
+                            <td class= "left-align"><b>Location</b></td>
+                            <td class= "right-align">{{ asset_view.branch }}</td>
+                        </tr>
+                        <tr>
                             <td class= "left-align"><b>Model Number</b></td>
                             <td class= "right-align">{{ asset_view.model_no }}</td>
                         </tr>
                         <tr>
                             <td class= "left-align"><b>Serial Number</b></td>
                             <td class= "right-align">{{ asset_view.serial_no }}</td>
+                        </tr>
+                        <tr>
+                            <td class= "left-align"><b>Specifications</b></td>
+                            <td class= "right-align">{{ asset_view.specifications }}</td>
                         </tr>
                         <tr>
                             <td class= "left-align"><b>Description</b></td>
@@ -126,7 +134,7 @@
                         </tr>
                         <tr>
                             <td class= "left-align"><b>Book Value: </b></td>
-                            <td class= "right-align">{{ asset_view.balance }} Months<br/></td>
+                            <td class= "right-align">Php {{ asset_view.balance }}<br/></td>
                         </tr>
                     </table>
             </div>

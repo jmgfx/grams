@@ -65,6 +65,7 @@ def AssetView(request, asset_id):
             gap = int((now - asset.it_dep_date[-1]) / limit)
             for i in range(gap):
                 if asset.it_balance[-1] <= 0:
+                    asset.it_balance.append(0.00)
                     break
                 else:
                     asset.it_dep_date.append(asset.it_dep_date[-1] + limit)

@@ -25,10 +25,12 @@
                     <thead>
                             <th>ID</th>
                             <th>NAME</th>
+                            <th>MODEL NUMBER</th>
                             <th>STATUS</th>
                             <th>CATEGORY</th>
                             <th>BRAND</th>
                             <th>BRANCH</th>
+                            <th>DESCRIPTION</th>
                     </thead>
                     
                     <tbody style="overflow-y:auto;">
@@ -36,12 +38,14 @@
                     {% for asset in assets %}
                           
                         <tr>
-                            <td>{{ asset.id }}</a></td>
+                            <td>{{ asset.id }}</td>
                             <td><a href="{% url 'asset-view' asset.id %}">{{ asset.name }}</a></td>
+                            <td>{{ asset.model_no }}</td>
                             <td>{{ asset.status }}</td>
                             <td>{{ asset.category }}</td>
                             <td>{{ asset.brand }}</td>
                             <td>{{ asset.branch }}</td>
+                            <td>{{ asset.description }}</td>
                         </tr>
                     {% endfor %}
 
@@ -53,7 +57,11 @@
                     $('#myTable').DataTable({
                         dom: 'Bfrtip',
                         buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
+                            { extend: 'copy', className: 'btn copy' },
+                            { extend:  'csv', className: 'btn csv' },
+                            { extend: 'excel', className: 'btn excel' },
+                            { extend: 'pdf', className: 'btn pdf' },
+                            { extend: 'print', className: 'btn print' },
                         ]
                     });
                 } );

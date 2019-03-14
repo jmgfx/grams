@@ -78,18 +78,20 @@
                             <th>Date</th>
                             <th>Accumulated Depreciation</th>
                             <th>Book Value</th>
+                            <th>Depreciation Value</th>
                         </tr>
                     </thead>
 
                     <tbody>
                     {% for value in dep_values %}
                         <tr>
-                        
                             <td>{{ value.0 }}</td>
                             <td>{{ value.1 }}</td>
                             <td>{{ value.2 }}</td>
-                        </tr>
+                            <td>{{ asset_view.dep_value }}</td>
                     {% endfor %}
+                            
+                        </tr>
                     </tbody>
                 </table>
 

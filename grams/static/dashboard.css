@@ -134,6 +134,21 @@ a.btn-revalue {
     text-align: center;
 }
 
+thead {
+    background-color: rgb(198, 201, 198);
+    text-align: center;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+    background: rgba(226, 231, 226, 0.7)
+}
+
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+    background: rgb(235, 234, 234);
+}
+
 /* Show All Link */
 
 .showall {margin: 0; padding-top: 15px;}

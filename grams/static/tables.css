@@ -16,7 +16,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 1px solid rgb(141, 93, 93);
     margin-top: 30px;
 }
 
@@ -129,5 +129,9 @@ a {
 }
 
 #myTable tbody tr:hover { 
-    background: rgb(218, 218, 218) !important;
+    background: rgb(141, 139, 139) !important;
     cursor: pointer !important; }
+
+.btn .copy {
+    background-color: #1B5E20;
+}

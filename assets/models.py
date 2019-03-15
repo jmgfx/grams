@@ -25,12 +25,13 @@ class Assets(models.Model):
 
     name = models.CharField(max_length=100)
     quantity = models.IntegerField(default='1')
-    description = models.TextField(max_length=300)
+    description = models.TextField(max_length=500)
     status = models.CharField(max_length=100, choices=ASSET_STATUS, blank=False)
     date_added = models.DateField(auto_now_add=True)
     date_acquired = models.DateField(default=timezone.now)
     end_of_warranty = models.DateField(default=timezone.now)
     model_no = models.CharField(max_length=100)
+    specifications = models.TextField(max_length=240, default='')
     serial_no = models.CharField(max_length=100)
     acquisition_cost = models.FloatField(default=0.00)
     projected_life = models.DurationField(null=True)
@@ -54,6 +55,7 @@ class Assets(models.Model):
         blank=True, null=True, on_delete=models.SET_NULL
     )
 
+    it_dep_value = ArrayField(models.FloatField(), null=True)
     it_dep_date = ArrayField(models.DateField(), null=True)
     it_accrued = ArrayField(models.FloatField(), null=True)
     it_balance = ArrayField(models.FloatField(), null=True)

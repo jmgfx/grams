@@ -36,10 +36,12 @@ def AssetAdd(request):
             new_asset.dep_value = (new_asset.acquisition_cost - new_asset.salvage_value) / new_asset.project_life
             new_asset.balance = new_asset.acquisition_cost
 
+            new_asset.it_dep_value = []
             new_asset.it_dep_date = []
             new_asset.it_accrued = []
             new_asset.it_balance = []
 
+            new_asset.it_dep_value.append(new_asset.dep_value)
             new_asset.it_dep_date.append(new_asset.date_acquired)
             new_asset.it_accrued.append(float(0.00))
             new_asset.it_balance.append(new_asset.acquisition_cost)
@@ -65,16 +67,18 @@ def AssetView(request, asset_id):
             gap = int((now - asset.it_dep_date[-1]) / limit)
             for i in range(gap):
                 if asset.it_balance[-1] <= 0:
+                    asset.it_balance.append(0.00)
                     break
                 else:
                     asset.it_dep_date.append(asset.it_dep_date[-1] + limit)
                     asset.it_accrued.append(asset.it_accrued[-1] + asset.dep_value)
                     asset.it_balance.append(asset.balance - asset.it_accrued[-1])
+                    asset.it_dep_value.append(asset.dep_value)
             break
         break
 
-    asset.balance == asset.it_balance[-1]
-    dep_values = zip(asset.it_dep_date, asset.it_accrued, asset.it_balance)
+    asset.balance = asset.it_balance[-1]
+    dep_values = zip(asset.it_dep_date, asset.it_dep_value, asset.it_accrued, asset.it_balance)
     
     asset.save()
 

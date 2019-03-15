@@ -55,6 +55,7 @@ class Assets(models.Model):
         blank=True, null=True, on_delete=models.SET_NULL
     )
 
+    it_dep_value = ArrayField(models.FloatField(), null=True)
     it_dep_date = ArrayField(models.DateField(), null=True)
     it_accrued = ArrayField(models.FloatField(), null=True)
     it_balance = ArrayField(models.FloatField(), null=True)

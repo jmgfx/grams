@@ -4,6 +4,7 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'tables.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
     <link rel="stylesheet" type="text/css" 
     href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css"
@@ -16,9 +17,10 @@
     <section id="main" class="content">
         <div class="description">
                 <div class="titlepage">
-                        <form class="form-inline">
-                            <h1>Assets</h1> 
-                        </form>
+                    <ul class="breadcrumb">
+                        <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+                        <li class="active">Archived Assets</a></li>
+                      </ul>>
                     </div>
                     
                    

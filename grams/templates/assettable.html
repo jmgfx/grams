@@ -4,6 +4,7 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'tables.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
     <link rel="stylesheet" type="text/css" 
         href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css"
@@ -15,8 +16,10 @@
     <section id="main" class="content">
         <div class="description">
             <div class="titlepage">
-                <h1>Assets</h1>
-                
+                <ul class="breadcrumb">
+                    <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+                    <li class="active">Asset Table</a></li>
+                  </ul>
             </div>
             
             <a href="{% url 'asset-add' %}" class="btn neutral">Add</a> <a href="{% url 'archived-assets-table' %}" class="btn critical">Display Archive</a>
@@ -25,7 +28,6 @@
                     <thead>
                             <th>ID</th>
                             <th>NAME</th>
-                            <th>Model Number</th>
                             <th>STATUS</th>
                             <th>CATEGORY</th>
                             <th>BRAND</th>

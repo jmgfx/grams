@@ -34,6 +34,9 @@
                                 Transfer
                             {% endif %}
                             {% if transaction.ttype == '3' %}
+                                Archived
+                            {% endif %}
+                            {% if transaction.ttype == '4' %}
                                 Recover
                             {% endif %}
                         </td>

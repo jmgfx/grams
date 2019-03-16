@@ -90,8 +90,8 @@ def DefaultDescription(self):
     elif self.ttype == 2:
         return 'Asset(s) transfered to ' + self.branch_destination.name + '.'
     elif self.ttype == 3:
-        return 'Asset(s) were recovered from the archive.'
-    elif self.ttype == 4:
         return 'Asset(s) were archived.'
+    elif self.ttype == 4:
+        return 'Asset(s) were recovered from the archive.'
     else:
         return 'Transaction set.'

@@ -46,7 +46,11 @@
                 $('#myTable').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                        { extend: 'copy',  className: 'copy'},  
+                        { extend: 'csv', className: 'csv'},  
+                        { extend: 'excel', className: 'excel'},  
+                        { extend: 'pdf',  className: 'pdf'},  
+                        { extend: 'print', className: 'print'} 
                     ]
                 });
             } );

@@ -21,7 +21,7 @@
             
             <a href="{% url 'asset-add' %}" class="btn neutral">Add</a> <a href="{% url 'archived-assets-table' %}" class="btn critical">Display Archive</a>
         <div style="overflow-x:auto;"> 
-                <table class="table table-striped display nowrap" id="myTable" style="font-size: 1em;">
+                <table class="table table-striped" id="myTable" style="font-size: 1em;">
                     <thead>
                             <th>ID</th>
                             <th>NAME</th>
@@ -51,17 +51,17 @@
 
                     </tbody>
                 </table>
-        {% block js %}
+            {% block js %}
             <script type="text/javascript">
                 $(document).ready( function () {
                     $('#myTable').DataTable({
                         dom: 'Bfrtip',
                         buttons: [
-                            { extend: 'copy', className: 'btn copy' },
-                            { extend:  'csv', className: 'btn csv' },
-                            { extend: 'excel', className: 'btn excel' },
-                            { extend: 'pdf', className: 'btn pdf' },
-                            { extend: 'print', className: 'btn print' },
+                            { extend: 'copy',  className: 'copy'},  
+                            { extend: 'csv', className: 'csv'},  
+                            { extend: 'excel', className: 'excel'},  
+                            { extend: 'pdf',  className: 'pdf'},  
+                            { extend: 'print', className: 'print'} 
                         ]
                     });
                 } );
@@ -71,10 +71,10 @@
                 $(document).ready(function() {
                     $('#myTable tr').click(function() {
                     var href = $(this).find("a").attr("href");
-                       if(href) {
+                        if(href) {
                             window.location = href;
-                           }
-                     });
+                            }
+                        });
                 });  
             </script>
             <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>

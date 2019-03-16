@@ -40,7 +40,14 @@ def AssetCategoriesEdit(request, category_id):
             return redirect('/assetcategories/view/' + str(category_id))
     else:
         form = EditAssetCategory(instance=assetCategory.objects.get(id=category_id))
-    return render(request, 'editassetcategory.html', {'form': form}, {'title': 'Edit an Asset Categories'})
+
+    context = {
+        'form': form,
+        'category': assetCategory.objects.get(id=category_id),
+        'title': 'Edit a Category Information',
+    }
+    return render(request, 'editassetcategory.html', context)
+
 
 
 def AssetCategoriesDelete(request, category_id):

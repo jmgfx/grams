@@ -7,7 +7,6 @@
 .titlepage .form-inline {
     margin-top: 1px;
 }
-
 .form-inline {
     margin-top: 40px;
 }
@@ -131,3 +130,4 @@ a {
 #myTable tbody tr:hover { 
     background: rgb(218, 218, 218) !important;
     cursor: pointer !important; }
+

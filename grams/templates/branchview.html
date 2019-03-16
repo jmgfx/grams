@@ -3,7 +3,7 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'dashboard.css' %}">
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
     <link rel="stylesheet" type="text/css" 
     href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css"
@@ -15,7 +15,11 @@
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h1>{{ branch_view.name }}</h1>
+        <ul class="breadcrumb">
+            <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="inactive"><a href="{% url 'branch-table' %}">Asset Branch Table</a></li>
+            <li class="active">{{ branch_view.name }}</a></li>
+        </ul>
     </div>
 
         <div class="container-fluid">

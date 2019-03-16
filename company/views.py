@@ -47,7 +47,14 @@ def CompanyEdit(request, company_id):
             return redirect('/company/view/' + str(company_id))
     else:
         form = EditCompanyForm(instance=Company.objects.get(id=company_id))
-    return render(request, 'editcompany.html', {'form':form}, {'title': 'Edit a Branch'})
+    
+    context = {
+        'form': form,
+        'company': Company.objects.get(id=company_id),
+        'title': 'Edit Company Information',
+    }
+    return render(request, 'editcompany.html', context)
+
 
 
 def ArchiveCompany(request, company_id):

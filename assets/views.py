@@ -99,7 +99,14 @@ def AssetEdit(request, asset_id):
             return redirect('/assets/view/' + str(asset_id))
     else:
         form = EditAssetForm(instance=Assets.objects.all().get(id=asset_id))
-    return render(request, 'editasset.html', {'form': form}, {'title': 'Edit an Asset'})
+
+    context = {
+        'form': form,
+        'asset': Assets.objects.get(id=asset_id),
+        'title': 'Edit an Asset',
+    }
+    return render(request, 'editasset.html', context)
+
 
 
 def Revalue(request, asset_id):
@@ -107,11 +114,16 @@ def Revalue(request, asset_id):
         form = RevalueForm(request.POST, instance=Assets.objects.all().get(id=asset_id))
         if form.is_valid():
             form.save()
-
             return redirect('/assets/view/' + str(asset_id) + '/revalue/true/')
     else:
         form = RevalueForm(instance=Assets.objects.all().get(id=asset_id))
-    return render(request, 'revalue.html', {'form': form}, {'title': 'Revalue Asset'})
+        
+    context = {
+        'form': form,
+        'asset': Assets.objects.get(id=asset_id),
+        'title': 'Revalue an Asset',
+    }
+    return render(request, 'revalue.html', context)
 
 
 def RevalueAlgo(request, asset_id):

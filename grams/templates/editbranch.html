@@ -3,18 +3,25 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'forms.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
 {% endblock page_css %}
 
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h1>Edit Branch</h1>
+        <ul class="breadcrumb">
+            <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="inactive"><a href="{% url 'branch-table' %}">Asset Branch Table</a></li>
+            <li class="inactive"><a href="{% url 'branch-view' branch.id %}">{{ branch.name }}</a></li>
+            <li class="active">Edit {{ branch.name }} Information</li>
+
+        </ul>
     </div>
 
     <div class="row">
         <div class="col-sm tablebox-container">
             <form method="POST" action="">
-                {% csrf_token %}
+                {% csrf_token %}s
                 {{ form.as_p }}
                 <input type="submit" value="Save">
             </form>

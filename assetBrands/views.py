@@ -41,7 +41,13 @@ def AssetBrandsEdit(request, brand_id):
             return redirect('/assetbrands/view/' + str(brand_id))
     else:
         form = EditAssetBrand(instance=assetBrand.objects.get(id=brand_id))
-    return render(request, 'editassetbrand.html', {'form':form}, {'title': 'Edit an Asset Brand'})
+
+    context = {
+        'form': form,
+        'brand': assetBrand.objects.get(id=brand_id),
+        'title': 'Edit a Brand Information',
+    }
+    return render(request, 'editassetbrand.html', context)
 
 
 def AssetBrandsDelete(request, brand_id):

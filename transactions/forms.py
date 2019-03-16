@@ -12,3 +12,15 @@ class TransferForm(ModelForm):
     class Meta:
         model = Transactions
         fields = ['assets_transact', 'branch_destination']
+
+
+class DisposeForm(ModelForm):
+    class Meta:
+        model = Transactions
+        fields = ['assets_transact']
+
+
+class RecoverForm(ModelForm):
+    class Meta:
+        model = Transactions
+        fields = ['archived_assets']

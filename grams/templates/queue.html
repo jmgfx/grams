@@ -41,7 +41,7 @@
                         <td>{{ transaction.description }}</td>
                         <td>
                             {% for asset in transaction.assets_transact.all %}
-                                {{ asset }}
+                                {{ asset }}; 
                             {% endfor %}
                         </td>
                     </tr>

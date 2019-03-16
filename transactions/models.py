@@ -10,7 +10,8 @@ class Transactions(models.Model):
     TRANSACTION_TYPE = (
         ('1', 'Maintenance'),
         ('2', 'Transfer'),
-        ('3', 'Recover'),
+        ('3', 'Dispose'),
+        ('4', 'Recover'),
     )
 
     TRANSACTION_STATUS = (
@@ -24,7 +25,14 @@ class Transactions(models.Model):
     status = models.CharField(max_length=3, choices=TRANSACTION_STATUS, blank=False)
     description = models.TextField(max_length=300, default='None')
     assets_transact = models.ManyToManyField(
-        Assets, related_name='assets_transactions',
+        Assets,
+        related_name='assets_transactions',
+        limit_choices_to={'display':1},
+    )
+    archived_assets = models.ManyToManyField(
+        Assets,
+        related_name= 'archived_assets',
+        limit_choices_to={'display':0},
     )
     
     # Type 1, Maintenance

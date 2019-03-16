@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Transactions
 from .forms import MaintenanceForm, TransferForm, DisposeForm, RecoverForm
 from .services import DefaultDescription
+
+from assets.models import Assets
 
 
 def TransactionsView(request, type, transaction_id):
@@ -63,9 +65,29 @@ def Dispose(request):
 
             new_transaction.save()
             form.save_m2m()
+
+            return redirect('/transactions/dispose/' + str(new_transaction.id) + '/')
     else:
         form = DisposeForm()
     return render(request, 'dispose.html', {'form': form}, {'title': 'Transfer Assets'})
+
+
+def DisposeAction(request, transaction_id):
+    transaction = Transactions.objects.get(id=transaction_id)
+    for asset in transaction.assets_transact.all():
+        asset_to_archive = Assets.objects.get(id=asset.id)
+        asset_to_archive.status = 'Archived'
+        asset_to_archive.display = 0
+        asset_to_archive.save()
+    return redirect('/transactions/view/dispose/' + str(transaction_id) + '/')
+
+
+def DisposeView(request, transaction_id):
+    context = {
+        'transaction_view': Transactions.objects.get(id=transaction_id),
+        'title': 'Dispose Transaction #' + str(transaction_id), 
+    }
+    return render(request, 'disposeview.html', context)
 
 
 def Recover(request):
@@ -79,9 +101,29 @@ def Recover(request):
 
             new_transaction.save()
             form.save_m2m()
+
+            return redirect('/transactions/recover/' + str(new_transaction.id) + '/')
     else:
         form = RecoverForm()
     return render(request, 'recover.html', {'form': form}, {'title': 'Transfer Assets'})
+
+
+def RecoverAction(request, transaction_id):
+    transaction = Transactions.objects.get(id=transaction_id)
+    for asset in transaction.archived_assets.all():
+        asset_to_recover = Assets.objects.get(id=asset.id)
+        asset_to_recover.status = 'In Storage'
+        asset_to_recover.display = 1
+        asset_to_recover.save()
+    return redirect('/transactions/view/recover/' + str(transaction_id) + '/')
+
+
+def RecoverView(request, transaction_id):
+    context = {
+        'transaction_view': Transactions.objects.get(id=transaction_id),
+        'title': 'Dispose Transaction #' + str(transaction_id), 
+    }
+    return render(request, 'recoverview.html', context)
 
 
 def DefaultDescription(self):

@@ -58,7 +58,6 @@
 </section>
 
 <div class="footer">
-     class="footer">
     {% if vendor_view.display == '1' %}
         <a href="{% url 'vendors-edit' vendor_view.id %}" class="btn float-right neutral">Edit</a>
         <a href="{% url 'archive-vendors' vendor_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to archive this vendor?')">Archive</a>

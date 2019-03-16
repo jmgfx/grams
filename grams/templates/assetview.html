@@ -146,16 +146,16 @@
                 <!-- ra 1 -->
                 <div class="tablebox">
                     <div class="container-fluid">
-                        <div class="row">
-                            {% for trail in audit_trail %}
-                                <div class="col-sm">
-                                    <!-- icon --><i class="far fa-clock"></i>
-                                </div>
-                                <div class="col">
-                                    {{ trail.description }}
-                                </div>
-                            {% endfor %}
-                        </div>
+                        {% for trail in audit_trail|slice:":5" %}
+                            <div class="row">
+                                    <div class="col-1-sm">
+                                        <!-- icon --><i class="far fa-clock"></i>
+                                    </div>
+                                    <div class="col-sm">
+                                        {{ trail.description }}
+                                    </div>
+                            </div>
+                        {% endfor %}
                         <!--
                         <div class="row">
                             <ul>

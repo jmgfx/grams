@@ -24,22 +24,18 @@ class Transactions(models.Model):
     status = models.CharField(max_length=3, choices=TRANSACTION_STATUS, blank=False)
     description = models.TextField(max_length=300, default='None')
     assets_transact = models.ManyToManyField(
-        Assets,
+        Assets, related_name='assets_transactions',
     )
     
     # Type 1, Maintenance
-    schedule = models.DateTimeField(default=timezone.now)
+    start_date = models.DateField(default=timezone.now, null=False)
+    end_date = models.DateField(default=timezone.now, null=False)
     vendor = models.ForeignKey(
         Vendors, 
         blank=True, null=True, on_delete=models.SET_NULL
     )
 
     # Type 2, Transfer
-    branch_origin = models.ForeignKey(
-        Branch,
-        related_name='origin', null=True,
-        on_delete=models.CASCADE
-    )
     branch_destination = models.ForeignKey(
         Branch,
         related_name='destination', null=True,
@@ -48,4 +44,4 @@ class Transactions(models.Model):
 
 
     def __str__(self):
-        return self.id
+        return str(self.ttype)

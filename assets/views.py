@@ -84,7 +84,7 @@ def AssetView(request, asset_id):
 
     context_view = {
         'asset_view': Assets.objects.get(id=asset_id),
-        'audit_trail': Transactions.objects.filter(assets_transact=asset_id),
+        'audit_trail': Transactions.objects.filter(assets_transact__id__contains=asset_id).order_by('date_added'),
         'dep_values': dep_values,
     }
 

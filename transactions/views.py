@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .models import Transactions
 from .forms import MaintenanceForm, TransferForm, DisposeForm, RecoverForm
 from .services import DefaultDescription
@@ -7,10 +8,12 @@ from .services import DefaultDescription
 from assets.models import Assets
 
 
+@login_required
 def TransactionsView(request, type, transaction_id):
     return HttpResponse('Transactions view goes here.')
 
 
+@login_required
 def TransactionsTable(request):
     context = {
         'transactions': Transactions.objects.all(),
@@ -18,10 +21,12 @@ def TransactionsTable(request):
     return render(request, 'queue.html', context, {'title': 'Queued Transactions'})
 
 
+@login_required
 def TransactionsHistory(request):
     return HttpResponse('History of transactions goes here.')
 
 
+@login_required
 def Maintenance(request):
     if request.method == 'POST':
         form = MaintenanceForm(request.POST)
@@ -38,6 +43,7 @@ def Maintenance(request):
     return render(request, 'schedule.html', {'form': form}, {'title': 'Schedule Maintenance'})
 
 
+@login_required
 def Transfer(request):
     if request.method == 'POST':
         form = TransferForm(request.POST)
@@ -54,6 +60,7 @@ def Transfer(request):
     return render(request, 'transfer.html', {'form': form}, {'title': 'Transfer Assets'})
 
 
+@login_required
 def Dispose(request):
     if request.method == 'POST':
         form = DisposeForm(request.POST)
@@ -72,6 +79,7 @@ def Dispose(request):
     return render(request, 'dispose.html', {'form': form}, {'title': 'Transfer Assets'})
 
 
+@login_required
 def DisposeAction(request, transaction_id):
     transaction = Transactions.objects.get(id=transaction_id)
     for asset in transaction.assets_transact.all():
@@ -82,6 +90,7 @@ def DisposeAction(request, transaction_id):
     return redirect('/transactions/view/dispose/' + str(transaction_id) + '/')
 
 
+@login_required
 def DisposeView(request, transaction_id):
     context = {
         'transaction_view': Transactions.objects.get(id=transaction_id),
@@ -90,6 +99,7 @@ def DisposeView(request, transaction_id):
     return render(request, 'disposeview.html', context)
 
 
+@login_required
 def Recover(request):
     if request.method == 'POST':
         form = RecoverForm(request.POST)
@@ -108,6 +118,7 @@ def Recover(request):
     return render(request, 'recover.html', {'form': form}, {'title': 'Transfer Assets'})
 
 
+@login_required
 def RecoverAction(request, transaction_id):
     transaction = Transactions.objects.get(id=transaction_id)
     for asset in transaction.archived_assets.all():
@@ -118,6 +129,7 @@ def RecoverAction(request, transaction_id):
     return redirect('/transactions/view/recover/' + str(transaction_id) + '/')
 
 
+@login_required
 def RecoverView(request, transaction_id):
     context = {
         'transaction_view': Transactions.objects.get(id=transaction_id),
@@ -126,6 +138,7 @@ def RecoverView(request, transaction_id):
     return render(request, 'recoverview.html', context)
 
 
+@login_required
 def DefaultDescription(self):
     if self.ttype == 1:
         return 'Maintenance scheduled from ' + self.start_date.strftime('%B %d, %Y') + ' to ' + self.end_date.strftime('%B %d, %Y') + '.'

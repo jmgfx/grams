@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .models import Company
 from .forms import AddCompanyForm, EditCompanyForm
 from branch.models import Branch
 
 
+@login_required
 def CompanyTable(request):
     context = {
         'companies': Company.objects.filter(display=1)
@@ -12,6 +14,7 @@ def CompanyTable(request):
     return render(request, 'companies.html', context, {'title': 'Companies'})
 
 
+@login_required
 def ArchivedCompanyTable(request):
     context = {
         'companies': Company.objects.filter(display=0)
@@ -19,6 +22,7 @@ def ArchivedCompanyTable(request):
     return render(request, 'companiesarchive.html', context, {'title': 'Archived Companies'})
 
 
+@login_required
 def CompanyView(request, company_id):
     context_view = {
         'company_view': Company.objects.get(id=company_id),
@@ -27,6 +31,7 @@ def CompanyView(request, company_id):
     return render(request, 'companyview.html', context_view, {'title': 'View Company'})
 
 
+@login_required
 def CompanyAdd(request):
     if request.method == 'POST':
         form = AddCompanyForm(request.POST)
@@ -39,6 +44,7 @@ def CompanyAdd(request):
     return render(request, 'addcompany.html', {'form': form}, {'title': 'Add a Company'})
 
 
+@login_required
 def CompanyEdit(request, company_id):
     if request.method == 'POST':
         form = EditCompanyForm(request.POST, instance=Company.objects.get(id=company_id))
@@ -56,7 +62,7 @@ def CompanyEdit(request, company_id):
     return render(request, 'editcompany.html', context)
 
 
-
+@login_required
 def ArchiveCompany(request, company_id):
     company_to_archive = Company.objects.get(id=company_id)
     company_to_archive.display = 0
@@ -64,12 +70,14 @@ def ArchiveCompany(request, company_id):
     return redirect('/company/view/' + str(company_id))
 
 
+@login_required
 def DeleteCompany(request, company_id):
     company_to_delete = Company.objects.get(id=company_id)
     company_to_delete.delete()
     return redirect('/company/')
 
 
+@login_required
 def RecoverCompany(request, company_id):
     company_to_recover = Company.objects.get(id=company_id)
     company_to_recover.display = 1

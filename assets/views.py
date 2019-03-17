@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 from datetime import timedelta
 from django.http import HttpResponse
 from .models import Assets
@@ -12,6 +13,7 @@ from . import urls
 import datetime
 
 
+@login_required
 def AssetTable(request):
     context = {
         'assets': Assets.objects.filter(display=1)
@@ -19,6 +21,7 @@ def AssetTable(request):
     return render(request, 'assettable.html', context, {'title': 'Assets'})
 
 
+@login_required
 def AssetAdd(request):
     if request.method == 'POST':
         form = AddAssetForm(request.POST)
@@ -59,6 +62,7 @@ def AssetAdd(request):
     return render(request, 'addasset.html', context)
 
 
+@login_required
 def AssetView(request, asset_id):
     asset = Assets.objects.get(id=asset_id)
     now = datetime.date.today()
@@ -97,6 +101,7 @@ def AssetView(request, asset_id):
     return render(request, 'assetview.html', context_view)
 
 
+@login_required
 def AssetEdit(request, asset_id):
     if request.method == 'POST':
         form = EditAssetForm(request.POST, instance=Assets.objects.all().get(id=asset_id))
@@ -115,6 +120,7 @@ def AssetEdit(request, asset_id):
 
 
 
+@login_required
 def Revalue(request, asset_id):
     if request.method == 'POST':
         form = RevalueForm(request.POST, instance=Assets.objects.all().get(id=asset_id))
@@ -132,6 +138,7 @@ def Revalue(request, asset_id):
     return render(request, 'revalue.html', context)
 
 
+@login_required
 def RevalueAlgo(request, asset_id):
     asset_to_revalue = Assets.objects.get(id=asset_id)
     asset_to_revalue.balance = asset_to_revalue.acquisition_cost
@@ -142,6 +149,7 @@ def RevalueAlgo(request, asset_id):
     return redirect('/assets/view/' + str(asset_id))
 
 
+@login_required
 def AssetArchive(request, asset_id):
     asset_to_archive = Assets.objects.get(id=asset_id)
     asset_to_archive.status = 'Archived'
@@ -150,6 +158,7 @@ def AssetArchive(request, asset_id):
     return redirect('/assets/view/' + str(asset_id))
 
 
+@login_required
 def AssetRecover(request, asset_id):
     asset_to_recover = Assets.objects.get(id=asset_id)
     asset_to_recover.status = 'In Storage'
@@ -158,6 +167,7 @@ def AssetRecover(request, asset_id):
     return redirect('/assets/view/' + str(asset_id))
 
 
+@login_required
 def ArchivedAssetsTable(request):
     context = {
         'assets': Assets.objects.filter(display=0),
@@ -166,6 +176,7 @@ def ArchivedAssetsTable(request):
     return render(request, 'assettablearchive.html', context)
 
 
+@login_required
 def DeleteAsset(request, asset_id):
     asset_to_delete = Assets.objects.get(id=asset_id)
     asset_to_delete.delete()

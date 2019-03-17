@@ -9,8 +9,25 @@ from assets.models import Assets
 
 
 @login_required
-def TransactionsView(request, type, transaction_id):
-    return HttpResponse('Transactions view goes here.')
+def TransactionView(request, transaction_id):
+    transaction = Transactions.objects.get(id=transaction_id)
+
+    if transaction.ttype == '1':
+        type = 'Maintenance'
+    elif transaction.ttype == '2':
+        type = 'Transfer'
+    elif transaction.ttype == '3':
+        type = 'Archived'
+    elif transaction.ttype == '4':
+        type = 'Recover'
+    else:
+        type = 'Transaction'
+
+    context = {
+        'transaction_view': Transactions.objects.get(id=transaction_id),
+        'title': str(type+' ID#'+str(transaction_id)),
+    }
+    return render(request, 'transactionview.html', context)
 
 
 @login_required
@@ -55,9 +72,21 @@ def Transfer(request):
 
             new_transaction.save()
             form.save_m2m()
+            
+            return redirect('/transactions/transfer/' + str(new_transaction.id) + '/')
     else:
         form = TransferForm()
     return render(request, 'transfer.html', {'form': form}, {'title': 'Transfer Assets'})
+
+
+@login_required
+def TransferAction(request, transaction_id):
+    transaction = Transactions.objects.get(id=transaction_id)
+    for asset in transaction.assets_transact.all():
+        asset_to_transfer = Assets.objects.get(id=asset.id)
+        asset_to_transfer.branch = transaction.branch_destination
+        asset_to_transfer.save()
+    return redirect('/transactions/view/' + str(transaction_id) + '/')
 
 
 @login_required
@@ -87,16 +116,7 @@ def DisposeAction(request, transaction_id):
         asset_to_archive.status = 'Archived'
         asset_to_archive.display = 0
         asset_to_archive.save()
-    return redirect('/transactions/view/dispose/' + str(transaction_id) + '/')
-
-
-@login_required
-def DisposeView(request, transaction_id):
-    context = {
-        'transaction_view': Transactions.objects.get(id=transaction_id),
-        'title': 'Dispose Transaction #' + str(transaction_id), 
-    }
-    return render(request, 'disposeview.html', context)
+    return redirect('/transactions/view/' + str(transaction_id) + '/')
 
 
 @login_required
@@ -126,19 +146,9 @@ def RecoverAction(request, transaction_id):
         asset_to_recover.status = 'In Storage'
         asset_to_recover.display = 1
         asset_to_recover.save()
-    return redirect('/transactions/view/recover/' + str(transaction_id) + '/')
+    return redirect('/transactions/view/' + str(transaction_id) + '/')
 
 
-@login_required
-def RecoverView(request, transaction_id):
-    context = {
-        'transaction_view': Transactions.objects.get(id=transaction_id),
-        'title': 'Dispose Transaction #' + str(transaction_id), 
-    }
-    return render(request, 'recoverview.html', context)
-
-
-@login_required
 def DefaultDescription(self):
     if self.ttype == 1:
         return 'Maintenance scheduled from ' + self.start_date.strftime('%B %d, %Y') + ' to ' + self.end_date.strftime('%B %d, %Y') + '.'

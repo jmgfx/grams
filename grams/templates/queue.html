@@ -25,7 +25,7 @@
 
                 {% for transaction in transactions %}                
                     <tr>
-                        <td>{{ transaction.id }}</td>
+                        <td><a href="{% url 'transaction-view' transaction.id %}">{{ transaction.id }}</a></td>
                         <td>
                             {% if transaction.ttype == '1' %}
                                 Maintenance
@@ -43,9 +43,15 @@
                         <td>{{ transaction.date_added }}</td>
                         <td>{{ transaction.description }}</td>
                         <td>
-                            {% for asset in transaction.assets_transact.all %}
-                                {{ asset }}; 
-                            {% endfor %}
+                            {% if transaction.ttype == '4' %}
+                                {% for asset in transaction.archived_assets.all %}
+                                    {{ asset }}; 
+                                {% endfor %}
+                            {% else %}
+                                {% for asset in transaction.assets_transact.all %}
+                                    {{ asset }}; 
+                                {% endfor %}
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

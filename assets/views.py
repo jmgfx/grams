@@ -51,7 +51,12 @@ def AssetAdd(request):
             return redirect('/assets/view/' + str(new_asset.id))
     else:
         form = AddAssetForm()
-    return render(request, 'addasset.html', {'form': form}, {'title': 'Add an Asset'})
+
+    context = {
+        'form': form,
+        'title': 'Add an Asset',
+    }
+    return render(request, 'addasset.html', context)
 
 
 def AssetView(request, asset_id):
@@ -86,9 +91,10 @@ def AssetView(request, asset_id):
         'asset_view': Assets.objects.get(id=asset_id),
         'audit_trail': Transactions.objects.filter(assets_transact__id__contains=asset_id).order_by('date_added'),
         'dep_values': dep_values,
+        'title': 'View Asset',
     }
 
-    return render(request, 'assetview.html', context_view, {'title': 'View Asset'})
+    return render(request, 'assetview.html', context_view)
 
 
 def AssetEdit(request, asset_id):
@@ -154,9 +160,10 @@ def AssetRecover(request, asset_id):
 
 def ArchivedAssetsTable(request):
     context = {
-        'assets': Assets.objects.filter(display=0)
+        'assets': Assets.objects.filter(display=0),
+        'title': 'Archived Assets',
     }
-    return render(request, 'assettablearchive.html', context, {'title': 'Archived Assets'})
+    return render(request, 'assettablearchive.html', context)
 
 
 def DeleteAsset(request, asset_id):

@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+
 from assets.models import Assets
 from branch.models import Branch
 from vendors.models import Vendors
@@ -53,3 +55,4 @@ class Transactions(models.Model):
 
     def __str__(self):
         return str(self.ttype)
+        

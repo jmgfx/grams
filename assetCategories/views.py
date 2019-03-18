@@ -29,6 +29,7 @@ def AssetCategoriesAdd(request):
         form = AddAssetCategory(request.POST)
         if form.is_valid():
             new_category = form.save(commit=False)
+            new_category.created_by = request.user
             new_category.save()
             return redirect('/assetcategories/view/' + str(new_category.id))
     else:

@@ -28,6 +28,8 @@ def AssetAdd(request):
         if form.is_valid():
             new_asset = form.save(commit=False)
 
+            new_asset.created_by = request.user
+
             # Whether to display asset in table or not
             if new_asset.status == 'Archived':
                 new_asset.display = 0

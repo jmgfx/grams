@@ -36,6 +36,10 @@ class Transactions(models.Model):
         related_name= 'archived_assets',
         limit_choices_to={'display':0},
     )
+    created_by = models.ForeignKey(
+        User,
+        blank=True, null=True, on_delete=models.SET_NULL,
+    )
     
     # Type 1, Maintenance
     start_date = models.DateField(default=timezone.now, null=False)

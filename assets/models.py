@@ -54,6 +54,10 @@ class Assets(models.Model):
         Branch, 
         blank=True, null=True, on_delete=models.SET_NULL
     )
+    created_by = models.ForeignKey(
+        User,
+        blank=True, null=True, on_delete=models.SET_NULL,
+    )
 
     it_dep_value = ArrayField(models.FloatField(), null=True)
     it_dep_date = ArrayField(models.DateField(), null=True)

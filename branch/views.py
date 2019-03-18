@@ -37,6 +37,7 @@ def BranchAdd(request):
         form = AddBranchForm(request.POST)
         if form.is_valid():
             new_branch = form.save(commit=False)
+            new_branch.created_by = request.user
             new_branch.save()
             return redirect('/branch/view/' + str(new_branch.id))
     else:

@@ -50,6 +50,7 @@ def Maintenance(request):
         if form.is_valid():
             new_transaction = form.save(commit=False)
             new_transaction.ttype = 1
+            new_transaction.created_by = request.user
 
             new_transaction.description = DefaultDescription(new_transaction)
 
@@ -67,6 +68,7 @@ def Transfer(request):
         if form.is_valid():
             new_transaction = form.save(commit=False)
             new_transaction.ttype = 2
+            new_transaction.created_by = request.user
 
             new_transaction.description = DefaultDescription(new_transaction)
 
@@ -96,6 +98,7 @@ def Dispose(request):
         if form.is_valid():
             new_transaction = form.save(commit=False)
             new_transaction.ttype = 3
+            new_transaction.created_by = request.user
 
             new_transaction.description = DefaultDescription(new_transaction)
 
@@ -126,6 +129,7 @@ def Recover(request):
         if form.is_valid():
             new_transaction = form.save(commit=False)
             new_transaction.ttype = 4
+            new_transaction.created_by = request.user
 
             new_transaction.description = DefaultDescription(new_transaction)
 
@@ -151,12 +155,12 @@ def RecoverAction(request, transaction_id):
 
 def DefaultDescription(self):
     if self.ttype == 1:
-        return 'Maintenance scheduled from ' + self.start_date.strftime('%B %d, %Y') + ' to ' + self.end_date.strftime('%B %d, %Y') + '.'
+        return 'Maintenance scheduled from ' + self.start_date.strftime('%B %d, %Y') + ' to ' + self.end_date.strftime('%B %d, %Y') + ' by ' + self.created_by + '.'
     elif self.ttype == 2:
-        return 'Asset(s) transfered to ' + self.branch_destination.name + '.'
+        return 'Asset(s) transfered to ' + self.branch_destination.name + ' by ' + self.created_by + '.'
     elif self.ttype == 3:
-        return 'Asset(s) were archived.'
+        return 'Asset(s) were archived ' + ' by ' + self.created_by + '.'
     elif self.ttype == 4:
-        return 'Asset(s) were recovered from the archive.'
+        return 'Asset(s) were recovered from the archive ' + ' by ' + self.created_by + '.'
     else:
-        return 'Transaction set.'
+        return 'Transaction set ' + ' by ' + self.created_by + '.'

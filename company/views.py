@@ -37,7 +37,9 @@ def CompanyAdd(request):
         form = AddCompanyForm(request.POST)
         if form.is_valid():
             new_company = form.save(commit=False)
+            new_company.created_by = request.user
             new_company.save()
+            form.save_m2m()
             return redirect('/company/view/' + str(new_company.id))
     else:
         form = AddCompanyForm()

@@ -29,6 +29,7 @@ def AssetBrandsAdd(request):
         form = AddAssetBrand(request.POST)
         if form.is_valid():
             new_asset_brand = form.save(commit=False)
+            new_asset_brand.created_by = request.user
             new_asset_brand.save()
             return redirect('/assetbrands/view/' + str(new_asset_brand.id))
     else:

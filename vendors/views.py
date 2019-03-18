@@ -27,6 +27,7 @@ def VendorsAdd(request):
         form = AddVendorForm(request.POST)
         if form.is_valid():
             new_vendor = form.save(commit=False)
+            new_vendor.created_by = request.user
             new_vendor.save()
             return redirect('/vendors/view/' + str(new_vendor.id))
     else:

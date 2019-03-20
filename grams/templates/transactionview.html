@@ -66,6 +66,12 @@
                             {% endif %}
                         </td>
                     </tr>
+                    {% if transaction_view.status == '2' %}
+                        <tr>
+                            <td><b>Date Complete</b></td>
+                            <td>{{ transaction_view.close_date }}</td>
+                        </tr>
+                    {% endif %}
                 </table>
             </div>
         </div>
@@ -142,17 +148,14 @@
 
 </section>
 
-<!--
 <div class="footer">
-    {% if transaction_view.display == '1' %}
-        <a href="{% url 'vendors-edit' transaction_view.id %}" class="btn float-right neutral">Edit</a>
-        <a href="{% url 'archive-vendors' transaction_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to archive this vendor?')">Archive</a>
+    <a href="{% url 'delete-transaction' transaction_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to delete this transaction?')">Delete</a>
+    {% if transaction_view.status == '1' %}
+        <a href="{% url 'close-transaction' transaction_view.id %}" class="btn float-right low">Close Transaction</a>
     {% endif %}
-    {% if transaction_view.display == '0' %}
-        <a href="{% url 'recover-vendors' transaction_view.id %}" class="btn float-right misc" onclick="return confirm('Are you sure you want to recover this vendor?')">Recover</a>
-        <a href="{% url 'delete-vendors' transaction_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to remove this vendor from the database?')">Delete</a>
+    {% if transaction_view.status == '2' %}
+        <a href="{% url 'open-transaction' transaction_view.id %}" class="btn float-right low" onclick="return confirm('Are you sure you want to open this transaction?')">Open Transaction</a>
     {% endif %}
 </div>
--->
 
 {% endblock content %}

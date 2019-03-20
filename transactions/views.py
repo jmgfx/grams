@@ -7,6 +7,8 @@ from .services import DefaultDescription
 
 from assets.models import Assets
 
+import datetime
+
 
 @login_required
 def TransactionView(request, transaction_id):
@@ -190,7 +192,7 @@ def Defective(request):
             new_transaction = form.save(commit=False)
             new_transaction.ttype = 5
             new_transaction.created_by = request.user
-            new_transaction.status = 2
+            new_transaction.status = 1
 
             new_transaction.description = DefaultDescription(new_transaction)
 
@@ -217,6 +219,42 @@ def DefectiveAction(request, transaction_id):
         asset_to_recover.display = 1
         asset_to_recover.save()
     return redirect('/transactions/view/' + str(transaction_id) + '/')
+
+
+@login_required
+def CloseTransaction(request, transaction_id):
+    transaction = Transactions.objects.get(id=transaction_id)
+
+    if transaction.ttype == '5':
+        for asset in transaction.assets_transact.all():
+            fixed_asset = Assets.objects.get(id=asset.id)
+            fixed_asset.status = 'Storage'
+            fixed_asset.save()
+    elif transaction.ttype == '1':
+        for asset in transaction.assets_transact.all():
+            fixed_asset = Assets.objects.get(id=asset.id)
+            fixed_asset.status = 'Use'
+            fixed_asset.save()
+
+    transaction.status = 2
+    transaction.close_date = datetime.date.today()
+    transaction.save()
+    return redirect('/transactions/view/' + str(transaction_id) + '/')
+
+
+@login_required
+def OpenTransaction(request, transaction_id):
+    transaction = Transactions.objects.get(id=transaction_id)
+    transaction.status = 1
+    transaction.save()
+    return redirect('/transactions/view/' + str(transaction_id) + '/')
+
+
+@login_required
+def DeleteTransaction(request, transaction_id):
+    transaction = Transactions.objects.get(id=transaction_id)
+    transaction.delete()
+    return redirect('/transactions/')
 
 
 def DefaultDescription(self):

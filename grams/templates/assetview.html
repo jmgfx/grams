@@ -237,6 +237,7 @@
     {% if asset_view.display == '1' %}
         <a href="{% url 'asset-edit' asset_view.id %}" class="btn float-right neutral">Edit</a>
         <a href="{% url 'asset-revalue' asset_view.id %}" class="btn float-right low">Revalue</a>
+        <!--<a href="{% url 'asset-revalue' asset_view.id %}" class="btn float-right misc">Report Defective</a>-->
         <a href="{% url 'asset-archive' asset_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to archive this asset?')">Archive</a>
     {% endif %}
     {% if asset_view.display == '0' %}

@@ -26,6 +26,7 @@ class Transactions(models.Model):
     ttype = models.CharField(max_length=3, choices=TRANSACTION_TYPE, blank=False, null=False)
     status = models.CharField(max_length=3, choices=TRANSACTION_STATUS, blank=False)
     description = models.TextField(max_length=300, default='None')
+    close_date = models.DateField(null=True)
     assets_transact = models.ManyToManyField(
         Assets,
         related_name='assets_transactions',

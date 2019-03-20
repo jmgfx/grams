@@ -16,9 +16,9 @@ class Assets(models.Model):
     AR = 'Archived'
 
     ASSET_STATUS = (
-        (IU, 'In Use'),
-        (IS, 'In Storage'),
-        (IM, 'In Maintenance'),
+        (IU, 'Use'),
+        (IS, 'Storage'),
+        (IM, 'Maintenance'),
         (DF, 'Defective'),
         (AR, 'Archived'),
     )

@@ -14,4 +14,7 @@ urlpatterns = [
     path('defective/<int:transaction_id>/', views.DefectiveAction, name='defective-asset-action'),
     path('history/', views.TransactionsHistory, name='transactions-history'),
     path('view/<int:transaction_id>/', views.TransactionView, name='transaction-view'),
+    path('view/<int:transaction_id>/close', views.CloseTransaction, name='close-transaction'),
+    path('view/<int:transaction_id>/open', views.OpenTransaction, name='open-transaction'),
+    path('view/<int:transaction_id>/delete', views.DeleteTransaction, name='delete-transaction'),
 ]

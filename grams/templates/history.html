@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tables.css' %}">
+    <link rel="stylesheet" type="text/css" 
+        href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+{% endblock page_css %}
+{% block content %}
+    <section id="main" class="content">
+        <div class="titlepage" style="margin-bottom: 15px">
+            <h1>Historical Transactions</h1>
+        </div>
+
+        <div style="overflow-x:auto;"> 
+            <table class="table table-striped" id="myTable"> 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>TYPE</th>
+                        <th>DATE ADDED</th>
+                        <th>ASSETS</th>
+                        <th>AUTHOR</th>
+                    </tr>
+                </thead>
+
+                {% for transaction in transactions %}                
+                    <tr>
+                        <td><a href="{% url 'transaction-view' transaction.id %}">{{ transaction.id }}</a></td>
+                        <td>
+                            {% if transaction.ttype == '1' %}
+                                Maintenance
+                            {% elif transaction.ttype == '2' %}
+                                Transfer
+                            {% elif transaction.ttype == '3' %}
+                                Archived
+                            {% elif transaction.ttype == '4' %}
+                                Recover
+                            {% elif transaction.ttype == '5' %}
+                                Reported Defective
+                            {% endif %}
+                        </td>
+                        <td>{{ transaction.date_added }}</td>
+                        <td>
+                            {% if transaction.ttype == '4' %}
+                                {% for asset in transaction.archived_assets.all %}
+                                    {{ asset }}; 
+                                {% endfor %}
+                            {% else %}
+                                {% for asset in transaction.assets_transact.all %}
+                                    {{ asset }}; 
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                        <td>{{ transaction.created_by }}</td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+
+    </section>
+
+{% endblock content %}

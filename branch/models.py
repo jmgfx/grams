@@ -9,8 +9,13 @@ class Branch(models.Model):
     date_added = models.DateField(auto_now_add=True)
     location = models.TextField()
     company = models.ForeignKey(
-        Company, null=False, default=1,
-        on_delete=models.CASCADE
+        Company,
+        null=True,
+        on_delete=models.SET_NULL
+    )
+    created_by = models.ForeignKey(
+        User,
+        blank=True, null=True, on_delete=models.SET_NULL,
     )
 
     display = models.CharField(max_length=1, default=1)

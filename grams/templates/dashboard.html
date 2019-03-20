@@ -8,11 +8,23 @@
 {% block content %}
     <section id="main" class="content">
         <div class="titlepage">
-            <h1>Hello user.name </h1>
+            <h1>Hello, {{ user.username }}</h1>
         </div>
 
         <div class="container-fluid">
             <div class="row">
+
+                <div class="col-sm reportbox critical">
+                    <a href="{% url 'transactions-table' %}"><i class="fas fa-info-circle boxcon"></i></a>
+                    <h2>{{ queued_transactions_count }}</h2>
+                    <span class="reportbox-caption">queued transactions.</span>
+                </div>
+
+                <div class="col-sm reportbox misc">
+                    <a href="{% url 'transactions-history' %}"><i class="fas fa-info-circle boxcon"></i></a>
+                    <h2>{{ recently_added }}</h2>
+                    <span class="reportbox-caption">recently added assets.</span>
+                </div>
 
                 <div class="col-sm reportbox neutral">
                     <a href="{% url 'asset-table' %}"><i class="fas fa-info-circle boxcon"></i></a>
@@ -22,21 +34,11 @@
 
                 <div class="col-sm reportbox low">
                     <a href="{% url 'transactions-table' %}"><i class="fas fa-info-circle boxcon"></i></a>
-                    <h2>???</h2>
-                    <span class="reportbox-caption">queued transactions.</span>
+                    <h2>{{ completed_transactions_count }}</h2>
+                    <span class="reportbox-caption">completed transactions</span>
                 </div>
 
-                <div class="col-sm reportbox critical">
-                    <a href="{% url 'transactions-table' %}"><i class="fas fa-info-circle boxcon"></i></a>
-                    <h2>???</h2>
-                    <span class="reportbox-caption">transactions past due.</span>
-                </div>
-
-                <div class="col-sm reportbox misc">
-                    <a href="{% url 'transactions-history' %}"><i class="fas fa-info-circle boxcon"></i></a>
-                    <h2>{{ recently_added }}</h2>
-                    <span class="reportbox-caption">recently added assets.</span>
-                </div>
+                
 
             </div>
         </div>
@@ -50,32 +52,68 @@
                         <i class="far fa-clock"></i>&nbsp; Queued Transactions
                     </h2>
 
-                    <!-- qt 1 -->
+                    {% for trail in queued_transactions|slice:":5" %}
                     <div class="tablebox">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-1-sm">
-                                    <!-- icon --><i class="far fa-clock"></i>
+                                    {% if trail.ttype == '1' %}
+                                        <i class="far fa-clock"></i>
+                                    {% elif trail.ttype == '2' %}
+                                        <i class="fas fa-exchange-alt"></i>
+                                    {% elif trail.ttype == '3' %}
+                                        <i class="far fa-trash-alt"></i>
+                                    {% elif trail.ttype == '4' %}
+                                        <i class="fas fa-undo-alt"></i>
+                                    {% elif trail.ttype == '5' %}
+                                        <i class="far fa-flag"></i>
+                                    {% endif %}
                                 </div>
                                 <div class="col">
-                                    Asset <b>transactions.asset_id</b> is schedule for maintenance on <b>transactions.date_due</b>.
+                                    {{ trail.description }}
                                 </div>
                             </div>
                             <div class="row">
                                 <ul>
                                     <li class="date">
-                                        transaction.datetime
-                                    </li>
-                                    <li class="critical">
-                                        transaction.status
+                                        <a href="{% url 'transaction-view' trail.id %}">{{ trail.date_added }}</a>
                                     </li>
                                     <li class="neutral">
-                                        asset.id
+                                        transaction#{{ trail.id }}
                                     </li>
+
+                                    {% if trail.status == '1' %}
+                                        <li class="critical">On-going</li>
+                                    {% elif trail.status == '2' %}
+                                        <li class="low">Completed</li>
+                                    {% endif %}
+
+                                    {% if trail.ttype == '1' %}
+                                        {% for asset in trail.assets_transact.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% elif trail.ttype == '2' %}
+                                        {% for asset in trail.assets_transact.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% elif trail.ttype == '3' %}
+                                        {% for asset in trail.assets_transact.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% elif trail.ttype == '4' %}
+                                        {% for asset in trail.archived_assets.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% elif trail.ttype == '5' %}
+                                        {% for asset in trail.assets_transact.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
                     </div>
+                {% endfor %}
 
                     <!-- show all -->
                     <div class="tablebox showall">
@@ -87,44 +125,72 @@
                 <!-- RECENT ACTIONS -->
                 <div class="col-sm tablebox-container">
                     <h2>
-                        <i class="far fa-clock"></i>&nbsp; Recent Actions
+                        <i class="far fa-clock"></i>&nbsp; Recent Transactions
                     </h2>
                     <!-- filler text -->
                 
-                    <!-- ra 1 -->
+                    {% for trail in recent_actions|slice:":5" %}
                     <div class="tablebox">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-1-sm">
-                                    <!-- icon --><i class="fas fa-exchange-alt"></i>
+                                    {% if trail.ttype == '1' %}
+                                        <i class="far fa-clock"></i>
+                                    {% elif trail.ttype == '2' %}
+                                        <i class="fas fa-exchange-alt"></i>
+                                    {% elif trail.ttype == '3' %}
+                                        <i class="far fa-trash-alt"></i>
+                                    {% elif trail.ttype == '4' %}
+                                        <i class="fas fa-undo-alt"></i>
+                                    {% elif trail.ttype == '5' %}
+                                        <i class="far fa-flag"></i>
+                                    {% endif %}
                                 </div>
                                 <div class="col">
-                                    Asset <b>transactions.asset_id</b> was transfered from Branch <b>transactions.branch_origin</b> to Branch <b>transactions.branch_dest</b>
-                                    by user <b>transactions.user_id</b>.
+                                    {{ trail.description }}
                                 </div>
                             </div>
-                            <!--
                             <div class="row">
                                 <ul>
                                     <li class="date">
-                                        <a href="pertransaction.html">transaction.datetime</a>
+                                        <a href="{% url 'transaction-view' trail.id %}">{{ trail.date_added }}</a>
                                     </li>
                                     <li class="neutral">
-                                        transaction.type
+                                        transaction#{{ trail.id }}
                                     </li>
-                                    <li class="neutral">
-                                        <a href="perasset.html">asset.id</a>
-                                    </li>
-                                    <li class="neutral">
-                                        <a href="perbranch.html">branch_origin</a>
-                                    </li>
-                                    <li class="neutral">
-                                        <a href="perbranch.html">branch_dest</a>
-                                    </li>
+
+                                    {% if trail.status == '1' %}
+                                        <li class="critical">On-going</li>
+                                    {% elif trail.status == '2' %}
+                                        <li class="low">Completed</li>
+                                    {% endif %}
+
+                                    {% if trail.ttype == '1' %}
+                                        {% for asset in trail.assets_transact.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% elif trail.ttype == '2' %}
+                                        {% for asset in trail.assets_transact.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% elif trail.ttype == '3' %}
+                                        {% for asset in trail.assets_transact.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% elif trail.ttype == '4' %}
+                                        {% for asset in trail.archived_assets.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% elif trail.ttype == '5' %}
+                                        {% for asset in trail.assets_transact.all  %}
+                                            <li class="neutral">asset#{{ asset.id }}</li>
+                                        {% endfor %}
+                                    {% endif %}
                                 </ul>
-                            </div>-->
+                            </div>
                         </div>
                     </div>
+                {% endfor %}
 
                     <!-- show all -->
                     <div class="tablebox showall">

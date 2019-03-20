@@ -22,7 +22,7 @@ python manage.py migrate
 ```
 
 ### Settings.py Configurations
-1. Include all apps in the `INSTALLED_APPS`.
+1. Include all apps in the `INSTALLED_APPS`, including `'crispy_forms'`.
 2. Append the following at the end:
 ```
 STATIC_URL = '/grams/static/'
@@ -30,6 +30,9 @@ STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'grams/static/'),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ```
 3. Include in `TEMPLATES`:
 ```

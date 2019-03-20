@@ -38,6 +38,10 @@
                         <td class= "right-align">{{ company_view.id }}</td>
                     </tr>
                     <tr>
+                        <td class= "left-align"><b>Created By</b></td>
+                        <td class= "right-align">{{ company_view.created_by }}</td>
+                    </tr>
+                    <tr>
                         <td class= "left-align"><b>Name</b></td>
                         <td class= "right-align">{{ company_view.name }}</td>
                     </tr>
@@ -47,7 +51,11 @@
                     </tr>
                     <tr>
                         <td class= "left-align"><b>Owners</b></td>
-                        <td class= "right-align">{{ company_view.owners }}</td>
+                        <td class= "right-align">
+                        {% for owner in company_view.owners.all %}
+                            {{ owner.username }};
+                        {% endfor %}
+                        </td>
                     </tr>
                 </table>
             </div>

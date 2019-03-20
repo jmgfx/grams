@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+<section id="main" class="content">
+    <div class="titlepage">
+        <ul class="breadcrumb">
+            <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="inactive"><a href="{% url 'transactions-table' %}">Queued Transactions</a></li>
+            <li class="active">{{ title }}</a></li>
+        </ul>
+    </div>
+
+        <div class="row container-fluid">
+            <div class="col-sm">
+                <h2>
+                    <i class="fas fa-info-circle"></i>&nbsp; Information
+                </h2>
+                <!--
+                {% if transaction_view.display == '0' %}
+                    <div class="critical" style="color:#fff;padding:8px;margin-bottom:15px;margin-top:15px;border-radius:8px;">
+                        <center>This vendor is archived.</center>
+                    </div>
+                {% endif %}-->
+                <table class="info-table">
+                    <tr>
+                        <td><b>ID</b></td>
+                        <td>{{ transaction_view.id }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Date Added</b></td>
+                        <td>{{ transaction_view.date_added }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Type</b></td>
+                        <td>
+                            {% if transaction_view.ttype == '1' %}
+                                Schedule Maintenance
+                            {% elif transaction_view.ttype == '2' %}
+                                Transfer
+                            {% elif transaction_view.ttype == '3' %}
+                                Dispose/Archive
+                            {% elif transaction_view.ttype == '4' %}
+                                Recover
+                            {% elif transaction_view.ttype == '5' %}
+                                Reported Defective
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Description</b></td>
+                        <td>{{ transaction_view.description }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Status</b></td>
+                        <td>
+                            {% if transaction_view.status == '1' %}
+                                On-going
+                            {% elif transaction_view.status == '2' %}
+                                Completed
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% if transaction_view.status == '2' %}
+                        <tr>
+                            <td><b>Date Complete</b></td>
+                            <td>{{ transaction_view.close_date }}</td>
+                        </tr>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+
+
+        <div class="container-fluid"  style="overflow-x:auto;">
+            <div class="col-sm">
+                <h2 class="assettable">
+                    <i class="fas fa-chart-line"></i>&nbsp; Assets
+                </h2>
+                <table class="table table-striped" id= "myTable">
+                    <thead>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Brand</th>
+                    </thead>
+                    <tbody>
+                    {% if transaction_view.ttype == '4' %}
+                        {% for asset in transaction_view.archived_assets.all %}
+                            <tr>
+                                <td>{{ asset.id }}</td>
+                                <td><a href="{% url 'asset-view' asset.id %}">{{ asset.name }}</a></td>
+                                <td>{{ asset.category }}</td>
+                                <td>{{ asset.brand }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        {% for asset in transaction_view.assets_transact.all %}
+                            <tr>
+                                <td>{{ asset.id }}</td>
+                                <td><a href="{% url 'asset-view' asset.id %}">{{ asset.name }}</a></td>
+                                <td>{{ asset.category }}</td>
+                                <td>{{ asset.brand }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+                {% block js %}
+                    <script type="text/javascript">
+                        $(document).ready( function () {
+                            $('#myTable').DataTable({
+                                dom: 'Bfrtip',
+                                buttons: [
+                                    'copy', 'csv', 'excel', 'pdf', 'print'
+                                ]
+                            });
+                        } );
+                    </script>
+
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#myTable tr').click(function() {
+                            var href = $(this).find("a").attr("href");
+                                if(href) {
+                                    window.location = href;
+                                }
+                            });
+                        });  
+                    </script>
+                    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+                    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+                    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+                    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+                {% endblock js %}
+            </div>
+        </div>
+
+</section>
+
+<div class="footer">
+    <a href="{% url 'delete-transaction' transaction_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to delete this transaction?')">Delete</a>
+    {% if transaction_view.status == '1' %}
+        <a href="{% url 'close-transaction' transaction_view.id %}" class="btn float-right low">Close Transaction</a>
+    {% endif %}
+    {% if transaction_view.status == '2' %}
+        <a href="{% url 'open-transaction' transaction_view.id %}" class="btn float-right low" onclick="return confirm('Are you sure you want to open this transaction?')">Open Transaction</a>
+    {% endif %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+<div class="dropdown">
+    <a class="userbtn" id="dLabel" role="button" data-toggle="dropdown"
+        data-target="#" href="/home/">
+        <i class="fas fa-bell"></i>
+    </a>
+    <div class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+        <!-- start notif panel header -->
+        <div class="notification-heading">
+            <span class="menu-title">Notifications</span>
+        </div>
+        <!-- end notif panel header -->
+
+        {% for notif in notifications|slice:":10" %}
+        <div class="notifications-wrapper">
+            <a class="notification-content" href="{% url 'transaction-view' notif.id %}">
+                <div class="notification-item">
+                    <span class="item-title">Transaction ID#{{ notif.id }}</span>
+                    <div class="item-info">{{ notif.description }}</div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        
+        <!-- start notif panel footer -->
+        <div class="notification-footer">
+            <span class="menu-title">
+                <a href="{% url 'transactions-table' %}">View all</a>
+            </span>
+        </div>
+        <!-- end notif panel footer -->
+    </div>
+</div>

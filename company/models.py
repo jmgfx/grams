@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 class Company(models.Model):
     name = models.CharField(max_length=100)
     owners = models.ManyToManyField(
-        User
+        User,
+        related_name='owners',
     )
     date_added = models.DateField(auto_now_add=True)
 
@@ -15,6 +16,11 @@ class Company(models.Model):
         'branch.Branch',
         related_name='children',
         blank=True, null=True, on_delete=models.SET_NULL
+    )
+    created_by = models.ForeignKey(
+        User,
+        related_name='created_by',
+        blank=True, null=True, on_delete=models.SET_NULL,
     )
 
     display = models.CharField(max_length=1, default=1)

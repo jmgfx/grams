@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .models import assetCategory
 from .forms import AddAssetCategory, EditAssetCategory
 from assets.models import Assets
 
 
+@login_required
 def AssetCategoriesTable(request):
     context = {
         'categories': assetCategory.objects.all()
@@ -12,6 +14,7 @@ def AssetCategoriesTable(request):
     return render(request, 'assetcategory.html', context, {'title': 'Asset Categories'})
 
 
+@login_required
 def AssetCategoriesView(request, category_id):
     context_view = {
         'categories_view': assetCategory.objects.get(id=category_id),
@@ -20,11 +23,13 @@ def AssetCategoriesView(request, category_id):
     return render(request, 'assetcategoryview.html', context_view, {'title': 'View Asset Categories'})
 
 
+@login_required
 def AssetCategoriesAdd(request):
     if request.method == 'POST':
         form = AddAssetCategory(request.POST)
         if form.is_valid():
             new_category = form.save(commit=False)
+            new_category.created_by = request.user
             new_category.save()
             return redirect('/assetcategories/view/' + str(new_category.id))
     else:
@@ -32,6 +37,7 @@ def AssetCategoriesAdd(request):
     return render(request, 'addassetcategory.html', {'form': form}, {'title': 'Add an Asset Categories'})
 
 
+@login_required
 def AssetCategoriesEdit(request, category_id):
     if request.method == 'POST':
         form = EditAssetCategory(request.POST, instance=assetCategory.objects.get(id=category_id))
@@ -49,7 +55,7 @@ def AssetCategoriesEdit(request, category_id):
     return render(request, 'editassetcategory.html', context)
 
 
-
+@login_required
 def AssetCategoriesDelete(request, category_id):
     category_to_delete = assetCategory.objects.get(id=category_id)
     category_to_delete.delete()

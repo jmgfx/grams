@@ -16,9 +16,9 @@ class Assets(models.Model):
     AR = 'Archived'
 
     ASSET_STATUS = (
-        (IU, 'In Use'),
-        (IS, 'In Storage'),
-        (IM, 'In Maintenance'),
+        (IU, 'Use'),
+        (IS, 'Storage'),
+        (IM, 'Maintenance'),
         (DF, 'Defective'),
         (AR, 'Archived'),
     )
@@ -54,6 +54,10 @@ class Assets(models.Model):
         Branch, 
         blank=True, null=True, on_delete=models.SET_NULL
     )
+    created_by = models.ForeignKey(
+        User,
+        blank=True, null=True, on_delete=models.SET_NULL,
+    )
 
     it_dep_value = ArrayField(models.FloatField(), null=True)
     it_dep_date = ArrayField(models.DateField(), null=True)
@@ -66,4 +70,4 @@ class Assets(models.Model):
     
 
     def __str__(self):
-        return self.name
+        return self.name + ' ID#' + str(self.id)

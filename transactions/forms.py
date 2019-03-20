@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 from .models import Transactions
 
@@ -5,7 +6,11 @@ from .models import Transactions
 class MaintenanceForm(ModelForm):
     class Meta:
         model = Transactions
-        fields = ['start_date', 'end_date', 'vendor', 'assets_transact']
+        fields = ['start_date', 'vendor', 'assets_transact']
+
+        widgets = {
+            'start_date': forms.SelectDateWidget,
+        }
 
 
 class TransferForm(ModelForm):
@@ -24,3 +29,9 @@ class RecoverForm(ModelForm):
     class Meta:
         model = Transactions
         fields = ['archived_assets']
+
+
+class DefectiveForm(ModelForm):
+    class Meta:
+        model = Transactions
+        fields = ['assets_transact']

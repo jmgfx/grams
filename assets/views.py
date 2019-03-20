@@ -11,6 +11,7 @@ from .services import GetDepreciation
 from . import urls
 
 import datetime
+from datetime import date, timedelta
 
 
 @login_required
@@ -71,7 +72,7 @@ def AssetView(request, asset_id):
     limit = datetime.timedelta(30)
 
     # Depreciation computes everytime the asset is viewed
-    while True:
+    """while True:
         if now < (asset.it_dep_date[-1] + limit):
             break
         elif now > (asset.it_dep_date[-1] + limit):
@@ -86,21 +87,37 @@ def AssetView(request, asset_id):
                     asset.it_balance.append(asset.balance - asset.it_accrued[-1])
                     asset.it_dep_value.append(asset.dep_value)
             break
-        break
+        break"""
 
     asset.balance = asset.it_balance[-1]
-    dep_values = zip(asset.it_dep_date, asset.it_dep_value, asset.it_accrued, asset.it_balance)
+    dep_values = Depreciation(asset)
     
     asset.save()
 
     context_view = {
-        'asset_view': Assets.objects.get(id=asset_id),
+        'asset_view': asset,
         'audit_trail': Transactions.objects.filter(assets_transact__id__contains=asset_id).order_by('date_added'),
         'dep_values': dep_values,
-        'title': 'View Asset',
+        'title': asset.name,
     }
 
     return render(request, 'assetview.html', context_view)
+
+
+@login_required
+def InUse(request, asset_id):
+    asset = Assets.objects.get(id=asset_id)
+    asset.status = 'Use'
+    asset.save()
+    return redirect('/assets/view/' + str(asset_id) + '/')
+
+
+@login_required
+def Store(request, asset_id):
+    asset = Assets.objects.get(id=asset_id)
+    asset.status = 'Storage'
+    asset.save()
+    return redirect('/assets/view/' + str(asset_id) + '/')
 
 
 @login_required
@@ -119,7 +136,6 @@ def AssetEdit(request, asset_id):
         'title': 'Edit an Asset',
     }
     return render(request, 'editasset.html', context)
-
 
 
 @login_required
@@ -183,3 +199,42 @@ def DeleteAsset(request, asset_id):
     asset_to_delete = Assets.objects.get(id=asset_id)
     asset_to_delete.delete()
     return redirect('/assets/')
+
+
+def Depreciation(self):
+    now = datetime.date.today()
+    limit = datetime.timedelta(30)
+
+    if now != get_last_day(now):
+        last = now - limit
+        current_dep_date = get_last_day(last)
+    else:
+        current_dep_date = now
+
+    gap = current_dep_date.month - self.it_dep_date[-1].month
+
+    for zero in range(gap-1):
+        self.it_dep_date.append(get_last_day(self.it_dep_date[-1]+limit))
+        self.it_accrued.append(self.it_accrued[-1])
+        self.it_balance.append(self.it_balance[-1])
+        self.it_dep_value.append(0.00)
+
+    self.it_dep_date.append(current_dep_date)
+    self.it_accrued.append(self.it_accrued[-1] + (self.dep_value * gap))
+    self.it_balance.append(self.acquisition_cost - self.it_accrued[-1])
+    self.it_dep_value.append(self.dep_value * gap)
+
+    zip_list = zip(self.it_dep_date, self.it_dep_value, self.it_accrued, self.it_balance)
+
+    return zip_list
+
+
+def get_first_day(dt, d_years=0, d_months=0):
+    # d_years, d_months are "deltas" to apply to dt
+    y, m = dt.year + d_years, dt.month + d_months
+    a, m = divmod(m-1, 12)
+    return date(y+a, m+1, 1)
+
+
+def get_last_day(dt):
+    return get_first_day(dt, 0, 1) + timedelta(-1)

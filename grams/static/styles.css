@@ -307,6 +307,31 @@ h2 {
     }
 
 
+.info-buttons {
+    margin-top: 10px;
+}
+
+    .info-buttons ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .info-buttons li {
+            color: #fff;
+            display: inline;
+            margin-right: 3px;
+            padding: 4px;
+            border-radius: 3px;
+        }
+
+    .info-buttons a {
+        position: inherit;
+        color: inherit;
+        text-decoration: none;
+    }
+
+
 /* Footer */
 
 .footer {

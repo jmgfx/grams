@@ -25,7 +25,7 @@ class AddAssetForm(ModelForm):
                 'description']
 
         widgets = {
-            'date_acquired': forms.SelectDateWidget,
+            'date_acquired': forms.SelectDateWidget(years=range(2000, 2030)),
             'end_of_warranty': forms.SelectDateWidget,
         }
 

@@ -32,56 +32,69 @@
                     </div>
                 {% endif %}
                 
-                    <table class="info-table">
-                        <tr>
-                            <td><b>ID</b></td>
-                            <td>{{ asset_view.id }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Created By</b></td>
-                            <td>{{ asset_view.created_by }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Date Added</b></td>
-                            <td>{{ asset_view.date_added }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Date Acquired</b></td>
-                            <td>{{ asset_view.date_acquired }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Category</b></td>
-                            <td>{{ asset_view.category }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Brand</b></td>
-                            <td>{{ asset_view.brand }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Status</b></td>
-                            <td>{{ asset_view.status }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Location</b></td>
-                            <td>{{ asset_view.branch }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Model Number</b></td>
-                            <td>{{ asset_view.model_no }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Serial Number</b></td>
-                            <td>{{ asset_view.serial_no }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Specifications</b></td>
-                            <td>{{ asset_view.specifications }}</td>
-                        </tr>
-                        <tr>
-                            <td><b>Description</b></td>
-                            <td>{{ asset_view.description }}</td>
-                        </tr>
-                    </table>
+                <table class="info-table">
+                    <tr>
+                        <td><b>ID</b></td>
+                        <td>{{ asset_view.id }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Created By</b></td>
+                        <td>{{ asset_view.created_by }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Date Added</b></td>
+                        <td>{{ asset_view.date_added }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Date Acquired</b></td>
+                        <td>{{ asset_view.date_acquired }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Category</b></td>
+                        <td>{{ asset_view.category }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Brand</b></td>
+                        <td>{{ asset_view.brand }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Status</b></td>
+                        <td>{{ asset_view.status }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Location</b></td>
+                        <td>{{ asset_view.branch }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Model Number</b></td>
+                        <td>{{ asset_view.model_no }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Serial Number</b></td>
+                        <td>{{ asset_view.serial_no }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Specifications</b></td>
+                        <td>{{ asset_view.specifications }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Description</b></td>
+                        <td>{{ asset_view.description }}</td>
+                    </tr>
+                </table>
+                <div class="info-buttons">
+                    <ul>
+                        {% if asset_view.status == 'Storage' %}
+                            <li class="low">
+                                <a href="{% url 'in-use' asset_view.id %}">In Use</a>
+                            </li>
+                        {% else %}
+                            <li class="low">
+                                <a href="{% url 'store' asset_view.id %}">Put In Storage</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
 
             <div class="col-sm">

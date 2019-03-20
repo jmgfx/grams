@@ -2,6 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');
 
+::-webkit-scrollbar {width: 5px;}
+::-webkit-scrollbar-track {background: #f1f1f1;}
+::-webkit-scrollbar-thumb {background: #1B5E20;}
 
 *:focus {
     outline: 0 !important;

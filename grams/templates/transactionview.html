@@ -83,19 +83,19 @@
         </div>
 
 
-        <div class="container-fluid"  style="overflow-x:auto;">
+        <div class="container-fluid">
             <div class="col-sm">
                 <h2 class="assettable">
                     <i class="fas fa-chart-line"></i>&nbsp; Assets
                 </h2>
-                <table class="table table-striped" id= "myTable">
+                <table class="table table-striped" id="myTable">
                     <thead>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Category</th>
                         <th>Brand</th>
                     </thead>
-                    <tbody>
+                    <tbody style="overflow-y:auto;">
                     {% if transaction_view.ttype == '4' %}
                         {% for asset in transaction_view.archived_assets.all %}
                             <tr>
@@ -117,6 +117,8 @@
                     {% endif %}
                     </tbody>
                 </table>
+                
+                
                 {% block js %}
                 <script type="text/javascript">
                     $(document).ready( function () {

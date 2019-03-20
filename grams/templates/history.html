@@ -2,6 +2,7 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'tables.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
     <link rel="stylesheet" type="text/css" 
         href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css"
@@ -13,7 +14,10 @@
 {% block content %}
     <section id="main" class="content">
         <div class="titlepage" style="margin-bottom: 15px">
-            <h1>Historical Transactions</h1>
+            <ul class="breadcrumb">
+                <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+                <li class="active">Historical Transactions</a></li>
+              </ul>
         </div>
 
         <div style="overflow-x:auto;"> 

@@ -2,7 +2,7 @@
 
 {% block page_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'view.css' %}">
     <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
     <link rel="stylesheet" type="text/css" 
     href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
@@ -22,7 +22,7 @@
         </ul>
     </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid first-row">
             <div class="col-sm">
                 <h2>
                     <i class="fas fa-info-circle"></i>&nbsp; Information
@@ -83,10 +83,14 @@
             $('#myTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                    { extend: 'copy',  className: 'copy'},  
+                    { extend: 'csv', className: 'csv'},  
+                    { extend: 'excel', className: 'excel'},  
+                    { extend: 'pdf',  className: 'pdf'},  
+                    { extend: 'print', className: 'print'} 
                 ]
             });
-        });
+        } );
     </script>
 
     <script type="text/javascript">

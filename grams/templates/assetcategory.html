@@ -21,10 +21,11 @@
                 <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
                 <li class="active"><a href="{% url 'asset-table' %}"></a>Asset Category Table</a></li>
             </ul>
-                <button type="button" class="btn" onclick="window.location.href='{% url 'asset-categories-add' %}'" style="background:  #2E7D32; color: white; margin-bottom:5px ; margin-left:15px">ADD</button> 
         </form>
     </div>
 
+    <a href="{% url 'asset-categories-add' %}" class="btn neutral add-btn">Add</a>
+    
     <div style="overflow-x:auto;"> 
         <table class="table table-striped" id="myTable"> 
             <thead>
@@ -52,12 +53,16 @@
                 $('#myTable').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                        { extend: 'copy',  className: 'copy'},  
+                        { extend: 'csv', className: 'csv'},  
+                        { extend: 'excel', className: 'excel'},  
+                        { extend: 'pdf',  className: 'pdf'},  
+                        { extend: 'print', className: 'print'} 
                     ]
                 });
             } );
         </script>
-        
+
         <script type="text/javascript">
             $(document).ready(function() {
                 $('#myTable tr').click(function() {

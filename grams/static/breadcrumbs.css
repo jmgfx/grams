@@ -1,9 +1,9 @@
 ul.breadcrumb {
-    padding: 10px;
+    padding: 3px;
     list-style: none;
     background-color: #eee;
   }
-  
+
   /* Display list items side by side */
   ul.breadcrumb li {
     display: inline;

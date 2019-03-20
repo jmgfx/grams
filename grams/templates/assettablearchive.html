@@ -15,16 +15,16 @@
 
 {% block content %}
     <section id="main" class="content">
-        <div class="description">
-                <div class="titlepage">
-                    <ul class="breadcrumb">
-                        <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
-                        <li class="active">Archived Assets</a></li>
-                      </ul>>
-                    </div>
+
+        <div class="titlepage">
+            <form class="form-inline">
+                <ul class="breadcrumb">
+                    <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+                    <li class="active">Archived Assets</a></li>
+                </ul>
+            </form>
+        </div>
                     
-                   
-        
         <div style="overflow-x:auto;"> 
                 <table class="table table-striped" id="myTable" style="font-size: 1em;"> 
                     <thead>
@@ -54,12 +54,16 @@
                     </tbody>
                 </table>
         {% block js %}
-                       <script type="text/javascript">
+            <script type="text/javascript">
                 $(document).ready( function () {
                     $('#myTable').DataTable({
                         dom: 'Bfrtip',
                         buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
+                            { extend: 'copy',  className: 'copy'},  
+                            { extend: 'csv', className: 'csv'},  
+                            { extend: 'excel', className: 'excel'},  
+                            { extend: 'pdf',  className: 'pdf'},  
+                            { extend: 'print', className: 'print'} 
                         ]
                     });
                 } );

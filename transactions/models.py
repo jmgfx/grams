@@ -14,12 +14,12 @@ class Transactions(models.Model):
         ('2', 'Transfer'),
         ('3', 'Dispose'),
         ('4', 'Recover'),
+        ('5', 'Defective'),
     )
 
     TRANSACTION_STATUS = (
-        ('1', 'Queued'),
+        ('1', 'On Going'),
         ('2', 'Finished'),
-        ('3', 'Past Due'),
     )
 
     date_added = models.DateTimeField(auto_now_add=True)
@@ -43,7 +43,6 @@ class Transactions(models.Model):
     
     # Type 1, Maintenance
     start_date = models.DateField(default=timezone.now, null=False)
-    end_date = models.DateField(default=timezone.now, null=False)
     vendor = models.ForeignKey(
         Vendors, 
         blank=True, null=True, on_delete=models.SET_NULL

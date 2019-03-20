@@ -10,6 +10,8 @@ urlpatterns = [
     path('dispose/<int:transaction_id>/', views.DisposeAction, name='dispose-asset-action'),
     path('recover/', views.Recover, name='recover-asset'),
     path('recover/<int:transaction_id>/', views.RecoverAction, name='recover-asset-action'),
+    path('defective/', views.Defective, name='defective-asset'),
+    path('defective/<int:transaction_id>/', views.DefectiveAction, name='defective-asset-action'),
     path('history/', views.TransactionsHistory, name='transactions-history'),
     path('view/<int:transaction_id>/', views.TransactionView, name='transaction-view'),
 ]

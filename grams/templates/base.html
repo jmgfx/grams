@@ -42,18 +42,20 @@
     
                     <!-- USER PANEL -->
                     <div class="userpanel">
-                        <!-- start notifs -->
+
+                        {% include 'notif.html' %}
+                        <!-- start notifs
                         <div class="dropdown">
                             <a class="userbtn" id="dLabel" role="button" data-toggle="dropdown"
                                 data-target="#" href="/home/">
                                 <i class="fas fa-bell"></i>
                             </a>
                             <div class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-                                <!-- start notif panel header -->
+
                                 <div class="notification-heading">
                                     <span class="menu-title">Notifications</span>
                                 </div>
-                                <!-- end notif panel header -->
+
                                 
                                 <div class="notifications-wrapper">
                                     <a class="notification-content" href="#">
@@ -62,16 +64,26 @@
                                             <div class="item-info">Alert information, etc.Alert Info</div>
                                         </div>
                                     </a>
-                                    
                                 </div>
+
+                                {% for notif in Transactions.objects.all|slice:":10" %}
+                                <div class="notifications-wrapper">
+                                    <a class="notification-content" href="#">
+                                        <div class="notification-item">
+                                            <span class="item-title">Alert Title</span>
+                                            <div class="item-info">{{ notif.description }}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
                                 
-                                <!-- start notif panel footer -->
+
                                 <div class="notification-footer">
                                     <span class="menu-title">
                                         <a href="/home/">View all</a>
                                     </span>
                                 </div>
-                                <!-- end notif panel footer -->
+
                             </div>
                         </div>
                         <!-- end notifs -->
@@ -142,6 +154,7 @@
                     <a href="{% url 'transfer-asset' %}"><i class="fas fa-people-carry incon"></i> Transfer</a>
                     <a href="{% url 'dispose-asset' %}"><i class="far fa-trash-alt incon"></i> Dispose/Archive</a>
                     <a href="{% url 'recover-asset' %}"><i class="fas fa-redo-alt incon"></i> Recover</a>
+                    <a href="{% url 'defective-asset' %}"><i class="far fa-flag"></i> Report Defective</a>
                     <a href="{% url 'transactions-table' %}"><i class="far fa-calendar-alt incon"></i> Queue</a>
                     <a href="{% url 'transactions-history' %}"><i class="fas fa-history incon"></i> History</a>
                 </div>

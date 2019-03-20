@@ -47,12 +47,24 @@
                                 Dispose/Archive
                             {% elif transaction_view.ttype == '4' %}
                                 Recover
+                            {% elif transaction_view.ttype == '5' %}
+                                Reported Defective
                             {% endif %}
                         </td>
                     </tr>
                     <tr>
                         <td><b>Description</b></td>
                         <td>{{ transaction_view.description }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Status</b></td>
+                        <td>
+                            {% if transaction_view.status == '1' %}
+                                On-going
+                            {% elif transaction_view.status == '2' %}
+                                Completed
+                            {% endif %}
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -80,7 +92,6 @@
                                 <td>{{ asset.category }}</td>
                                 <td>{{ asset.brand }}</td>
                             </tr>
-                        </tbody>
                         {% endfor %}
                     {% else %}
                         {% for asset in transaction_view.assets_transact.all %}
@@ -90,10 +101,9 @@
                                 <td>{{ asset.category }}</td>
                                 <td>{{ asset.brand }}</td>
                             </tr>
-                        </tbody>
                         {% endfor %}
                     {% endif %}
-
+                    </tbody>
                 </table>
                 {% block js %}
                     <script type="text/javascript">

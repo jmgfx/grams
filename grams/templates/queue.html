@@ -22,7 +22,9 @@
                     <tr>
                         <th>ID</th>
                         <th>TYPE</th>
+                        <th>DATE ADDED</th>
                         <th>DESCRIPTION</th>
+                        <th>ASSETS</th>
                     </tr>
                 </thead>
 
@@ -37,10 +39,19 @@
                                 Transfer
                             {% endif %}
                             {% if transaction.ttype == '3' %}
+                                Archived
+                            {% endif %}
+                            {% if transaction.ttype == '4' %}
                                 Recover
                             {% endif %}
                         </td>
+                        <td>{{ transaction.date_added }}</td>
                         <td>{{ transaction.description }}</td>
+                        <td>
+                            {% for asset in transaction.assets_transact.all %}
+                                {{ asset }}; 
+                            {% endfor %}
+                        </td>
                     </tr>
                 {% endfor %}
 

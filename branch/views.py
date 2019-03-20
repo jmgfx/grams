@@ -47,7 +47,13 @@ def BranchEdit(request, branch_id):
             return redirect('/branch/view/' + str(branch_id))
     else:
         form = EditBranchForm(instance=Branch.objects.all().get(id=branch_id))
-    return render(request, 'editbranch.html', {'form':form}, {'title': 'Edit a Branch'})
+    
+    context = {
+        'form': form,
+        'branch': Branch.objects.get(id=branch_id),
+        'title': 'Edit a Branch Information',
+    }
+    return render(request, 'editbranch.html', context)
 
 
 def BranchArchive(request, branch_id):
@@ -55,6 +61,7 @@ def BranchArchive(request, branch_id):
     branch_to_archive.display = 0
     branch_to_archive.save()
     return redirect('/branch/view/' + str(branch_id))
+
 
 
 def BranchRecover(request, branch_id):

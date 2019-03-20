@@ -5,10 +5,22 @@ from .models import Transactions
 class MaintenanceForm(ModelForm):
     class Meta:
         model = Transactions
-        fields = ['schedule', 'vendor', 'assets_transact']
+        fields = ['start_date', 'end_date', 'vendor', 'assets_transact']
 
 
 class TransferForm(ModelForm):
     class Meta:
         model = Transactions
-        fields = ['branch_origin', 'assets_transact', 'branch_destination']
+        fields = ['assets_transact', 'branch_destination']
+
+
+class DisposeForm(ModelForm):
+    class Meta:
+        model = Transactions
+        fields = ['assets_transact']
+
+
+class RecoverForm(ModelForm):
+    class Meta:
+        model = Transactions
+        fields = ['archived_assets']

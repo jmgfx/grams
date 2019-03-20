@@ -140,8 +140,8 @@
                 <div class="dropdown-container">
                     <a href="{% url 'schedule-maintenance' %}"><i class="far fa-clock incon"></i></i> Maintenance</a>
                     <a href="{% url 'transfer-asset' %}"><i class="fas fa-people-carry incon"></i> Transfer</a>
-                    <a href="dispose.html"><i class="far fa-trash-alt incon"></i> Dispose/Archive</a>
-                    <a href="recover.html"><i class="fas fa-redo-alt incon"></i> Recover</a>
+                    <a href="{% url 'dispose-asset' %}"><i class="far fa-trash-alt incon"></i> Dispose/Archive</a>
+                    <a href="{% url 'recover-asset' %}"><i class="fas fa-redo-alt incon"></i> Recover</a>
                     <a href="{% url 'transactions-table' %}"><i class="far fa-calendar-alt incon"></i> Queue</a>
                     <a href="{% url 'transactions-history' %}"><i class="fas fa-history incon"></i> History</a>
                 </div>

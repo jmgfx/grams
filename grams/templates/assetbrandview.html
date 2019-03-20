@@ -2,7 +2,8 @@
 
 {% block page_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'view.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
     <link rel="stylesheet" type="text/css" 
     href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css"
@@ -14,10 +15,14 @@
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h1>{{ brands_view.name }}</h1>
+        <ul class="breadcrumb">
+            <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="inactive"><a href="{% url 'asset-brands-table' %}">Asset Brand Table</a></li>
+            <li class="active">{{ brands_view.name }}</a></li>
+        </ul>
     </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid first-row">
             <div class="col-sm">
                 <h2>
                     <i class="fas fa-info-circle"></i>&nbsp; Information
@@ -74,10 +79,14 @@
             $('#myTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                    { extend: 'copy',  className: 'copy'},  
+                    { extend: 'csv', className: 'csv'},  
+                    { extend: 'excel', className: 'excel'},  
+                    { extend: 'pdf',  className: 'pdf'},  
+                    { extend: 'print', className: 'print'} 
                 ]
             });
-        });
+        } );
     </script>
 
     <script type="text/javascript">

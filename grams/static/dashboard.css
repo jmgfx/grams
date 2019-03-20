@@ -56,7 +56,7 @@
         margin-bottom: 20px;
     }
     .container-fluid {
-        margin-bottom: 15px;
+        padding-top: 25px;
     }
     .assettable {
         padding-bottom: 15px;
@@ -76,7 +76,6 @@
     font-weight: 400;
     margin: 0;
 }
-
 
     .reportbox-caption {
         font-size: 1.2em;
@@ -98,59 +97,6 @@
     overflow: scroll;
 }
 
-a.btn-revalue {
-    color: white;
-    padding: 5px; margin-top: 10px;
-    width: auto;
-    text-decoration: none;
-    border-radius: 3px;
-}
-
-.info-table table {
-    border: 1px solid #ddd;
-}
-
-.info-table tr {
-    height: 25px;
-    padding: 3px;
-    
-}
-
-.info-table td {
-    padding: 6px;
-}
-
-.left-align {
-    text-align: right;
-    width: 60%;
-}
-
-.right-align {
-    text-align: left;
-    width: 100%
-}
-
-.dep-table thead, tr {
-    text-align: center;
-}
-
-thead {
-    background-color: rgb(198, 201, 198);
-    text-align: center;
-}
-
-.table-striped>tbody>tr:nth-child(odd)>td,
-.table-striped>tbody>tr:nth-child(odd)>th {
-    background: rgba(226, 231, 226, 0.7)
-}
-
-.table-striped>tbody>tr:nth-child(even)>td,
-.table-striped>tbody>tr:nth-child(even)>th {
-    background: rgb(235, 234, 234);
-}
-
-/* Show All Link */
-
 .showall {margin: 0; padding-top: 15px;}
 .showall a {color: #2E7D32; text-decoration: none;}
 .showall a:hover {color: #1B5E20;}
@@ -163,5 +109,3 @@ thead {
 .tablebox .col-sm{padding:0;margin:0;}
 .tablebox .col-1-sm{padding:0;margin:0;}
 .tablebox .col{padding:0;margin:0;}
-
-

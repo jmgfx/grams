@@ -2,16 +2,21 @@
 
 {% block page_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'view.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
 {% endblock page_css %}
 
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h1>{{ vendor_view.name }}</h1>
+        <ul class="breadcrumb">
+            <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="inactive"><a href="{% url 'vendors-table' %}">Asset Vendor Table</a></li>
+            <li class="active">{{ vendor_view.name }}</a></li>
+        </ul>
     </div>
 
-        <div class="row container-fluid">
+        <div class="container-fluid">
             <div class="col-sm">
                 <h2>
                     <i class="fas fa-info-circle"></i>&nbsp; Information
@@ -53,7 +58,6 @@
 </section>
 
 <div class="footer">
-     class="footer">
     {% if vendor_view.display == '1' %}
         <a href="{% url 'vendors-edit' vendor_view.id %}" class="btn float-right neutral">Edit</a>
         <a href="{% url 'archive-vendors' vendor_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to archive this vendor?')">Archive</a>

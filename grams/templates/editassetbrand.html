@@ -3,12 +3,19 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'forms.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
 {% endblock page_css %}
 
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h1>Edit Asset Brand</h1>
+        <ul class="breadcrumb">
+            <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="inactive"><a href="{% url 'asset-brands-table' %}">Asset Brand Table</a></li>
+            <li class="inactive"><a href="{% url 'asset-brands-view' brand.id %}">{{ brand.name }}</a></li>
+            <li class="active">Edit {{ brand.name }} Information</li>
+
+        </ul>
     </div>
 
     <div class="row">

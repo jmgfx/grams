@@ -4,19 +4,22 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'tables.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
     <link rel="stylesheet" type="text/css" 
         href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
     <link rel="stylesheet" type="text/css" 
         href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fh-3.1.4/r-2.2.2/datatables.min.css"/>
-{% endblock page_css %}
-
+        {% endblock page_css %}
 {% block content %}
     <section id="main" class="content">
         <div class="description">
             <div class="titlepage">
-                <h1>Assets</h1> 
+                <ul class="breadcrumb">
+                    <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+                    <li class="active">Asset Table</a></li>
+                  </ul>
             </div>
             
             <a href="{% url 'asset-add' %}" class="btn neutral">Add</a> <a href="{% url 'archived-assets-table' %}" class="btn critical">Display Archive</a>
@@ -29,6 +32,8 @@
                             <th>STATUS</th>
                             <th>CATEGORY</th>
                             <th>BRAND</th>
+                            <th>MODEL NO.</th>
+                            <th>SPECIFICATIONS</th>
                             <th>BRANCH</th>
                             <th>DESCRIPTION</th>
                     </thead>
@@ -44,6 +49,8 @@
                             <td>{{ asset.status }}</td>
                             <td>{{ asset.category }}</td>
                             <td>{{ asset.brand }}</td>
+                            <td>{{ asset.model_no }}</td>
+                            <td>{{ asset.specifications }}</td>
                             <td>{{ asset.branch }}</td>
                             <td>{{ asset.description }}</td>
                         </tr>

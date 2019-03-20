@@ -38,7 +38,14 @@ def VendorsEdit(request, vendor_id):
             return redirect('/vendors/view/' + str(vendor_id))
     else:
         form = EditVendorForm(instance=Vendors.objects.get(id=vendor_id))
-    return render(request, 'editvendor.html', {'form':form}, {'title': 'Edit a Vendor'})
+    
+    context = {
+        'form': form,
+        'vendor': Vendors.objects.get(id=vendor_id),
+        'title': 'Edit Vendor Information',
+    }
+    return render(request, 'editvendor.html', context)
+
 
 
 def VendorsArchiveTable(request):

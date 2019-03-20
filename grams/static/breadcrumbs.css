@@ -1,0 +1,65 @@
+ul.breadcrumb {
+    padding: 3px;
+    list-style: none;
+    background-color: #eee;
+  }
+
+  /* Display list items side by side */
+  ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+  }
+  
+  /* Add a slash symbol (/) before/behind each list item */
+  ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+  }
+  
+  /* Add a color to all links inside the list */
+  ul.breadcrumb li a {
+    color: #0a420e;
+    text-decoration: none;
+  }
+  li.active {
+    font-weight: bold;
+  }
+  li.inactive {
+    color: gray;
+  }
+
+  /* for brand and category table */
+  .breadcrumb2 {
+    margin-bottom: 5px;
+  }
+  ul.breadcrumb2 {
+    padding: 10px;
+    list-style: none;
+    background-color: #eee;
+  }
+  
+  /* Display list items side by side */
+  ul.breadcrumb2 li {
+    display: inline;
+    font-size: 18px;
+  }
+  
+  /* Add a slash symbol (/) before/behind each list item */
+  ul.breadcrumb2 li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+  }
+  
+  /* Add a color to all links inside the list */
+  ul.breadcrumb2 li a {
+    color: #0a420e;
+    text-decoration: none;
+  }
+  li.active {
+    font-weight: bold;
+  }
+  li.inactive {
+    color: gray;
+  }

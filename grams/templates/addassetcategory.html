@@ -3,12 +3,16 @@
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'forms.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
 {% endblock page_css %}
 
 {% block content %}
 <section id="main" class="content">
     <div class="titlepage">
-        <h1>Add Category</h1>
+        <ul class="breadcrumb">
+            <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="active">Add Asset Category</a></li>
+          </ul>
     </div>
 
     <div class="row">

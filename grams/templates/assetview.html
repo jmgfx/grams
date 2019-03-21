@@ -202,23 +202,11 @@
                                         <li class="low">Completed</li>
                                     {% endif %}
 
-                                    {% if trail.ttype == '1' %}
-                                        {% for asset in trail.assets_transact.all  %}
-                                            <li class="neutral">asset#{{ asset.id }}</li>
-                                        {% endfor %}
-                                    {% elif trail.ttype == '2' %}
-                                        {% for asset in trail.assets_transact.all  %}
-                                            <li class="neutral">asset#{{ asset.id }}</li>
-                                        {% endfor %}
-                                    {% elif trail.ttype == '3' %}
-                                        {% for asset in trail.assets_transact.all  %}
-                                            <li class="neutral">asset#{{ asset.id }}</li>
-                                        {% endfor %}
-                                    {% elif trail.ttype == '4' %}
+                                    {% if trail.ttype == '4' %}
                                         {% for asset in trail.archived_assets.all  %}
                                             <li class="neutral">asset#{{ asset.id }}</li>
                                         {% endfor %}
-                                    {% elif trail.ttype == '5' %}
+                                    {% else %}
                                         {% for asset in trail.assets_transact.all  %}
                                             <li class="neutral">asset#{{ asset.id }}</li>
                                         {% endfor %}

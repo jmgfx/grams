@@ -64,6 +64,8 @@ def Maintenance(request):
 
             new_transaction.save()
             form.save_m2m()
+
+            return redirect('/transactions/view/' + str(new_transaction.id) + '/')
     else:
         form = MaintenanceForm()
 

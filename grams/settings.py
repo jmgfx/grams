@@ -7,7 +7,9 @@ SECRET_KEY = '(-fux-wu+4wn+73t2$!rlm7v_%)h1nzh)mcu8aik(ubn6opf2)'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'gramsapp.herokuapp.com',
+]
 
 INSTALLED_APPS = [
     # GRAMS apps

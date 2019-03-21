@@ -19,7 +19,7 @@
         <ul class="breadcrumb">
             <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
             <li class="active">Archived Asset Companies</a></li>
-        </ul>> 
+        </ul>
     </div>
 
     <div style="overflow-x:auto;"> 
@@ -48,11 +48,15 @@
                 $('#myTable').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
+                        { extend: 'copy',  className: 'copy'},  
+                        { extend: 'csv', className: 'csv'},  
+                        { extend: 'excel', className: 'excel'},  
+                        { extend: 'pdf',  className: 'pdf'},  
+                        { extend: 'print', className: 'print'} 
                     ]
                 });
             } );
-        </script>
+        </script> 
         
         <script type="text/javascript">
             $(document).ready(function() {

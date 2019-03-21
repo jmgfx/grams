@@ -97,35 +97,6 @@
     overflow: scroll;
 }
 
-a.btn-revalue {
-    color: white;
-    padding: 5px; margin-top: 10px;
-    width: auto;
-    text-decoration: none;
-    border-radius: 3px;
-}
-
-.info-table table {
-    border: 1px solid #ddd;
-}
-
-.info-table tr {
-    height: 25px;
-    padding: 3px;
-    
-}
-
-.info-table td {
-    text-align: left;
-    padding: 5px;
-}
-
-.dep-table thead, tr {
-    text-align: center;
-}
-
-/* Show All Link */
-
 .showall {margin: 0; padding-top: 15px;}
 .showall a {color: #2E7D32; text-decoration: none;}
 .showall a:hover {color: #1B5E20;}
@@ -138,5 +109,3 @@ a.btn-revalue {
 .tablebox .col-sm{padding:0;margin:0;}
 .tablebox .col-1-sm{padding:0;margin:0;}
 .tablebox .col{padding:0;margin:0;}
-
-

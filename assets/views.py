@@ -199,16 +199,25 @@ def Depreciation(self):
     if now != get_last_day(now):
         last = now - limit
         current_dep_date = get_last_day(last)
+
+        if self.it_dep_date[-1] > current_dep_date:
+            zip_list = zip(self.it_dep_date, self.it_dep_value, self.it_accrued, self.it_balance)
+            return zip_list
+
+        elif self.date_added < current_dep_date:
+            zip_list = zip(self.it_dep_date, self.it_dep_value, self.it_accrued, self.it_balance)
+            return zip_list
+
+        else:
+            gap = current_dep_date.month - self.it_dep_date[-1].month
+
+            for zero in range(gap-1):
+                self.it_dep_date.append(get_last_day(self.it_dep_date[-1]+limit))
+                self.it_accrued.append(self.it_accrued[-1])
+                self.it_balance.append(self.it_balance[-1])
+                self.it_dep_value.append(self.dep_value)
     else:
         current_dep_date = now
-
-    gap = current_dep_date.month - self.it_dep_date[-1].month
-
-    for zero in range(gap-1):
-        self.it_dep_date.append(get_last_day(self.it_dep_date[-1]+limit))
-        self.it_accrued.append(self.it_accrued[-1])
-        self.it_balance.append(self.it_balance[-1])
-        self.it_dep_value.append(self.dep_value)
 
     self.it_dep_date.append(current_dep_date)
 
@@ -220,9 +229,7 @@ def Depreciation(self):
         self.it_accrued.append(self.it_accrued[-1] + (self.dep_value * gap))
         self.it_balance.append(self.acquisition_cost - self.it_accrued[-1])
         self.it_dep_value.append(self.dep_value)
-
     zip_list = zip(self.it_dep_date, self.it_dep_value, self.it_accrued, self.it_balance)
-
     return zip_list
 
 

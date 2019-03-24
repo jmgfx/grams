@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'vendors',
     'branch',
     'company',
+    'users',
     # Django defaults
     'django.contrib.admin',
     'django.contrib.auth',

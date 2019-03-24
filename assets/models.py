@@ -1,6 +1,7 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.utils import timezone
+from django.core.validators import MinValueValidator 
 from django.contrib.auth.models import User
 from assetBrands.models import assetBrand
 from assetCategories.models import assetCategory
@@ -33,13 +34,19 @@ class Assets(models.Model):
     model_no = models.CharField(max_length=100)
     specifications = models.TextField(max_length=240, default='')
     serial_no = models.CharField(max_length=100)
-    acquisition_cost = models.FloatField(default=0.00)
+    acquisition_cost = models.FloatField(default=0.00, validators=[
+        MinValueValidator(0.00),
+    ])
     projected_life = models.DurationField(null=True)
-    project_life = models.IntegerField(default=12)
+    project_life = models.IntegerField(default=12, validators=[
+        MinValueValidator(1)
+    ])
     dep_value = models.FloatField(default=0.00)
     accrued = models.FloatField(null=True)
     balance = models.FloatField(default=0.00)
-    salvage_value = models.FloatField(null=True)
+    salvage_value = models.FloatField(null=True, validators=[
+        MinValueValidator(0.00)
+    ])
     book_value = models.FloatField(null=True)
 
     brand = models.ForeignKey(

@@ -1,47 +1,12 @@
 # GRAMS
-Giligan's Restaurant Asset Management System
+An asset management system for Giligan's Restaurant.
 
 
-## Set Up
+# Test Server
+https://gramsapp.herokuapp.com/
 
-### Dependencies
-1. Python 3.7+
-3. PostgreSQL 11.2+
-
-### Instructions
-1. Install required Python packages:
-```
-pip install -r requirements.txt
-```
-2. Create a database using PostgreSQL.
-3. Acquire & modify the template for `settings.py` as per the configurations below.
-4. Run the commands:
-```
-python manage.py makemigrations
-python manage.py migrate
-```
-
-### Settings.py Configurations
-1. Include all apps in the `INSTALLED_APPS`, including `'crispy_forms'`.
-2. Append the following at the end:
-```
-STATIC_URL = '/grams/static/'
-STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'grams/static/'),
-)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-LOGIN_REDIRECT_URL = 'dashboard'
-LOGIN_URL = 'login'
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-```
-3. Include in `TEMPLATES`:
-```
-'DIRS': [(os.path.join(BASE_DIR, 'grams/templates/')),],
-```
-
-
-## Reminders
-* Run the makemigrations & migrate commands whenever a change to the database model is made.
+* Username: grams
+* Password: P@$$w0rd123
 
 
 # Information

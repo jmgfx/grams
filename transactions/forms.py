@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from .models import Transactions
 
 
@@ -9,7 +9,10 @@ class MaintenanceForm(ModelForm):
         fields = ['start_date', 'vendor', 'assets_transact']
 
         widgets = {
-            'start_date': forms.SelectDateWidget,
+            'start_date': forms.TextInput(
+                attrs={
+                    'type':'date',
+                }),
         }
 
 

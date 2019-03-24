@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block page_css %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'forms.css' %}">
@@ -21,12 +21,10 @@
     <div class="row">
         <div class="form-control tablebox-container">
             <form method="POST" action="">
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <input type="submit" value="Save">
-                        <input type="reset" value="Reset">
-                    </form>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input class="btn neutral" type="submit" value="Save">
+                <input class="btn low" type="reset" value="Clear">
             </form>
         </div>
     </div>

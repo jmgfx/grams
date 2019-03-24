@@ -288,6 +288,19 @@ h2 {
         left: 16px;
     }
 
+form > .row > div {
+    margin: 0;
+}
+
+form label {
+    font-size: 0.8em !important;
+    font-weight: 700;
+}
+
+input[type="submit"], input[type="reset"], .btn {
+    margin-right: 5px;
+    color: #fff !important;
+}
 
 /* Tablebox */
 

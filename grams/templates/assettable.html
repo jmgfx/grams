@@ -22,7 +22,10 @@
                   </ul>
             </div>
             
-            <a href="{% url 'asset-add' %}" class="btn neutral">Add</a> <a href="{% url 'archived-assets-table' %}" class="btn critical">Display Archive</a>
+            {% if soft_auth != 'General User' %}
+                <a href="{% url 'asset-add' %}" class="btn neutral">Add</a>
+            {% endif %}
+            <a href="{% url 'archived-assets-table' %}" class="btn critical">Display Archive</a>
         <div style="overflow-x:auto;"> 
                 <table class="table table-striped" id="myTable" style="font-size: 1em;">
                     <thead>

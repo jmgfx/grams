@@ -15,3 +15,7 @@ class assetBrand(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Asset Brand'
+        verbose_name_plural = 'Asset Brands'

@@ -119,10 +119,11 @@
     </div>
 </section>
 
+{% if soft_auth != 'General User' %}
 <div class="footer">
     <a href="{% url 'asset-brands-edit' brands_view.id %}" class="btn float-right neutral">Edit</a>
     <a href="{% url 'asset-categories-delete' brands_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to remove this asset brand from the database?')">Delete</a>
 </div>
-
+{% endif %}
 
 {% endblock content %}

@@ -121,8 +121,11 @@
 
 </section>
 
+{% if soft_auth != 'General User' %}
 <div class="footer">
     <a href="{% url 'asset-categories-edit' categories_view.id %}" class="btn float-right neutral">Edit</a>
     <a href="{% url 'asset-categories-delete' categories_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to remove this asset category from the database?')">Delete</a>
 </div>
+{% endif %}
+
 {% endblock content %}

@@ -78,3 +78,8 @@ class Assets(models.Model):
 
     def __str__(self):
         return self.name + ' ID#' + str(self.id)
+
+    
+    class Meta:
+        verbose_name = 'Asset'
+        verbose_name_plural = 'Assets'

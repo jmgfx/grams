@@ -121,6 +121,7 @@
 
 </section>
 
+{% if soft_auth != 'General User' %}
 <div class="footer">
     {% if branch_view.display == '1' %}
         <a href="{% url 'branch-edit' branch_view.id %}" class="btn float-right neutral">Edit</a>
@@ -131,6 +132,6 @@
         <a href="{% url 'delete-branch' branch_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to remove this branch from the database?')">Delete</a>
     {% endif %}
 </div>
-
+{% endif %}
 
 {% endblock content %}

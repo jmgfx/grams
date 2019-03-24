@@ -15,13 +15,13 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     # GRAMS apps
     'dashboard',
-    'assets',
-    'transactions',
-    'assetBrands',
-    'assetCategories',
-    'vendors',
-    'branch',
-    'company',
+    'assets.apps.AssetsConfig',
+    'transactions.apps.TransactionsConfig',
+    'assetBrands.apps.AssetbrandsConfig',
+    'assetCategories.apps.AssetcategoriesConfig',
+    'vendors.apps.VendorsConfig',
+    'branch.apps.BranchConfig',
+    'company.apps.CompanyConfig',
     'users',
     # Django defaults
     'django.contrib.admin',
@@ -58,6 +58,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'grams.context_processors.Notifications',
+                'grams.context_processors.PermissionsAuth',
             ],
         },
     },
@@ -90,6 +91,10 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+AUTH_PROFILE_MODULE = [
+    'users.models.Permissions',
 ]
 
 AUTHENTICATION_BACKENDS = (

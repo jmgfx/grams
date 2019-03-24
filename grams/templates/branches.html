@@ -24,7 +24,10 @@
         </form>
     </div>
 
-    <a href="{% url 'branch-add' %}" class="btn neutral">Add</a> <a href="{% url 'branch-table-archive' %}" class="btn critical">Display Archive</a>
+    {% if soft_auth != 'General User' %}
+    <a href="{% url 'branch-add' %}" class="btn neutral">Add</a>
+    {% endif %}
+    <a href="{% url 'branch-table-archive' %}" class="btn critical">Display Archive</a>
 
     <div style="overflow-x:auto;"> 
         <table class="table table-striped" id="myTable"> 

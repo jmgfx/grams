@@ -160,6 +160,7 @@
 
 </section>
 
+{% if soft_auth != 'General User' %}
 <div class="footer">
     <a href="{% url 'delete-transaction' transaction_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to delete this transaction?')">Delete</a>
     {% if transaction_view.status == '1' %}
@@ -169,5 +170,5 @@
         <a href="{% url 'open-transaction' transaction_view.id %}" class="btn float-right low" onclick="return confirm('Are you sure you want to open this transaction?')">Open Transaction</a>
     {% endif %}
 </div>
-
+{% endif %}
 {% endblock content %}

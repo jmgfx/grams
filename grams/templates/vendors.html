@@ -21,7 +21,11 @@
             <li class="active">Asset Vendor Table</a></li>
           </ul>
     </div>
-    <a href="{% url 'vendors-add' %}" class="btn neutral">Add</a> <a href="{% url 'archive-vendors-table' %}" class="btn critical">Display Archive</a>
+    
+    {% if soft_auth != 'General User' %}
+    <a href="{% url 'vendors-add' %}" class="btn neutral">Add</a>
+    {% endif %}
+    <a href="{% url 'archive-vendors-table' %}" class="btn critical">Display Archive</a>
 
     <div style="overflow-x:auto;"> 
         <table class="table table-striped" id="myTable"> 

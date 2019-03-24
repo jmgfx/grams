@@ -82,6 +82,7 @@
                         <td>{{ asset_view.description }}</td>
                     </tr>
                 </table>
+                {% if soft_auth != 'General User' %}
                 <div class="info-buttons">
                     <ul>
                         {% if asset_view.status == 'Storage' %}
@@ -95,6 +96,7 @@
                         {% endif %}
                     </ul>
                 </div>
+                {% endif %}
             </div>
 
             <div class="col-sm">
@@ -131,7 +133,7 @@
                         <b>Depreciation Value</b>&nbsp; Php {{ asset_view.dep_value|floatformat:'2' }}
                     </div>
                 </div>
-
+                {% if soft_auth != 'General User' %}
                 <div class="info-buttons">
                     <ul>
                         <li class="low">
@@ -139,6 +141,7 @@
                         </li>
                     </ul>
                 </div>
+                {% endif %}
             </div>
 
             
@@ -269,6 +272,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 {% endblock js %}
 
+{% if soft_auth != 'General User' %}
 <div class="footer">
     {% if asset_view.display == '1' %}
         <a href="{% url 'asset-edit' asset_view.id %}" class="btn float-right neutral">Edit</a>
@@ -279,7 +283,7 @@
         <a href="{% url 'asset-recover' asset_view.id %}" class="btn float-right misc" onclick="return confirm('Are you sure you want to recover this asset?')">Recover</a>
         <a href="{% url 'delete-asset' asset_view.id %}" class="btn float-right critical" onclick="return confirm('Are you sure you want to remove this asset from the database?')">Delete</a>
     {% endif %}
-
 </div>
-    
+{% endif %}
+
 {% endblock content %}

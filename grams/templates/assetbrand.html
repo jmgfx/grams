@@ -24,7 +24,9 @@
         </form>
     </div>
 
-    <a href="{% url 'asset-brands-add' %}" class="btn neutral add-btn">Add</a>
+    {% if soft_auth != 'General User' %}
+        <a href="{% url 'asset-brands-add' %}" class="btn neutral add-btn">Add</a>
+    {% endif %}
 
     <div style="overflow-x:auto;"> 
         <table class="table table-striped" id="myTable"> 

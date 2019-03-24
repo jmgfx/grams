@@ -18,7 +18,7 @@ for (i = 0; i < dropdown.length; i++) {
 function toggleSideBar() {
     var x = document.getElementById('side-menu');
 
-    if (screen.width <= 400){
+    if (screen.width <= 500){
         if (x.style.display === 'none') {
             x.style.display = 'block';
             document.getElementById('main').style.marginLeft

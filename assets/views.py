@@ -69,7 +69,6 @@ def AssetAdd(request):
 def AssetView(request, asset_id):
     asset = Assets.objects.get(id=asset_id)
     now = datetime.date.today()
-    limit = datetime.timedelta(30)
 
     asset.balance = asset.it_balance[-1]
     
@@ -194,11 +193,11 @@ def Depreciate(request, asset_id):
 
 def Depreciation(self):
     now = datetime.date.today()
-    limit = datetime.timedelta(30)
 
     if now != get_last_day(now):
-        last = now - limit
+        last = get_prev_month(now)
         current_dep_date = get_last_day(last)
+        gap = get_gap(self.it_dep_date[-1], current_dep_date)
 
         if self.it_dep_date[-1] > current_dep_date:
             zip_list = zip(self.it_dep_date, self.it_dep_value, self.it_accrued, self.it_balance)
@@ -207,15 +206,22 @@ def Depreciation(self):
         elif self.date_added < current_dep_date:
             zip_list = zip(self.it_dep_date, self.it_dep_value, self.it_accrued, self.it_balance)
             return zip_list
+            
+        elif self.it_dep_date[-1] == current_dep_date:
+            zip_list = zip(self.it_dep_date, self.it_dep_value, self.it_accrued, self.it_balance)
+            return zip_list
 
         else:
-            gap = current_dep_date.month - self.it_dep_date[-1].month
+            gap = get_gap(self.it_dep_date[-1], current_dep_date)
 
-            for zero in range(gap-1):
-                self.it_dep_date.append(get_last_day(self.it_dep_date[-1]+limit))
+            while self.it_dep_date[-1] < current_dep_date:
+                if get_last_day(get_next_month(self.it_dep_date[-1])) == current_dep_date:
+                    break
+                self.it_dep_date.append(get_last_day(get_next_month(self.it_dep_date[-1])))
                 self.it_accrued.append(self.it_accrued[-1])
                 self.it_balance.append(self.it_balance[-1])
                 self.it_dep_value.append(self.dep_value)
+
     else:
         current_dep_date = now
 
@@ -229,12 +235,12 @@ def Depreciation(self):
         self.it_accrued.append(self.it_accrued[-1] + (self.dep_value * gap))
         self.it_balance.append(self.acquisition_cost - self.it_accrued[-1])
         self.it_dep_value.append(self.dep_value)
+    
     zip_list = zip(self.it_dep_date, self.it_dep_value, self.it_accrued, self.it_balance)
     return zip_list
 
 
 def get_first_day(dt, d_years=0, d_months=0):
-    # d_years, d_months are "deltas" to apply to dt
     y, m = dt.year + d_years, dt.month + d_months
     a, m = divmod(m-1, 12)
     return date(y+a, m+1, 1)
@@ -242,3 +248,37 @@ def get_first_day(dt, d_years=0, d_months=0):
 
 def get_last_day(dt):
     return get_first_day(dt, 0, 1) + timedelta(-1)
+
+
+def get_gap(p, n):
+    if p.year < n.year:
+        x = 12 * (n.year - p.year)
+        if p.month > n.month:
+            y = p.month - n.month
+        elif p.month < n.month:
+            y = n.month - p.month
+        return int(x+y)
+    else:
+        return -999
+
+
+def get_next_month(d):
+    m = d.month
+    if m == 12:
+        m = 1
+        y = d.year + 1
+    else:
+        m = d.month + 1
+        y = d.year
+    return date(y, m, 1)
+
+
+def get_prev_month(d):
+    m = d.month
+    if m == 1:
+        m = 12
+        y = d.year - 1
+    else:
+        m = d.month - 1
+        y = d.year
+    return date(y, m, 1)

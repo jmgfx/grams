@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block page_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'view.css' %}">
+    <link rel="stylesheet" href="{% static 'breadcrumbs.css' %}">
+{% endblock page_css %}
+
+{% block content %}
+<section id="main" class="content">
+    <div class="titlepage">
+        <ul class="breadcrumb">
+            <li class = "inactive"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="active">{{ user.username }}</a></li>
+        </ul>
+    </div>
+
+        <div class="container-fluid">
+            <div class="col-sm">
+                <h2>
+                    <i class="fas fa-info-circle"></i>&nbsp; Information
+                </h2>
+                <table class="info-table">
+                    <tr>
+                        <td><b>ID</b></td>
+                        <td>{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Username</b></td>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Name</b></td>
+                        <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Email</b></td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+</section>
+
+<div class="footer">
+    <a href="{% url 'edit-profile'%}" class="btn float-right neutral">Edit Profile</a>
+    <a href="{% url 'change-password'%}" class="btn float-right low">Change Password</a>
+</div>
+{% endblock content %}

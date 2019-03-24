@@ -53,9 +53,19 @@
                             <div class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
                                 <div class="notifications-wrapper">
                                     <!-- settings -->
-                                    <a class="notification-content" href="#">
+                                    <a class="notification-content" href="{% url 'profile' %}">
+                                        <div class="notification-item">
+                                            <span class="item-title">Profile</span>
+                                        </div>
+                                    </a>
+                                    <a class="notification-content" href="{% url 'edit-profile' %}">
                                         <div class="notification-item">
                                             <span class="item-title">Settings</span>
+                                        </div>
+                                    </a>
+                                    <a class="notification-content" href="{% url 'change-password' %}">
+                                        <div class="notification-item">
+                                            <span class="item-title">Change Password</span>
                                         </div>
                                     </a>
                                     

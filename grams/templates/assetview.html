@@ -31,7 +31,7 @@
                         <center>This item is archived.</center>
                     </div>
                 {% endif %}
-                
+            <div class="col-sm">
                 <table class="info-table">
                     <tr>
                         <td><b>ID</b></td>
@@ -57,6 +57,12 @@
                         <td><b>Brand</b></td>
                         <td>{{ asset_view.brand }}</td>
                     </tr>
+                    </table>
+                </div>
+        </div>
+
+            <div class="col-sm">
+                    <table class="info-table">
                     <tr>
                         <td><b>Status</b></td>
                         <td>{{ asset_view.status }}</td>
@@ -82,6 +88,7 @@
                         <td>{{ asset_view.description }}</td>
                     </tr>
                 </table>
+
                 {% if soft_auth != 'General User' %}
                 <div class="info-buttons">
                     <ul>
@@ -97,7 +104,12 @@
                     </ul>
                 </div>
                 {% endif %}
+
+
+                </div>
             </div>
+
+        <div class=" container-fluid">
 
             <div class="col-sm">
                 <h2>
@@ -129,9 +141,7 @@
                 </table>
 
                 <div class="row">
-                    <div class="col">
-                        <b>Depreciation Value</b>&nbsp; Php {{ asset_view.dep_value|floatformat:'2' }}
-                    </div>
+                    <b>Depreciation Value</b>&nbsp; Php {{ asset_view.dep_value|floatformat:'2' }}
                 </div>
                 {% if soft_auth != 'General User' %}
                 <div class="info-buttons">
@@ -141,10 +151,8 @@
                         </li>
                     </ul>
                 </div>
-                {% endif %}
             </div>
-
-            
+            {% endif %}
         </div>
 
         <div class="row container-fluid">

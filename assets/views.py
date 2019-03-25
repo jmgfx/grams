@@ -221,7 +221,7 @@ def Depreciation(self):
                 self.it_accrued.append(self.it_accrued[-1])
                 self.it_balance.append(self.it_balance[-1])
                 self.it_dep_value.append(self.dep_value)
-
+    
     else:
         current_dep_date = now
 

@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='permissions',
             name='branch',
-            field=models.ForeignKey(on_delete=models.SET_NULL, to='branch.Branch'),
+            field=models.ForeignKey(null=True, on_delete=models.SET_NULL, to='branch.Branch'),
         ),
     ]

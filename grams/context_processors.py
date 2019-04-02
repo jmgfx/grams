@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def Notifications(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return {
             'notifications': Transactions.objects.filter(status=1)
         }
@@ -28,7 +28,7 @@ def Notifications(request):
 
 
 def PermissionsAuth(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return {
             'soft_auth': 'General User',
         }

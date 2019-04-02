@@ -9,7 +9,7 @@ def Notifications(request):
         return {
             'notifications': Transactions.objects.filter(status=1)
         }
-    elif request.is_anonymous:
+    elif request.user.is_anonymous:
         return {
             'notifications': Transactions.objects.filter(status=1)
         }

@@ -5,15 +5,25 @@ from django.contrib.auth.decorators import login_required
 
 
 def Notifications(request):
-    auth = Permissions.objects.get(user=request.user)
-    if auth.branch is None:
+    if not request.user.is_authenticated:
         return {
             'notifications': Transactions.objects.filter(status=1)
         }
-    else:
-        branch_auth = auth.branch
+
+    try:
+        auth = Permissions.objects.get(user=request.user)
+        if auth.branch is None:
+            return {
+                'notifications': Transactions.objects.filter(status=1)
+            }
+        else:
+            branch_auth = auth.branch
+            return {
+                'notifications': Transactions.objects.filter(branch_origin=branch_auth).filter(status=1)
+            }
+    except Permissions.DoesNotExist:
         return {
-            'notifications': Transactions.objects.filter(branch_origin=branch_auth).filter(status=1)
+            'notifications': Transactions.objects.filter(status=1)
         }
 
 

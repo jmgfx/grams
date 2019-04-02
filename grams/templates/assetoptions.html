@@ -1,0 +1,4 @@
+<option value="">---------</option>
+{% for asset in assets %}
+    <option value="{{ asset.pk }}">{{ asset.name }} ID#{{ asset.id }}</option>
+{% endfor %}

@@ -3,10 +3,18 @@ from transactions.models import Transactions
 from users.models import Permissions
 from django.contrib.auth.decorators import login_required
 
+
 def Notifications(request):
-    return {
-        'notifications': Transactions.objects.filter(status=1),
-    }
+    auth = Permissions.objects.get(user=request.user)
+    if auth.branch is None:
+        return {
+            'notifications': Transactions.objects.filter(status=1)
+        }
+    else:
+        branch_auth = auth.branch
+        return {
+            'notifications': Transactions.objects.filter(branch_origin=branch_auth).filter(status=1)
+        }
 
 
 def PermissionsAuth(request):

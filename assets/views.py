@@ -6,9 +6,11 @@ from datetime import timedelta
 from django.http import HttpResponse
 from .models import Assets
 from .forms import AddAssetForm, EditAssetForm, RevalueForm
-from transactions.models import Transactions
 from .services import GetDepreciation
 from . import urls
+
+from transactions.models import Transactions
+from users.models import Permissions
 
 import datetime
 from datetime import date, timedelta
@@ -16,9 +18,19 @@ from datetime import date, timedelta
 
 @login_required
 def AssetTable(request):
-    context = {
-        'assets': Assets.objects.filter(display=1)
-    }
+
+    auth = Permissions.objects.get(user=request.user)
+
+    if auth.branch is None:
+        context = {
+            'assets': Assets.objects.filter(display=1)
+        }
+    else:
+        branch_auth = auth.branch
+        context = {
+            'assets': Assets.objects.filter(branch=branch_auth).filter(display=1)
+        }
+
     return render(request, 'assettable.html', context, {'title': 'Assets'})
 
 

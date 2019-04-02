@@ -17,4 +17,5 @@ urlpatterns = [
     path('view/<int:transaction_id>/close', views.CloseTransaction, name='close-transaction'),
     path('view/<int:transaction_id>/open', views.OpenTransaction, name='open-transaction'),
     path('view/<int:transaction_id>/delete', views.DeleteTransaction, name='delete-transaction'),
+    path('load-assets/', views.UpdateAsset, name='ajax-assets'),
 ]

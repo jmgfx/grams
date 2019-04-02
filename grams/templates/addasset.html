@@ -16,12 +16,14 @@
 
     <div class="row">
         <div class="form-control tablebox-container">
-            <form method="POST" action="">
+            <!--<form method="POST" action="">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {% crispy form %}
                 <input class="btn neutral" type="submit" value="New Asset">
                 <input class="btn low" type="reset" value="Clear">
             </form>
+            -->
+            {% crispy form %}
         </div>
     </div>
 

@@ -19,7 +19,7 @@
 
         <div class="row">
             <div class="form-control tablebox-container">
-                <form method="POST" action="">
+                <form method="POST" id="transactionForm" assets-url="{% url 'ajax-assets' %}" novalidate>
                     {% csrf_token %}
                     {{ form|crispy }}
                     <input class="btn neutral" type="submit" value="Schedule Maintenance">
@@ -28,6 +28,24 @@
             </div>
         </div>
     </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#id_assets_transact").change(function () {
+            var ajaxurl = $("#transactionForm").attr("assets-url");
+            var assetId = $(this).val();
+
+            $.ajax({
+                url: ajaxurl,
+                data: {
+                    'asset': assetId
+                },
+                success: function (data) {
+                    $("#id_assets_transact").html(data);
+                }
+            });
+        });
+    </script>
 
 
 {% endblock content %}

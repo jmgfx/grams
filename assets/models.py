@@ -3,9 +3,11 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import MinValueValidator 
 from django.contrib.auth.models import User
+
 from assetBrands.models import assetBrand
 from assetCategories.models import assetCategory
 from branch.models import Branch
+from vendors.models import Vendors
 
 
 class Assets(models.Model):
@@ -25,7 +27,6 @@ class Assets(models.Model):
     )
 
     name = models.CharField(max_length=100)
-    quantity = models.IntegerField(default='1')
     description = models.TextField(max_length=500)
     status = models.CharField(max_length=100, choices=ASSET_STATUS, blank=False)
     date_added = models.DateField(auto_now_add=True)
@@ -33,11 +34,10 @@ class Assets(models.Model):
     end_of_warranty = models.DateField(default=timezone.now)
     model_no = models.CharField(max_length=100)
     specifications = models.TextField(max_length=240, default='')
-    serial_no = models.CharField(max_length=100)
+    serial_no = models.CharField(max_length=100, unique=True)
     acquisition_cost = models.FloatField(default=0.00, validators=[
         MinValueValidator(0.00),
     ])
-    projected_life = models.DurationField(null=True)
     project_life = models.IntegerField(default=12, validators=[
         MinValueValidator(1)
     ])
@@ -51,19 +51,28 @@ class Assets(models.Model):
 
     brand = models.ForeignKey(
         assetBrand,
-        blank=True, null=True, on_delete=models.SET_NULL
+        null=True,
+        on_delete=models.SET_NULL
     )
     category = models.ForeignKey(
         assetCategory, 
-        blank=True, null=True, on_delete=models.SET_NULL
+        null=True,
+        on_delete=models.SET_NULL
+    )
+    vendor = models.ForeignKey(
+        Vendors,
+        null=True,
+        on_delete=models.SET_NULL
     )
     branch = models.ForeignKey(
         Branch, 
-        blank=True, null=True, on_delete=models.SET_NULL
+        null=True,
+        on_delete=models.SET_NULL
     )
     created_by = models.ForeignKey(
         User,
-        blank=True, null=True, on_delete=models.SET_NULL,
+        null=True,
+        on_delete=models.SET_NULL
     )
 
     it_dep_value = ArrayField(models.FloatField(), null=True)

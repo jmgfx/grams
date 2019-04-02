@@ -6,6 +6,7 @@ from .forms import MaintenanceForm, TransferForm, DisposeForm, RecoverForm, Defe
 from .services import DefaultDescription
 
 from assets.models import Assets
+from users.models import Permissions
 
 import datetime
 
@@ -34,19 +35,34 @@ def TransactionView(request, transaction_id):
 
 @login_required
 def TransactionsTable(request):
-    context = {
-        'transactions': Transactions.objects.filter(status=1),
-        'title': 'Queued Transactions',
-    }
+    auth = Permissions.objects.get(user=request.user)
+
+    if auth.branch is None:
+        context = {
+            'transactions': Transactions.objects.filter(status=1)
+        }
+    else:
+        branch_auth = auth.branch
+        context = {
+            'transactions': Transactions.objects.filter(branch_origin=branch_auth).filter(status=1)
+        }
     return render(request, 'queue.html', context)
 
 
 @login_required
 def TransactionsHistory(request):
-    context = {
-        'transactions': Transactions.objects.filter(status=2),
-        'title': 'Queued Transactions',
-    }
+    auth = Permissions.objects.get(user=request.user)
+
+    if auth.branch is None:
+        context = {
+            'transactions': Transactions.objects.filter(status=2)
+        }
+    else:
+        branch_auth = auth.branch
+        context = {
+            'transactions': Transactions.objects.filter(branch_origin=branch_auth).filter(status=2)
+        }
+
     return render(request, 'history.html', context)
 
 
@@ -257,6 +273,16 @@ def DeleteTransaction(request, transaction_id):
     transaction = Transactions.objects.get(id=transaction_id)
     transaction.delete()
     return redirect('/transactions/')
+
+
+def UpdateAsset(request):
+    branch = request.GET.get('branch_origin')
+    assets = Assets.objects.filter(branch=branch)
+
+    context = {
+        'assets': assets,
+    }
+    return render(request, 'assetoptions.html', context)
 
 
 def DefaultDescription(self):

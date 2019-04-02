@@ -27,6 +27,13 @@ class Transactions(models.Model):
     status = models.CharField(max_length=3, choices=TRANSACTION_STATUS, blank=False)
     description = models.TextField(max_length=300, default='None')
     close_date = models.DateField(null=True)
+
+    branch_origin = models.ForeignKey(
+        Branch,
+        related_name = 'origin',
+        null = True,
+        on_delete = models.SET_NULL,
+    )
     assets_transact = models.ManyToManyField(
         Assets,
         related_name='assets_transactions',
@@ -42,14 +49,7 @@ class Transactions(models.Model):
         blank=True, null=True, on_delete=models.SET_NULL,
     )
     
-    # Type 1, Maintenance
     start_date = models.DateField(default=timezone.now, null=False)
-    vendor = models.ForeignKey(
-        Vendors, 
-        blank=True, null=True, on_delete=models.SET_NULL
-    )
-
-    # Type 2, Transfer
     branch_destination = models.ForeignKey(
         Branch,
         related_name='destination', null=True,

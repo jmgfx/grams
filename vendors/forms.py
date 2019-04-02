@@ -5,12 +5,17 @@ from .models import Vendors
 class AddVendorForm(ModelForm):
     class Meta:
         model = Vendors
-        fields = ['name', 'address', 'contact_number', 'contact_email']
+        fields = ['name', 'category', 'address', 'contact_number', 'contact_email']
 
         widgets = {
             'address': Textarea(attrs={
-                'rows':5,
+                'rows': 1,
             })
+        }
+
+        labels = {
+            'name': 'Vendor Name',
+            'category': 'Asset Categories',
         }
 
 

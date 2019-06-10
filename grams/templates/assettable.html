@@ -31,12 +31,12 @@
                     <thead>
                             <th>ID</th>
                             <th>NAME</th>
-                            <th>MODEL NUMBER</th>
                             <th>STATUS</th>
                             <th>CATEGORY</th>
                             <th>BRAND</th>
                             <th>SPECIFICATIONS</th>
                             <th>BRANCH</th>
+                            <th>BOOK VALUE</th>
                     </thead>
                     
                     <tbody style="overflow-y:auto;">
@@ -46,12 +46,12 @@
                         <tr>
                             <td>{{ asset.id }}</td>
                             <td><a href="{% url 'asset-view' asset.id %}">{{ asset.name }}</a></td>
-                            <td>{{ asset.model_no }}</td>
                             <td>{{ asset.status }}</td>
                             <td>{{ asset.category }}</td>
                             <td>{{ asset.brand }}</td>
                             <td>{{ asset.specifications }}</td>
                             <td>{{ asset.branch }}</td>
+                            <td>{{ asset.book_value }}</td>
                         </tr>
                     {% endfor %}
 

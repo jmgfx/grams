@@ -5,12 +5,12 @@ An asset management system for Giligan's Restaurant.
 # Test Server
 https://gramsapp.herokuapp.com/
 
-* Username: grams
-* Password: P@$$w0rd123
+* Username: admin
+* Password: P3pperm!nt
 
 
 # Information
-Capstone Project for Group **Opus Omne**, *A.Y. 2018 - 2019*
+Capstone Project by Group **Opus Omne**, *A.Y. 2018 - 2019*
 
 University of Santo Tomas, Intitute of Information and Computing Sciences, Department of Information Systems
 

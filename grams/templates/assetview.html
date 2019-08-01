@@ -32,38 +32,36 @@
                         <center>This item is archived.</center>
                     </div>
                 {% endif %}
-            <div class="col-sm">
-                <table class="info-table">
-                    <tr>
-                        <td><b>ID</b></td>
-                        <td>{{ asset_view.id }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Created By</b></td>
-                        <td>{{ asset_view.created_by }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Date Added</b></td>
-                        <td>{{ asset_view.date_added }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Date Acquired</b></td>
-                        <td>{{ asset_view.date_acquired }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Category</b></td>
-                        <td>{{ asset_view.category }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Vendor</b></td>
-                        <td>{{ asset_view.vendor }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Brand</b></td>
-                        <td>{{ asset_view.brand }}</td>
-                    </tr>
-                    </table>
-                </div>
+            <table class="info-table">
+                <tr>
+                    <td><b>ID</b></td>
+                    <td>{{ asset_view.id }}</td>
+                </tr>
+                <tr>
+                    <td><b>Created By</b></td>
+                    <td>{{ asset_view.created_by }}</td>
+                </tr>
+                <tr>
+                    <td><b>Date Added</b></td>
+                    <td>{{ asset_view.date_added }}</td>
+                </tr>
+                <tr>
+                    <td><b>Date Acquired</b></td>
+                    <td>{{ asset_view.date_acquired }}</td>
+                </tr>
+                <tr>
+                    <td><b>Category</b></td>
+                    <td>{{ asset_view.category }}</td>
+                </tr>
+                <tr>
+                    <td><b>Vendor</b></td>
+                    <td>{{ asset_view.vendor }}</td>
+                </tr>
+                <tr>
+                    <td><b>Brand</b></td>
+                    <td>{{ asset_view.brand }}</td>
+                </tr>
+            </table>
         </div>
 
             <div class="col-sm">
@@ -114,7 +112,7 @@
                 </div>
             </div>
 
-        <div class=" container-fluid">
+        <div class="row container-fluid">
 
             <div class="col-sm">
                 <h2>
@@ -145,9 +143,8 @@
                     </tbody>
                 </table>
 
-                <div class="row">
-                    <b>Depreciation Value</b>&nbsp; Php {{ asset_view.dep_value|floatformat:'2' }}
-                </div>
+                <b>Depreciation Value</b>&nbsp; Php {{ asset_view.dep_value|floatformat:'2' }}
+                
                 {% if soft_auth != 'General User' %}
                 <div class="info-buttons">
                     <ul>
@@ -156,8 +153,9 @@
                         </li>
                     </ul>
                 </div>
+                {% endif %}
             </div>
-            {% endif %}
+
         </div>
 
         <div class="row container-fluid">

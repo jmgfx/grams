@@ -283,7 +283,7 @@ h2 {
 
     .row a {
         text-decoration-line: underline;
-        position: absolute;
+        /*position: absolute;*/
         bottom: 8px;
         left: 16px;
     }

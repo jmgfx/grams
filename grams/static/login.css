@@ -104,3 +104,12 @@ input[type=submit] {
         color: rgb(27,94,32);
         transition: 0.3s;
     }
+
+.alert ul {
+    padding: 0;
+    list-style-type: none;
+    background: #b00020;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}

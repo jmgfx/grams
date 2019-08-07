@@ -50,30 +50,27 @@
                                 data-target="#" href="/page.html">
                                 <i class="fas fa-user"></i>
                             </a>
-                            <div class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-                                <div class="notifications-wrapper">
+                            <div class="dropdown-menu user-dropdown" role="menu" aria-labelledby="dLabel">
+                                <div class="user-dropdown-wrapper">
+
+                                    <div class="user-dropdown-preamble">
+                                        Signed in as <b>{{ request.user.username }}</b>
+                                    </div>
+
                                     <!-- settings -->
-                                    <a class="notification-content" href="{% url 'profile' %}">
-                                        <div class="notification-item">
-                                            <span class="item-title">Profile</span>
-                                        </div>
+                                    <a class="user-dropdown-content" href="{% url 'profile' %}">
+                                        Profile
                                     </a>
-                                    <a class="notification-content" href="{% url 'edit-profile' %}">
-                                        <div class="notification-item">
-                                            <span class="item-title">Settings</span>
-                                        </div>
+                                    <a class="user-dropdown-content" href="{% url 'edit-profile' %}">
+                                        Settings
                                     </a>
-                                    <a class="notification-content" href="{% url 'change-password' %}">
-                                        <div class="notification-item">
-                                            <span class="item-title">Change Password</span>
-                                        </div>
+                                    <a class="user-dropdown-content" href="{% url 'change-password' %}">
+                                        Change Password
                                     </a>
                                     
                                     <!-- something -->
-                                    <a class="notification-content" href="{% url 'logout' %}">
-                                        <div class="notification-item">
-                                            <span class="item-title">Log Out</span>
-                                        </div>
+                                    <a class="user-dropdown-content" href="{% url 'logout' %}">
+                                        Log Out
                                     </a>
                                 </div>
                             </div>

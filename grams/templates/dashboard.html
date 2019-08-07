@@ -15,25 +15,25 @@
             <div class="row">
 
                 <div class="col-sm reportbox critical">
-                    <a href="{% url 'transactions-table' %}"><i class="fas fa-info-circle boxcon"></i></a>
+                    <a href="{% url 'transactions-table' %}"><i class="fas fa-info-circle boxcon" data-toggle="tooltip" title="View all queued transactions."></i></a>
                     <h2>{{ queued_transactions_count }}</h2>
                     <span class="reportbox-caption">queued transactions.</span>
                 </div>
 
                 <div class="col-sm reportbox misc">
-                    <a href="{% url 'transactions-history' %}"><i class="fas fa-info-circle boxcon"></i></a>
+                    <a href="{% url 'transactions-history' %}"><i class="fas fa-info-circle boxcon"  data-toggle="tooltip" title="View historical transactions."></i></a>
                     <h2>{{ recently_added }}</h2>
                     <span class="reportbox-caption">recently added assets.</span>
                 </div>
 
                 <div class="col-sm reportbox neutral">
-                    <a href="{% url 'asset-table' %}"><i class="fas fa-info-circle boxcon"></i></a>
+                    <a href="{% url 'asset-table' %}"><i class="fas fa-info-circle boxcon"  data-toggle="tooltip" title="View all assets."></i></a>
                     <h2>{{ asset_count }}</h2>
                     <span class="reportbox-caption">total recorded assets.</span>
                 </div>
 
                 <div class="col-sm reportbox low">
-                    <a href="{% url 'transactions-table' %}"><i class="fas fa-info-circle boxcon"></i></a>
+                    <a href="{% url 'transactions-table' %}"><i class="fas fa-info-circle boxcon"  data-toggle="tooltip" title="View all completed transactions."></i></a>
                     <h2>{{ completed_transactions_count }}</h2>
                     <span class="reportbox-caption">completed transactions</span>
                 </div>

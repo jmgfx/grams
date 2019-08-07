@@ -35,14 +35,19 @@
     }
         .tablebox ul > li {
             float: left;
-            /*border-radius: 3px;*/
+            border-radius: 3px;
             padding: 1px 3px 1px 3px;
             margin-right: 6px;
             margin-top: 3px;
+            transition: 0.3s;
         }
 
             .tablebox ul > li:last-child {
                 margin-right: 0;
+            }
+
+            .tablebox ul > li:first-child:hover {
+                opacity: 0.8;
             }
 
         .date {
@@ -68,7 +73,12 @@
 .reportbox {
     color: white;
     padding:0;margin:0;
+    transition: 0.3s;
 }
+
+    .reportbox:hover {
+        opacity: 0.8;
+    }
 
 .reportbox h2 {
     font-size: 4em;

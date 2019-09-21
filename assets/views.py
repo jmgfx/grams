@@ -72,9 +72,10 @@ def AssetView(request, asset_id):
     limit = datetime.timedelta(30)
 
     asset.balance = asset.it_balance[-1]
-    dep_values = Depreciation(asset)
     
     asset.save()
+
+    dep_values = zip(asset.it_dep_date, asset.it_dep_value, asset.it_accrued, asset.it_balance)
 
     context_view = {
         'asset_view': asset,
@@ -183,6 +184,14 @@ def DeleteAsset(request, asset_id):
     return redirect('/assets/')
 
 
+@login_required
+def Depreciate(request, asset_id):
+    asset = Assets.objects.get(id=asset_id)
+    action = Depreciation(asset)
+    asset.save()
+    return redirect('/assets/view/' + str(asset_id) + '/')
+
+
 def Depreciation(self):
     now = datetime.date.today()
     limit = datetime.timedelta(30)
@@ -199,12 +208,18 @@ def Depreciation(self):
         self.it_dep_date.append(get_last_day(self.it_dep_date[-1]+limit))
         self.it_accrued.append(self.it_accrued[-1])
         self.it_balance.append(self.it_balance[-1])
-        self.it_dep_value.append(0.00)
+        self.it_dep_value.append(self.dep_value)
 
     self.it_dep_date.append(current_dep_date)
-    self.it_accrued.append(self.it_accrued[-1] + (self.dep_value * gap))
-    self.it_balance.append(self.acquisition_cost - self.it_accrued[-1])
-    self.it_dep_value.append(self.dep_value * gap)
+
+    if self.it_balance[-1] <= (self.dep_value * gap):
+        self.it_accrued.append(self.it_accrued[-1] + (self.it_balance[-1] - 1.00))
+        self.it_balance.append(1.00)
+        self.it_dep_value.append(self.dep_value)
+    else:
+        self.it_accrued.append(self.it_accrued[-1] + (self.dep_value * gap))
+        self.it_balance.append(self.acquisition_cost - self.it_accrued[-1])
+        self.it_dep_value.append(self.dep_value)
 
     zip_list = zip(self.it_dep_date, self.it_dep_value, self.it_accrued, self.it_balance)
 

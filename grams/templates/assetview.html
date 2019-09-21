@@ -131,6 +131,14 @@
                         <b>Depreciation Value</b>&nbsp; Php {{ asset_view.dep_value|floatformat:'2' }}
                     </div>
                 </div>
+
+                <div class="info-buttons">
+                    <ul>
+                        <li class="low">
+                            <a href="{% url 'depreciate-asset' asset_view.id %}">Generate Current Report</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             

@@ -4,7 +4,7 @@ import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = '(-fux-wu+4wn+73t2$!rlm7v_%)h1nzh)mcu8aik(ubn6opf2)'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = True
 
@@ -70,12 +70,9 @@ WSGI_APPLICATION = 'grams.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'jean-grams',
-        'PASSWORD': 'garcia',
-        'NAME': 'testgrams',
-        'TEST': {
-            'NAME': 'testgrams',
-        }
+        'USER': os.environ['PSQL_USER'],
+        'PASSWORD': os.environ['PSQL_PASSWORD'],
+        'NAME': 'grams',
     }
 }
 
